@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6bff0b1d7635443d82f1c431defd1383" Name="Diagram1" ZoomLevel="13">
+        <EntityTypeShape EntityType="ABESSPModel.DailyAttendance" Width="1.5" PointX="7.5" PointY="13.25" />
+        <EntityTypeShape EntityType="ABESSPModel.DailyAttendanceEdit" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.DailyAttendanceEmailLog" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.DailyOvertime" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.DaysName" Width="1.5" PointX="0.75" PointY="17.125" />
+        <EntityTypeShape EntityType="ABESSPModel.DeviceDataError" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ABESSPModel.DeviceEmpRemove" Width="1.5" PointX="9.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ABESSPModel.DownloadTime" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.EmpFace" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ABESSPModel.EmpFP" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Holiday" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.JobCardApp" Width="1.5" PointX="20" PointY="12" />
+        <EntityTypeShape EntityType="ABESSPModel.JobCardAppFlow" Width="1.5" PointX="19.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ABESSPModel.JobCardDetail" Width="1.5" PointX="22.25" PointY="12.875" />
+        <EntityTypeShape EntityType="ABESSPModel.JobCardStage" Width="1.5" PointX="17.75" PointY="16.625" />
+        <EntityTypeShape EntityType="ABESSPModel.JobCardType" Width="1.5" PointX="17.75" PointY="13.25" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveApplication" Width="1.5" PointX="15" PointY="5" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveApplicationFlow" Width="1.5" PointX="19.75" PointY="17.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveCarryForward" Width="1.5" PointX="9.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveCPLBalance" Width="1.5" PointX="11.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveCPLEmpBalance" Width="1.5" PointX="13.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveCPLPool" Width="1.5" PointX="15.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveData" Width="1.5" PointX="17.25" PointY="6.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeavePolicy" Width="1.5" PointX="15" PointY="13.125" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveQuotaPeriod" Width="1.5" PointX="21.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveQuotaYear" Width="1.5" PointX="21.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveStage" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ABESSPModel.LeaveType" Width="1.5" PointX="12.75" PointY="6.875" />
+        <EntityTypeShape EntityType="ABESSPModel.MonthData" Width="1.5" PointX="24.25" PointY="19.25" />
+        <EntityTypeShape EntityType="ABESSPModel.MonthDataEdit" Width="1.5" PointX="17.75" PointY="21.75" />
+        <EntityTypeShape EntityType="ABESSPModel.MonthlyERP" Width="1.5" PointX="19.75" PointY="21.75" />
+        <EntityTypeShape EntityType="ABESSPModel.MonthlyERPLWOP" Width="1.5" PointX="22.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ABESSPModel.MonthOTStage" Width="1.5" PointX="22" PointY="28.125" />
+        <EntityTypeShape EntityType="ABESSPModel.OTApprovedHistory" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.OTPolicy" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="ABESSPModel.ProcessDate" Width="1.5" PointX="22.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ABESSPModel.ProcessRequest" Width="1.5" PointX="24.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Reader" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="ABESSPModel.ReaderDutyCode" Width="1.5" PointX="5.75" PointY="2" />
+        <EntityTypeShape EntityType="ABESSPModel.ReaderType" Width="1.5" PointX="5.75" PointY="5.875" />
+        <EntityTypeShape EntityType="ABESSPModel.Remark" Width="1.5" PointX="9.75" PointY="24.75" />
+        <EntityTypeShape EntityType="ABESSPModel.RosterApplication" Width="1.5" PointX="24.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ABESSPModel.RosterDetail" Width="1.5" PointX="11.75" PointY="24.75" />
+        <EntityTypeShape EntityType="ABESSPModel.RosterType" Width="1.5" PointX="13.75" PointY="24.75" />
+        <EntityTypeShape EntityType="ABESSPModel.ServiceLog" Width="1.5" PointX="24.75" PointY="15.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Shift" Width="1.5" PointX="3" PointY="14.125" />
+        <EntityTypeShape EntityType="ABESSPModel.ShiftChanged" Width="1.5" PointX="5.25" PointY="31.5" />
+        <EntityTypeShape EntityType="ABESSPModel.ShiftChangedEmp" Width="1.5" PointX="5.25" PointY="38.5" />
+        <EntityTypeShape EntityType="ABESSPModel.ACCUUP" Width="1.5" PointX="25.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.FPTemplate" Width="1.5" PointX="26.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ABESSPModel.sysdiagram" Width="1.5" PointX="26.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ABESSPModel.EmpDailyRoster" Width="1.5" PointX="26.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AppUser" Width="1.5" PointX="10.5" PointY="16.5" />
+        <EntityTypeShape EntityType="ABESSPModel.AppUserAccessType" Width="1.5" PointX="8.25" PointY="10.25" />
+        <EntityTypeShape EntityType="ABESSPModel.AppUserDepartment" Width="1.5" PointX="26.75" PointY="13.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AppUserLocation" Width="1.5" PointX="15.75" PointY="26.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AppUserRole" Width="1.5" PointX="26.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AppUserTM" Width="1.5" PointX="26.75" PointY="19.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AuditForm" Width="1.5" PointX="17.75" PointY="26.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AuditLog" Width="1.5" PointX="28.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AuditLogChild" Width="1.5" PointX="28.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AuditLogDetail" Width="1.5" PointX="28.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AuditLogParent" Width="1.5" PointX="9.75" PointY="28.75" />
+        <EntityTypeShape EntityType="ABESSPModel.AuditType" Width="1.5" PointX="19.75" PointY="25.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Catagory" Width="1.5" PointX="11.75" PointY="28.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Company" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Crew" Width="1.5" PointX="3" PointY="31.5" />
+        <EntityTypeShape EntityType="ABESSPModel.Designation" Width="1.5" PointX="3" PointY="39.375" />
+        <EntityTypeShape EntityType="ABESSPModel.Employee" Width="1.5" PointX="5.25" PointY="12.5" />
+        <EntityTypeShape EntityType="ABESSPModel.EmployeeCrewChange" Width="1.5" PointX="28.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ABESSPModel.EmployeeGender" Width="1.5" PointX="3" PointY="29.375" />
+        <EntityTypeShape EntityType="ABESSPModel.EmployeeImage" Width="1.5" PointX="28.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ABESSPModel.EmployeeLog" Width="1.5" PointX="28.75" PointY="19.75" />
+        <EntityTypeShape EntityType="ABESSPModel.EmployeeStatu" Width="1.5" PointX="3" PointY="37.125" />
+        <EntityTypeShape EntityType="ABESSPModel.EmploymentType" Width="1.5" PointX="28.75" PointY="28.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Gender" Width="1.5" PointX="13.75" PointY="29.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Grade" Width="1.5" PointX="15.75" PointY="29.75" />
+        <EntityTypeShape EntityType="ABESSPModel.JobTitle" Width="1.5" PointX="3" PointY="34.25" />
+        <EntityTypeShape EntityType="ABESSPModel.JTCommon" Width="1.5" PointX="30.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Location" Width="1.5" PointX="3" PointY="23.375" />
+        <EntityTypeShape EntityType="ABESSPModel.LocationCommon" Width="1.5" PointX="30.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ABESSPModel.Notification" Width="1.5" PointX="30.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ABESSPModel.NotificationEmail" Width="1.5" PointX="30.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ABESSPModel.NotificationType" Width="1.5" PointX="30.75" PointY="14.75" />
+        <EntityTypeShape EntityType="ABESSPModel.OrganizationalUnit" Width="1.5" PointX="3" PointY="26.25" />
+        <EntityTypeShape EntityType="ABESSPModel.OUCommon" Width="1.5" PointX="0.75" PointY="26.625" />
+        <EntityTypeShape EntityType="ABESSPModel.SMTPDetail" Width="1.5" PointX="30.75" PointY="17.75" />
+        <EntityTypeShape EntityType="ABESSPModel.FinalSettelmentFlow" Width="1.5" PointX="30.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ABESSPModel.FinalSettelmentStatu" Width="1.5" PointX="30.75" PointY="24.75" />
+        <EntityTypeShape EntityType="ABESSPModel.FinalSettlement" Width="1.5" PointX="30.75" PointY="27.75" />
+        <EntityTypeShape EntityType="ABESSPModel.FinancialYear" Width="1.5" PointX="19.75" PointY="31.75" />
+        <EntityTypeShape EntityType="ABESSPModel.PayrollPeriod" Width="1.5" PointX="22" PointY="31.375" />
+        <EntityTypeShape EntityType="ABESSPModel.DeviceData" Width="1.5" PointX="32.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_CPLBalance" Width="1.5" PointX="32.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_DailyAttedanceEdit" Width="1.5" PointX="7.75" PointY="32.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_DailyAttendance" Width="1.5" PointX="9.75" PointY="32.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_DailyAttendanceDetail" Width="1.5" PointX="11.75" PointY="32.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_DailyOvertime" Width="1.5" PointX="32.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_DeviceData" Width="1.5" PointX="32.75" PointY="22.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_JobCardApplication" Width="1.5" PointX="13.75" PointY="33.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_JobCardFlow" Width="1.5" PointX="15.75" PointY="33.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_LeaveApplication" Width="1.5" PointX="26.75" PointY="33.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_LeaveApplicationFlow" Width="1.5" PointX="34.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_LeaveCPLEmpBalance" Width="1.5" PointX="34.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_LeaveData" Width="1.5" PointX="34.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_LeaveQuotaYearly" Width="1.5" PointX="34.75" PointY="21.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_MonthData" Width="1.5" PointX="34.75" PointY="27.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_MonthDataEdit" Width="1.5" PointX="17.75" PointY="35.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_MonthlyERP" Width="1.5" PointX="19.75" PointY="35.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_MonthlyERPLWOP" Width="1.5" PointX="36.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_MonthlySheet" Width="1.5" PointX="36.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_MonthlySummary" Width="1.5" PointX="34.75" PointY="36.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_OvertimeHistory" Width="1.5" PointX="36.75" PointY="35.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_Reader" Width="1.5" PointX="38.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_RosterApplication" Width="1.5" PointX="38.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_RosterDetail" Width="1.5" PointX="38.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_ServiceLog" Width="1.5" PointX="38.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_Shift" Width="1.5" PointX="38.75" PointY="21.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VAT_ShiftChanged" Width="1.5" PointX="28.75" PointY="38.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VEP_JobCardApplication" Width="1.5" PointX="38.75" PointY="30.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_AppUser" Width="1.5" PointX="30.75" PointY="38.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_CommonLocation" Width="1.5" PointX="40.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_Crew" Width="1.5" PointX="40.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_Designation" Width="1.5" PointX="40.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_EmployeeCrewChange" Width="1.5" PointX="40.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_EmployeeProfile" Width="1.5" PointX="13.75" PointY="40.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_EmploymentType" Width="1.5" PointX="40.75" PointY="14.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_Grade" Width="1.5" PointX="40.75" PointY="17.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_JobTitle" Width="1.5" PointX="40.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_Location" Width="1.5" PointX="40.75" PointY="23.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_OrganizationalUnit" Width="1.5" PointX="40.75" PointY="26.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_User" Width="1.5" PointX="40.75" PointY="29.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_UserCommonLocation" Width="1.5" PointX="40.75" PointY="41.75" />
+        <EntityTypeShape EntityType="ABESSPModel.VHR_UserEmployee" Width="1.5" PointX="42.75" PointY="0.75" />
+        <AssociationConnector Association="ABESSPModel.FK_DailyAttendance_Employee" />
+        <AssociationConnector Association="ABESSPModel.FK_Shift_DaysName" />
+        <AssociationConnector Association="ABESSPModel.FK_Shift_DaysName2" />
+        <AssociationConnector Association="ABESSPModel.FK_JobCardApp_JobCardStage" />
+        <AssociationConnector Association="ABESSPModel.FK_JobCardApp_JobCardType" />
+        <AssociationConnector Association="ABESSPModel.FK_JobCardDetail_JobCardApp" />
+        <AssociationConnector Association="ABESSPModel.FK_JobCardDetail_JobCardType" />
+        <AssociationConnector Association="ABESSPModel.FK_LeaveApplication_LeaveStage" />
+        <AssociationConnector Association="ABESSPModel.FK_LeaveApplication_LeaveType" />
+        <AssociationConnector Association="ABESSPModel.FK_LeaveData_LeaveApplication" />
+        <AssociationConnector Association="ABESSPModel.FK_LeaveData_LeaveType" />
+        <AssociationConnector Association="ABESSPModel.FK_LeavePolicy_LeaveType" />
+        <AssociationConnector Association="ABESSPModel.FK_MonthData_MonthOTStage" />
+        <AssociationConnector Association="ABESSPModel.FK_MonthData_PayrollPeriod" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_OTPolicy" />
+        <AssociationConnector Association="ABESSPModel.FK_Reader_ReaderDutyCode" />
+        <AssociationConnector Association="ABESSPModel.FK_Reader_ReaderType" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_Shift" />
+        <AssociationConnector Association="ABESSPModel.FK_ShiftChanged_Shift" />
+        <AssociationConnector Association="ABESSPModel.FK_ShiftChangedEmp_Shift" />
+        <AssociationConnector Association="ABESSPModel.FK_AppUser_AppUserAccessType" />
+        <AssociationConnector Association="ABESSPModel.FK_AppUser_Employee" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_Company" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_Crew" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_Designation" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_EmployeeGender" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_EmployeeStatus" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_JobTitle" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_Location" />
+        <AssociationConnector Association="ABESSPModel.FK_Employee_OrganizationalUnit" />
+        <AssociationConnector Association="ABESSPModel.FK_OrganizationalUnit_OUCommon" />
+        <AssociationConnector Association="ABESSPModel.FK_PayrollPeriod_FinancialYear" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

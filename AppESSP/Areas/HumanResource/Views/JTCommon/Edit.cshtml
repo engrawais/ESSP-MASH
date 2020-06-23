@@ -1,0 +1,38 @@
+﻿@model ESSPCORE.EF.JTCommon
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PJTCommonID)
+
+
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Edit Common JobTitle
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">Common JobTitle Name</div>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.JTCommonName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JTCommonName, "", new { @class = "text-danger" })
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+        <button type="button" id="btnPostEdit" class="btn bg-blue-800" value="Submit">Save</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        JTCommonPostEdit();
+    });
+</script>

@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "Monthly Attendance Details (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMEditMonthlyAttendance
+@using (Html.BeginForm("Create3", "MonthlyEditor", FormMethod.Post))
+{
+    @Html.HiddenFor(model=>model.PayrolPeriodID)
+    <style>
+       .disabled {
+            cursor: not-allowed;
+        }
+
+    </style>
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Monthly Editor </span>- Modify Attendance</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li class="active"> Modify Attendance</li>
+
+                        </ul>
+                        <ul class="breadcrumb-elements">
+                            <li>
+                                <button type="submit" class="btn btn-lg text-bold btn-custom bg-blue-800 " style="margin-right:-20px"><i class="icon-safe"></i> Save</button>
+                            </li></ul>
+                        <input hidden type="text" name="Count" id="Count" value="@Model.Count" />
+                        <input hidden type="text" name="Date" id="Date" value="@Model.Date" />
+                        <input hidden type="text" name="PayrollID" id="PayrollID" value="@Model.PayrolPeriodID" />
+                    </div>
+                    <div class="panel-body">
+                        <table class=" table datatable-scroll-edit table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-bold">
+                                        Emp ID
+                                    </th>
+                                    <th class="text-bold">
+                                        Employee Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Total Days
+                                    </th>
+                                    <th class="text-bold">
+                                        Paid Days
+                                    </th>
+                                    <th class="text-bold">
+                                        Absents
+                                    </th>
+                                    <th class="text-bold">
+                                        LWOP
+                                    </th>
+                                    <th class="text-bold">
+                                        Single OT
+                                    </th>
+                                    <th class="text-bold">
+                                        Double OT
+                                    </th>
+                               
+                                    <th class="text-bold">
+                                        Remarks
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.MonthlyList)
+        {
+                        <tr>
+                            @*<td class="text-nowrap"><input type="checkbox" class="chkSelectEmp" name="SelectedEmpIds" value="@item.EmployeeID" /></td>*@
+                            <td>
+                                @item.EmpNo
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.EmpName, "LoadEmployeeMonthlyAttendance", "DailyEditor", new { EmpID = item.EmployeeID, PRID = Model.PayrolPeriodID, Area = "Attendance" }, new { })
+                            </td>
+                            <td style="display:none">
+                                <input type="text" hidden class="form-control2 text-center" name="Emp-@item.No" width="30" value="@item.EmployeeID" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control2 text-center" style="width:50px" name="TD1-@item.No" width="30" value="@item.TotalDays" />
+                                <input type="hidden" class="form-control2 text-center" style="width:50px" name="TD-@item.No" width="30" value="@item.TotalDays" />
+                            </td>
+                            <td>
+                                <input type="hidden" class="form-control2 text-center" hidden style="width:50px" name="PD-@item.No" width="30" value="@item.PaidDays" />
+                                <input type="text" class="form-control2 text-center" style="width:50px" name="PD1-@item.No" width="30" value="@item.PaidDays" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control2 text-center" name="AB-@item.No" style="width:50px" value="@item.AbsentDays" />
+                            </td>
+                            <td>
+                               <span>@item.LWOPDays</span>
+                            </td>
+                            <td>
+                                <span>@item.SingleEncashableOT</span>
+                            </td>
+                            <td>
+                                <span>@item.DoubleEncashableOT</span>
+                            </td>
+                           
+                            <td>
+                                <span>@item.Remarks</span>
+                            </td>
+                        </tr>
+}
+                            </tbody>
+                        </table>
+                    </div>
+                    @*<div class="panel-footer">
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success heading-btn pull-right">Submit</button>
+                        </div>
+                    </div>*@
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/LeaveQuota.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //CheckBoxSelectionCreate3();
+    });
+</script>

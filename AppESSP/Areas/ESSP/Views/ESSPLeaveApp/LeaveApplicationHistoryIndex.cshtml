@@ -1,0 +1,148 @@
+﻿@model PagedList.IPagedList<ESSPCORE.EF.VAT_LeaveApplication>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "ESSP Leave Application History - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="col-md-6"><h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Leave Application History</span></h4></div>
+        <div class="col-md-6" style="padding-top:8px;">
+            <form class="form-inline" role="form">
+                <div class="form-group pull-right SearchBtnMargin">
+                    @using (Html.BeginForm("LeaveApplicationHistoryIndex", "ESSPLeaveApp", FormMethod.Get))
+                    {<p>
+                            Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                            <input class="btn btn-sm btn-custom bg-blue-800" type="submit" value="Search" />
+                        </p>}
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/LoadDashboard"> Dashboard</a></li>
+                            <li><a href="~/ESSP/ESSPLeaveApp/LeaveApplicationHistoryIndex"> Leave Applications history</a></li>
+                        </ul>
+
+                    </div>
+                    <table class="table table-bordered table-framed table-striped table-hover table-condensed">
+                        <thead>
+                            <tr>
+
+                                <th class="text-bold">
+                                    Emp Name
+                                </th>
+                                <th class="text-bold">
+                                    Leave Type
+                                </th>
+                                <th class="text-bold">
+                                    From Date
+                                </th>
+                                <th class="text-bold">
+                                    To Date
+                                </th>
+                                <th class="text-bold">
+                                    Return Date
+                                </th>
+                                <th class="text-bold">
+                                    No Of Days
+                                </th>
+                                <th class="text-bold">
+                                    Status
+                                </th>
+                                <th class="text-bold">
+                                    Action
+                                </th>
+                            </tr>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                                </td>
+                                <td>
+                                    @if (item.IsAccum == true)
+                                    {
+                                        <span> Accumulated </span>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => item.LeaveTypeName)
+                                    }
+
+                                </td>
+                                <td>
+                                    @item.FromDate.ToString("dd-MMM-yyyy")
+                                </td>
+                                <td>
+                                    @item.ToDate.ToString("dd-MMM-yyyy")
+                                </td>
+                                <td>
+                                    @item.ReturnDate.Value.ToString("dd-MMM-yyyy")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NoOfDays)
+                                </td>
+                                <td>
+                                    @if (item.LeaveStageID != null)
+                                    {
+                                        if (item.LeaveStageID == "A")
+                                        {
+                                            <span class="label label-success">Approved</span>
+                                        }
+                                        if (item.LeaveStageID == "P")
+                                        {
+                                            <span class="label label-info">Pending</span>
+                                        }
+                                        if (item.LeaveStageID == "R")
+                                        {
+                                            <span class="label label-danger">Rejected</span>
+                                        }
+                                        if (item.LeaveStageID == "D")
+                                        {
+                                            <span class="label label-success">Recomended</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn border-blue-800 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded dropdown-toggle" data-toggle="dropdown"><i class="icon-cog5"></i><span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+
+                                            <li>
+                                                <a href="@Url.Action("Detail", "ESSPLeaveApp", new { id = item.PLeaveAppID })">Details</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}

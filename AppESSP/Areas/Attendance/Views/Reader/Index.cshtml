@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Reader - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<ESSPCORE.EF.VAT_Reader>
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Bio-Metric Devices</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Bio-Metric Devices</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-800 "style="margin-right:-20px">
+                        <li><a href="#" id="btnGetCreate" class="btn btn-lg text-bold"><i class="icon-add position-left"></i>Add Device</a></li>
+                    </ul>
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Device Name
+                            </th>
+                            <th class="text-bold">
+                                Device DutyCode
+                            </th>
+                            <th class="text-bold">
+                                Ip Address
+                            </th>
+                            <th class="text-bold">
+                                Ip Port
+                            </th>
+                            <th class="text-bold">
+                                Device Type
+                            </th>
+                            <th class="text-bold">
+                                Location
+                            </th>
+                            <th class="text-bold">
+                                Status
+                            </th>                            
+                            <th class="text-bold">
+                                Edit|Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr> 
+                                <td>
+                                    @item.ReaderName
+                                </td>
+                                <td>
+                                    @item.ReaderDutyName
+                                </td>
+                                <td>
+                                    @item.IpAdd
+                                </td>
+                                <td>
+                                    @item.IpPort
+                                </td>
+                                <td>
+                                    @item.ReaderTypeName
+                                </td>
+                                <td>
+                                    @item.LocationName
+                                </td>
+                                <td>
+                                    @(item.Status == true ? "Active" : "Inactive")
+                                </td>
+                                <td>
+                                    <button type="button" id="btnGetEdit" onclick="ReaderGetEdit(@item.PReaderID)" class="btn border-blue-800 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                    <button type="button" id="btnGetDelete" onclick="ReaderGetDelete(@item.PReaderID)" class="btn border-warning text-warning-700 btn-flat btn-xs btn-rounded"><i class="note-icon-trash"></i></button>
+                                
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<!-- Modal -->
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/Reader.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ReaderGetCreate();
+    });
+</script>

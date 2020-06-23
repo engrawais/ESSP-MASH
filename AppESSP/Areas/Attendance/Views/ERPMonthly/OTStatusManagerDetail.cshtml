@@ -1,0 +1,119 @@
+﻿@model List<ESSPCORE.EF.VAT_MonthlySummary>
+@{
+    ViewBag.Title = "Montly OT Status Detail - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("OTManagerStatus", "ERPMonthly", FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4>
+                <i class="icon-arrow-right6 position-left text-black"></i> <span>@ViewBag.SubTitle</span>
+                &nbsp;&nbsp;&nbsp; <span class="form-group">
+
+                </span>
+            </h4>
+
+        </div>
+    </div>
+}
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-green-600">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active">Monthly OT Status Detail</li>
+                    </ul>
+                </div>
+
+                <div id="table_wrapper">
+                    <table class="table datatable-scroll-edit table-striped table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-bold">
+                                    Sr. No
+                                </th>
+                                <th class="text-bold">
+                                    OEmpID
+                                </th>
+                                <th class="text-bold">
+                                    Name
+                                </th>
+                                <th class="text-bold">
+                                    Organization Unit
+                                </th>
+                                <th class="text-bold">
+                                    Status
+                                </th>
+                                <th class="text-bold">
+                                    At Desk Of
+                                </th>
+                                <th class="text-bold"> Single Encahable OT Mins</th>
+                                <th class="text-bold"> Double Encahable OT Mins</th>
+                                <th class="text-bold">CPL OT Mins</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int RowNo = 0;}
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@{RowNo++;} @RowNo</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OEmpID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OUName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MonthDataOTStageName)
+                                </td>
+                                <td>
+                                    @if (item.MonthDataStageID == "A" || item.MonthDataStageID == "R")
+                                    { }
+                                    else if (item.MonthDataStageID == null || item.MonthDataStageID=="P")
+                                    {<span> Time Office</span>}
+                                    else
+                                    { <span>@item.SubmittedToUserName</span>}
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EncashbaleSingleOT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EncashbaleDoubleOT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CPLConversionOT)
+                                </td>
+                            </tr>
+
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>

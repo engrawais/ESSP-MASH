@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Leave CarryForward - Step 3 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMLeaveCF
+@using (Html.BeginForm("Create4", "LeaveCF", FormMethod.Post))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">Leaves Carry Forward </span>- Choose Employees</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-success-400">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li class="active">Leave carry forward</li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="chkSelectAllEmp" /></th>
+                                    <th class="text-bold">
+                                        Emp ID
+                                    </th>
+                                    <th class="text-bold">
+                                        Employee Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Leave Type Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Financial Year
+                                    </th>
+                                    <th class="text-bold">
+                                        Remaining Leaves
+                                    </th>
+                                    <th class="text-bold">
+                                        Collapse Leaves
+                                    </th>
+                                    <th class="text-bold">
+                                       Leaves Carry Forward 
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.LeaveCFChild)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap"><input type="checkbox" class="chkSelectEmp" name="SelectedEmpIds" value="@item.EmpID" /></td>
+                                        <td>
+                                            @item.EmpNo
+                                        </td>
+                                        <td>
+                                            @item.EmployeeName
+                                        </td>
+                                        <td>
+                                            @item.LeaveTypeName
+                                        </td>
+                                        <td>
+                                            @item.FinancialYearName
+                                        </td>
+                                        <td>
+                                            @item.TotalLeave
+                                        </td> 
+                                        <td>
+                                            <input type="text" class="form-control" name="CollapseLeave-@item.EmpID" value="@item.CollapseLeave" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="CarryForward-@item.EmpID" value="@item.CarryForward" />
+                                        </td>
+                                       
+                                       
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success heading-btn pull-right">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/LeaveCF.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Create3();
+    });
+</script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        CheckBoxSelectionCreate3();
+    });
+    </script>

@@ -1,0 +1,33 @@
+﻿@model ESSPCORE.EF.OUCommon
+
+
+<div class="modal-header bg-blue-800">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">
+        <i class="icon-menu7"></i> &nbsp;Common OU
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="form-horizontal">
+        <div class="form-group text-center h5 text-black text-blue-800" >
+            <span>Are you sure you want to delete this?</span>
+        </div>
+        @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "formDeleteID", id = "formDeleteID" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.POUCommonID)
+        }
+    </div>
+</div>
+<div class="modal-footer">
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+    <input type="button" id="btnPostDelete" class="btn btn-danger bg-danger-800" value="Delete" />
+
+</div>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            OUCommonPostDelete();
+        });
+</script>
+

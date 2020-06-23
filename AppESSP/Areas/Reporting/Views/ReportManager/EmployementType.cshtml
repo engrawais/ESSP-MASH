@@ -1,0 +1,36 @@
+﻿@model List<ESSPCORE.Reporting.VMFilterAttribute>
+@{
+    Layout = "~/Areas/Reporting/Views/Shared/_DTLayout.cshtml";
+}
+<table class="table datatable-scroll-info-search  table-striped table-hover table-condensed" id="TableEmployementType">
+    <thead>
+        <tr>
+            <th><input type="checkbox" id="chkSelectAll" /></th>
+            <th>
+                Employement Type Name
+            </th>
+            <th>
+                Company Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-nowrap"><input type="checkbox" @(item.IsSlected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.FilterID" /></td>
+                <td class="valSelect">
+                    @item.FilterName
+                </td>
+                <td>
+                    @item.FieldOneName
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        EmployementTypeManager();
+    });
+</script>

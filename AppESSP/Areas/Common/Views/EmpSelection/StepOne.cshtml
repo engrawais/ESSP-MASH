@@ -1,0 +1,343 @@
+﻿
+@model ESSPCORE.Common.VMEmpSelection
+<section class="col-md-2">
+    <div class="panel-body bg-blue-800 border-radius-top" style="height:50px">
+        <h6 id="Divheader2" style="margin-top:-5px" class="text-semibold">
+            1. Choose Criteria
+        </h6>
+    </div>
+    <div>
+        <div class="radio"><label><input type="radio" value="rbAll" name="SelectionRB">All</label></div>
+        <div class="radio"><label><input type="radio" value="rbCompany" name="SelectionRB">Company</label></div>
+        <div class="radio"><label><input type="radio" value="rbOUCommon" name="SelectionRB">Common OU</label></div>
+        <div class="radio"><label><input type="radio" value="rbOU" name="SelectionRB">Organizational Unit</label></div>
+        <div class="radio"><label><input type="radio" value="rbEmploymentType" name="SelectionRB">Employment Type</label></div>
+        <div class="radio"><label><input type="radio" checked value="rbLocation" name="SelectionRB">Location</label></div>
+        <div class="radio"><label><input type="radio" value="rbGrade" name="SelectionRB">Grade</label></div>
+        <div class="radio"><label><input type="radio" value="rbJobTitle" name="SelectionRB">Job Title</label></div>
+        <div class="radio"><label><input type="radio" value="rbDesignation" name="SelectionRB">Designation</label></div>
+        <div class="radio"><label><input type="radio" value="rbCrew" name="SelectionRB">Crew</label></div>
+        <div class="radio"><label><input type="radio" value="rbShift" name="SelectionRB">Shift</label></div>
+        <div class="radio"><label><input type="radio" value="rbEmployee" name="SelectionRB">Employee</label></div>
+    </div>
+</section>
+<section class="col-md-6">
+    <div class="panel-body bg-blue-800 border-radius-top" style="height:50px">
+        <h5 id="Divheader2" style="margin-top:-5px" class="text-semibold">
+            2. Select Criteria Data
+        </h5>
+    </div>
+    <div id="DivCompany">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllDivCompany" /></th>
+                    <th>
+                        Company Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Company)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectDivCompany" name="SelectedCompanyIds" value="@item.PCompanyID" /></td>
+                        <td>
+                            @item.CompanyName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivOUCommon">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllOUCommon" /></th>
+                    <th>
+                        Common OU Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OUCommon)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectOUCommon" name="SelectedOUCommonIds" value="@item.POUCommonID" /></td>
+                        <td>
+                            @item.OUCommonName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivOU">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllOU" /></th>
+                    <th>
+                        Organizational Unit Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrganizationalUnit)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectOU" name="SelectedOUIds" value="@item.POUID" /></td>
+                        <td>
+                            @item.OUName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivEmploymentType">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllEmploymentType" /></th>
+                    <th>
+                        Employment Type Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.EmploymentType)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectEmploymentType" name="SelectedEmploymentTypeIds" value="@item.PEmploymentTypeID" /></td>
+                        <td>
+                            @item.EmploymentTypeName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivLocation">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllLocation" /></th>
+                    <th>
+                        Location Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Location)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectLocation" name="SelectedLocationIds" value="@item.PLocationID" /></td>
+                        <td>
+                            @item.LocationName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivGrade">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllGrade" /></th>
+                    <th>
+                        Grade Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Grade)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectGrade" name="SelectedGradeIds" value="@item.PGradeID" /></td>
+                        <td>
+                            @item.GradeName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivJobTitle">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllJobTitle" /></th>
+                    <th>
+                        Job Title Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.JobTitle)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectJobTitle" name="SelectedJobTitleIds" value="@item.PJobTitleID" /></td>
+                        <td>
+                            @item.JobTitleName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivDesignation">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllDesignation" /></th>
+                    <th>
+                        Designation Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Designation)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectDesignation" name="SelectedDesignationIds" value="@item.PDesignationID" /></td>
+                        <td>
+                            @item.DesignationName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivCrew">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllCrew" /></th>
+                    <th>
+                        Crew Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Crew)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectCrew" name="SelectedCrewIds" value="@item.PCrewID" /></td>
+                        <td>
+                            @item.CrewName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivShift">
+        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkSelectAllShift" /></th>
+                    <th>
+                        Shift Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Shift)
+                {
+                    <tr>
+                        <td class="text-nowrap"><input type="checkbox" class="chkSelectShift" name="SelectedShiftIds" value="@item.PShiftID" /></td>
+                        <td>
+                            @item.ShiftName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="DivEmployee">
+        <br />
+        <div class="form-group">
+            <div class="form-inline">
+                <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Emp No</label>
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <div class="input-group">
+                        <input id="EmpNo" autofocus name="EmpNo" type="text" class="form-control" placeholder="EMP-00001" />
+                        <span class="input-group-btn">
+                            <button type="button" name="btnGetEmployee" value="Search" class="btn btn-custom bg-blue-800" id="btnGetEmployee">Search</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div class="form-group">
+            <section class="col-md-12">
+
+                <div class="content-group">
+                    <div class="panel-body bg-grey border-radius-top " style="height:50px">
+                        <h6 class="text-bold" style="margin-top:-5px">
+                            EMPLOYEE INFORMATION
+                        </h6>
+                    </div>
+
+                    <div class="panel panel-flat">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+
+                                <tbody>
+                                    <tr>
+                                        <td class="small text-bold">
+                                            Name:
+                                        </td>
+                                        <td>
+                                            <h6 id="EName" class="small"></h6>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="small text-bold">
+                                            Position:
+                                        </td>
+
+                                        <td>
+                                            <h6 id="EDesignation" class="small"></h6>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="small text-bold">
+                                            OU:
+                                        </td>
+
+                                        <td>
+                                            <h6 id="EOU" class="small"></h6>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="small text-bold">
+                                            DOJ:
+                                        </td>
+                                        <td>
+                                            <h6 id="EDOJ" class="small"></h6>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="~/Areas/Common/Scripts/EmpSelection.js"></script>
+<script>
+
+    $(document).ready(function () {
+        StepOne();
+        LoadEmployeeInformation();
+    });
+</script>

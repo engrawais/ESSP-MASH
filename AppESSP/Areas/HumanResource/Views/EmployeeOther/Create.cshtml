@@ -1,0 +1,101 @@
+﻿@model ESSPCORE.EF.EmployeeOther
+@{
+    Layout = null;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <head>
+        <style>
+            img {
+                border-radius: 15%;
+            }
+        </style>
+        <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
+        <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/select2.min.js"></script>
+        <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
+        <script type="text/javascript" src="~/Theme/assets/js/pages/form_select2.js"></script>
+    </head>
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-user-tie"></i> &nbsp;Add Employee &nbsp;&nbsp;&nbsp;@*<span class="h6 text-black">@Model.EmployeeName (@Model.OEmpID)</span>*@
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Line Manager</div>
+                <div class="col-md-6">
+                    @Html.DropDownList("LineManagerID", null, new { @class = "select-size-sm col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.LineManagerID, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-1 text-semibold">Emp No</div>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.OEmpID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OEmpID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold ">Employee Name</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-2 text-semibold ">Father Name</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">FPID</div>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.FPID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FPID, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-1 text-semibold ">Telephone</div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.TelephoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TelephoneNo, "", new { @class = "text-danger" })
+                </div>
+                @*<div class="control-label text-semibold col-md-1">DOJ</div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(x => x.DOJ, new { @class = "form-control", @type = "date" })
+                        @Html.ValidationMessageFor(model => model.DOJ, "", new { @class = "text-danger" })
+                    </div>*@
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Official Email </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.OfficialEmailID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OfficialEmailID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label class="checkbox-inline text-semibold " for="ProcessAttendance">
+                        @Html.CheckBox("ProcessAttendance")
+                        @Html.ValidationMessageFor(model => model.ProcessAttendance, "", new { @class = "text-danger" })
+                        Process Attendance
+                    </label>
+                </div>
+                <div class="col-md-3">
+                    <label class="checkbox-inline text-semibold " for="Status">
+                        @Html.CheckBox("Status")
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        Status
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary bg-primary-300" })
+        <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Create</button>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        EmployeeOtherPostCreate();
+    });
+</script>

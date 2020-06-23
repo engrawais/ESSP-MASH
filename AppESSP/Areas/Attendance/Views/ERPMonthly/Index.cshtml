@@ -1,0 +1,153 @@
+﻿@model List<ESSPCORE.Attendance.VMMonthlyERP>
+@{
+    ViewBag.Title = "Montly ERP - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Index", "ERPMonthly", FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4>
+                <i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Export to Payroll ERP</span>
+                &nbsp;&nbsp;&nbsp; <sspan class="form-group">
+                    <button class="btn btn-xs btn-success text-semibold" id="btnExport"><i class="icon-file-excel"></i>&nbsp;Download</button>
+                </sspan>
+                <span class="pull-right text-black">
+                    Payroll Period : @Html.DropDownList("PayrollPeriodID", null, new { @class = "btn btn-default  dropdown-toggle dropdown" })
+                    <span> <input type="submit" class="btn bg-green-800" value="GO" /></span>
+                </span>
+            </h4>
+
+        </div>
+    </div>
+}
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            @using (Html.BeginForm("IndexSubmit", "ERPMonthly", FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+            {
+                <input type="text" hidden value="@ViewBag.PRPeriodID" id="PRPeriodID" name="PRPeriodID" />
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-green-600">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li class="active">Monthly ERP</li>
+                        </ul>
+
+                        <ul class="breadcrumb-elements">
+                            <li>
+                                <button class="btn btn-lg text-bold bg-green-800 " style="margin-right:-20px" type="submit">Submit</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="table_wrapper">
+                        <table class="table datatable-scroll-edit table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="chkSelectAllEmp" /></th>
+                                    <th class="text-bold">
+                                        O Emp ID
+                                    </th>
+                                    <th class="text-bold">
+                                        Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Designation
+                                    </th>
+                                    <th class="text-bold"> LWOP Days</th>
+                                    <th class="text-bold"> Single OT</th>
+                                    <th class="text-bold">Double OT</th>
+                                    <th class="text-bold">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap"><input type="checkbox" class="chkSelectEmp" name="SelectedEmpIds" value="@item.EmpID" /></td>
+
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.OEmpID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EmpName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DesignationName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LWOPDays)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SingleOT)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DoubleOT)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+
+                        </table>
+
+                        <div class="col-md-4 text-black">Total Single Overtime: @Model.Sum(aa => aa.SingleOT)</div>
+                        <div class="col-md-4 text-black">Total Double Overtime: @Model.Sum(aa => aa.DoubleOT)</div>
+                        <div class="col-md-4 text-black">Total LWOP: @Model.Sum(aa => aa.LWOPDays)</div>
+
+                    </div>
+                </div>
+
+            }
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<script type="text/javascript" src="~/Areas/Common/Scripts/EmpSelection.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        {
+            var checkboxes = $(':checkbox');
+
+            checkboxes.prop('checked', true);
+            // Select/Deselect for Employee
+            $("#chkSelectAllEmp").bind("change", function () {
+                $(".chkSelectEmp").prop("checked", $(this).prop("checked"));
+            });
+            $(".chkSelectEmp").bind("change", function () {
+                if (!$(this).prop("checked"))
+                    $("#chkSelectAllEmp").prop("checked", false);
+            });
+        };
+    });
+
+    $("#btnExport").click(function (e) {
+        e.preventDefault();
+
+        //getting data from our table
+        var data_type = 'data:application/vnd.ms-excel';
+        var table_div = document.getElementById('table_wrapper');
+        var table_html = table_div.outerHTML.replace(/ /g, '%20');
+
+        var a = document.createElement('a');
+        a.href = data_type + ', ' + table_html;
+        a.download = 'Export to ERP list' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
+        a.click();
+    });
+</script>

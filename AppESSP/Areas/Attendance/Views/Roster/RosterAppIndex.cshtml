@@ -1,0 +1,127 @@
+﻿@model List<ESSPCORE.EF.VAT_RosterApplication>
+
+@{
+    ViewBag.Title = "Roster - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Rosters</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Rosters</li>
+                    </ul>
+
+                    <ul class="breadcrumb-elements bg-blue-800" style="margin-right:-20px">
+                        <li><a href="~/Attendance/Roster/Create1"><i class="icon-add position-left"></i> Add Roster</a></li>
+                    </ul>
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Start
+                            </th>
+                            <th class="text-bold">
+                                End
+                            </th>
+                            <th class="text-bold">
+                                Group
+                            </th>
+                            <th class="text-bold">
+                                Shift
+                            </th>
+                            <th class="text-bold">
+                                Roster Type
+                            </th>
+                            <th class="text-bold">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @if (item.DateStarted != null)
+                                    {
+                                        @item.DateStarted.Value.ToString("dd-MMM-yyyy")
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.DateEnded != null)
+                                    {
+                                        @item.DateEnded.Value.ToString("dd-MMM-yyyy")
+                                    }
+                                </td>
+                                <td>
+                                    @item.CrewName
+                                </td>
+                                <td>
+                                    @item.ShiftName
+                                </td>
+                                <td>
+                                    @item.RosterTypeName
+                                </td>
+                                <td class="text-left">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn border-blue-800 btn-flat text-indigo-600 btn-icon btn-rounded dropdown-toggle no-padding-left="-1000Px" data-toggle="dropdown"><i class="icon-cog5"></i><span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="~/Attendance/Roster/RosterDetail?id=@item.RotaAppID"> View Roster</a></li>
+                                            <li><a href="#" onclick="RosterContinue(@item.RotaAppID)"> Continue Roster</a></li>
+                                            <li><a href="~/Attendance/Roster/RosterEdit?id=@item.RotaAppID"> Edit Roster</a></li>
+                                            <li><a href="~/Attendance/Roster/RosterDelete?id=@item.RotaAppID">Delete Roster</a></li>
+                                        </ul>
+                                    </div>
+                                    @Html.ActionLink(" ", "ViewRosterDetail", "Roster", new { id = item.RotaAppID }, new { @class = "btn border-indigo btn-xs text-blue-800 btn-flat btn-rounded icon-printer2" })
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/Rosters.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+    });
+</script>

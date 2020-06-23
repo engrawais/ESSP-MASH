@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ESSPCORE.EF.OTPolicy>
+@{
+    ViewBag.Title = "Overtime Policy - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Overtime Policy</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-green-600">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li><a href="index.html">Settings</a></li>
+                        <li class="active"> Overtime Policy</li>
+                    </ul>
+
+                    <ul class="breadcrumb-elements bg-green-800"style="margin-right:-20px">
+                        <li><a href="#" id="btnGetCreate"><i class="icon-add position-left"></i> Add Overtime Policy</a></li>
+                    </ul>
+
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                           
+                        <th class="text-bold">Policy Name</th>
+                            <th class="text-bold">Enable</th>
+                            <th class="text-bold">CPL Conversion</th>
+                            <th class="text-bold">Perday Overtime</th>
+                            <th class="text-bold">Gazetted Overtime</th>
+                            <th class="text-bold">Rest Overtime</th>
+                            <th class="text-bold">Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OTPolicyName)
+                            </td>
+                            <td>
+                                @if (item.Enable == true)
+                                {
+                                    <div>Yes</div>}
+                                else
+                                {
+                                    <div>No</div>}
+                            </td>
+                            <td>
+                                @if (item.ConvertedToCPL == true)
+                                {
+                                    <div>Yes</div>}
+                                else
+                                {
+                                    <div>No</div>}
+                            </td>
+                            <td>
+                                @if (item.CalculateNOT == true)
+                                {
+                                    <div>Yes</div>}
+                                else
+                                {
+                                    <div>No</div>}
+                            </td>
+                            <td>
+                                @if (item.CalculateGZOT == true)
+                                {
+                                    <div>Yes</div>}
+                                else
+                                {
+                                    <div>No</div>}
+                            </td>
+                           
+                            <td>
+                                @if (item.CalculateRestOT == true)
+                                {
+                                    <div>Yes</div>}
+                                else
+                                {
+                                    <div>No</div>}
+                            </td>
+                            
+                            <td>
+                                <button type="button" id="btnGetEdit"   onclick="OvertimePolicyGetEdit(@item.POTPolicyID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                <button type="button" id="btnGetDelete" onclick="OvertimePolicyGetDelete(@item.POTPolicyID)" class="btn border-warning text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /basic datatable -->
+    </div>
+    <!-- /main content -->
+
+</div>
+<!-- /page content -->
+
+</div>
+<!-- /page container -->
+<!-- Modal -->
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content ">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/OvertimePolicy.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OvertimePolicyGetCreate();
+    });
+</script>
+

@@ -1,0 +1,65 @@
+﻿@model List<ESSPCORE.EF.VHR_EmployeeProfile>
+<table class="table datatable-scroll-y-large table-striped table-hover table-condensed">
+    <thead>
+        <tr>
+            <th><input type="checkbox" class="text-bold" id="chkSelectAllEmp" /></th>
+            <th class="text-bold">
+                Emp ID
+            </th>
+            <th class="text-bold">
+                Employee Name
+            </th>
+            <th class="text-bold">
+                Designation
+            </th>
+            <th class="text-bold">
+                Crew
+            </th>
+            <th class="text-bold">
+                Shift
+            </th>
+            <th class="text-bold">
+                Organizational Unit
+            </th>
+            <th class="text-bold">
+                Location
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-nowrap"><input type="checkbox" class="chkSelectEmp" name="SelectedEmpIds" value="@item.PEmployeeID" /></td>
+                <td>
+                    @item.OEmpID
+                </td>
+                <td>
+                    @item.EmployeeName
+                </td>
+                <td>
+                    @item.DesignationName
+                </td>
+                <td>
+                    @item.CrewName
+                </td>
+                <td>
+                    @item.ShiftName
+                </td>
+                <td>
+                    @item.OUName
+                </td>
+                <td>
+                    @item.LocationName
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript" src="~/Areas/Common/Scripts/EmpSelection.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        StepTwo();
+    });
+</script>

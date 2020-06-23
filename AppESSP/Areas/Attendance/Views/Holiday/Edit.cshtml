@@ -1,0 +1,44 @@
+﻿@model ESSPCORE.EF.Holiday
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.HolidayID)
+    @Html.HiddenFor(model => model.CreatedDate)
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Holiday
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">Holiday Date</div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(x => x.HolidayDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    @Html.ValidationMessageFor(model => model.HolidayDate)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">Description</div>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+        <button type="button" id="btnPostEdit" class="btn bg-blue-800" value="Submit">Submit</button>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        HolidayPostEdit();
+    });
+</script>

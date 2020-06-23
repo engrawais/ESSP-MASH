@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DAB039A-6646-4EFD-90FB-26F5E1BCA67F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ESSPCORE</RootNamespace>
+    <AssemblyName>ESSPCORE</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attendance\ATDashboard.cs" />
+    <Compile Include="Attendance\Editor.cs" />
+    <Compile Include="Attendance\JobCard.cs" />
+    <Compile Include="Attendance\LeaveCF.cs" />
+    <Compile Include="Attendance\LeaveQuota.cs" />
+    <Compile Include="Attendance\OvertimeApproval.cs" />
+    <Compile Include="Attendance\OvertimeEncashable.cs" />
+    <Compile Include="Attendance\Roster.cs" />
+    <Compile Include="Attendance\VMMonthlyERP.cs" />
+    <Compile Include="Attendance\VMShift.cs" />
+    <Compile Include="Common\AllEmployees.cs" />
+    <Compile Include="Common\VMAuditLog.cs" />
+    <Compile Include="Common\VMEmpSelection.cs" />
+    <Compile Include="Common\VMLoggedUser.cs" />
+    <Compile Include="EF\ABESSP.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ABESSP.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ABESSP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ABESSP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ABESSP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ACCUUP.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AppUser.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AppUserAccessType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AppUserDepartment.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AppUserLocation.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AppUserRole.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AppUserTM.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AuditForm.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AuditLog.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AuditLogChild.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AuditLogDetail.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AuditLogParent.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AuditType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Catagory.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Company.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Crew.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DailyAttendance.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DailyAttendanceEdit.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DailyAttendanceEmailLog.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DailyOvertime.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DaysName.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Designation.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DeviceData.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DeviceDataError.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DeviceEmpRemove.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DownloadTime.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmpDailyRoster.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmpFace.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmpFP.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Employee.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmployeeCrewChange.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmployeeGender.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmployeeImage.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmployeeLog.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmployeeStatu.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmploymentType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\FinalSettelmentFlow.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\FinalSettelmentStatu.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\FinalSettlement.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\FinancialYear.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\FPTemplate.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Gender.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Grade.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Holiday.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\JobCardApp.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\JobCardAppFlow.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\JobCardDetail.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\JobCardStage.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\JobCardType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\JobTitle.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\JTCommon.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveApplication.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveApplicationFlow.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveCarryForward.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveCPLBalance.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveCPLEmpBalance.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveCPLPool.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveData.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeavePolicy.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveQuotaPeriod.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveQuotaYear.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveStage.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LeaveType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Location.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LocationCommon.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MonthData.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MonthDataEdit.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MonthlyERP.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MonthlyERPLWOP.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MonthOTStage.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Notification.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NotificationEmail.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NotificationType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OrganizationalUnit.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OTApprovedHistory.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OTPolicy.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OUCommon.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\PayrollPeriod.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ProcessDate.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ProcessRequest.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Reader.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ReaderDutyCode.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ReaderType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Remark.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\RosterApplication.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\RosterDetail.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\RosterType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ServiceLog.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Shift.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ShiftChanged.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ShiftChangedEmp.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\SMTPDetail.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sysdiagram.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_CPLBalance.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_DailyAttedanceEdit.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_DailyAttendance.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_DailyAttendanceDetail.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_DailyOvertime.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_DeviceData.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_JobCardApplication.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_JobCardFlow.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_LeaveApplication.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_LeaveApplicationFlow.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_LeaveCPLEmpBalance.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_LeaveData.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_LeaveQuotaYearly.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_MonthData.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_MonthDataEdit.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_MonthlyERP.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_MonthlyERPLWOP.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_MonthlySheet.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_MonthlySummary.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_OvertimeHistory.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_Reader.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_RosterApplication.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_RosterDetail.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_ServiceLog.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_Shift.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VAT_ShiftChanged.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VEP_JobCardApplication.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_AppUser.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_CommonLocation.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_Crew.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_Designation.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_EmployeeCrewChange.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_EmployeeProfile.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_EmploymentType.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_Grade.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_JobTitle.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_Location.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_OrganizationalUnit.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_User.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_UserCommonLocation.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VHR_UserEmployee.cs">
+      <DependentUpon>ABESSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ESSP\VMESSPCommon.cs" />
+    <Compile Include="ESSP\VMESSPJobCard.cs" />
+    <Compile Include="ESSP\VMESSPJobCardDetail.cs" />
+    <Compile Include="ESSP\VMESSPLeaveDetails.cs" />
+    <Compile Include="HumanResource\VMAppUser.cs" />
+    <Compile Include="HumanResource\VMEmployee.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting\Filters.cs" />
+    <Compile Include="Reporting\VMDailyAttSummary.cs" />
+    <Compile Include="Reporting\VMLeaveBalance.cs" />
+    <Compile Include="Reporting\VMMonthlyLeaveBalance.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="EF\ABESSP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ABESSP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\ABESSP.edmx.diagram">
+      <DependentUpon>ABESSP.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EF\ABESSP.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ABESSP.edmx</DependentUpon>
+      <LastGenOutput>ABESSP.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\ABESSP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ABESSP.edmx</DependentUpon>
+      <LastGenOutput>ABESSP.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,181 @@
+﻿@model ESSPCORE.EF.ShiftChanged
+
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Shift Change for Specific Time Period
+        </h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Title</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.ChangedShiftDesc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ChangedShiftDesc, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label  col-md-2 text-semibold text-right">Shift </div>
+                <div class="col-md-4">
+                    @Html.DropDownList("ShiftID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.ShiftID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            <div class="form-group">
+                <div class="control-label  col-md-2 text-semibold">Location </div>
+                <div class="col-md-4">
+                    @Html.DropDownList("LocationID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.LocationID, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-2 text-semibold text-right ">Start Time</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label text-semibold col-md-2 "> Start Date</div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(x => x.DateStart, new { @class = "form-control", @type = "date" })
+                    @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label text-semibold col-md-2 text-right ">End Date</div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(x => x.DateEnd, new { @class = "form-control", @type = "date" })
+                    @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Day Off 1</div>
+                <div class="col-md-4">
+                    @Html.DropDownList("DayOff1", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.DayOff1, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-2 text-semibold text-right">Day Off 1</div>
+                <div class="col-md-4">
+                    @Html.DropDownList("DayOff2", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.DayOff2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2">
+                    <div class="control-label text-semibold ">Monday Minutes</div>
+                    @Html.EditorFor(model => model.MonMin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MonMin, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <div class="control-label text-semibold ">Tuesday Minutes</div>
+
+                    @Html.EditorFor(model => model.TueMin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TueMin, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <div class="control-label text-semibold ">Wednesday Minutes</div>
+
+                    @Html.EditorFor(model => model.WedMin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.WedMin, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <div class="control-label text-semibold ">Thursday Minutes</div>
+
+                    @Html.EditorFor(model => model.ThuMin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ThuMin, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <div class="control-label text-semibold ">Friday Minutes</div>
+
+                    @Html.EditorFor(model => model.FriMin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FriMin, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    <div class="control-label text-semibold ">Saturday</div>
+
+                    @Html.EditorFor(model => model.SatMin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SatMin, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    <div class="control-label text-semibold ">Sunday</div>
+
+                    @Html.EditorFor(model => model.SunMin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SunMin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+               
+                <div class="control-label text-semibold col-md-2 ">Minimum Duty hrs</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.MinHrs, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MinHrs, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label text-semibold col-md-2">Overtime Minutes</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.OverTimeMin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OverTimeMin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <div class="control-label text-semibold ">Late In</div>
+                    @Html.EditorFor(model => model.LateIn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LateIn, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <div class="control-label text-semibold ">Early In</div>
+                    @Html.EditorFor(model => model.EarlyIn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EarlyIn, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <div class="control-label text-semibold ">Early Out</div>
+                    @Html.EditorFor(model => model.EarlyOut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EarlyOut, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <div class="control-label text-semibold ">Late Out</div>
+
+                    @Html.EditorFor(model => model.LateOut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LateOut, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="checkbox-inline text-semibold" for="HasBreak">
+                        @Html.CheckBox("HasBreak" )
+                        @Html.ValidationMessageFor(model => model.HasBreak, "", new { @class = "text-danger" })
+                        Has Break
+                    </label>
+                </div>
+
+                <div id="hasbreakdiv">
+                    <div class="control-label text-semibold col-md-2 text-right  ">Break Minutes</div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.BreakMin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BreakMin, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="control-label text-semibold col-md-2 text-right">Half Day Break</div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.HalfDayBreakMin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HalfDayBreakMin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="modal-footer">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-custom-grey bg-grey" })
+            <button type="button" id="btnPostCreate" class="btn btn-custom bg-blue-800" value="Submit">Submit</button>
+        </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        ShiftCHPostCreate();
+    });
+</script>
+

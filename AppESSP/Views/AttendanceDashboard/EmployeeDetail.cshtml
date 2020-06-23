@@ -1,0 +1,116 @@
+﻿@model List<ESSPCORE.EF.VAT_DailyAttendance>
+@{
+
+    ViewBag.Title = "TMS Attendance Detail -(Bestway:ESSP)";
+    Layout = null;
+}
+<div class="widget-body">
+    <div class="widget-main no-padding">
+        <div class="col-md-12 col-sm-12">
+            <div>
+                <h5>
+                    <span > @ViewBag.HeaderLeft </span> - <span class="text-bold">@ViewBag.HeaderRight</span> 
+                    <small class="display-block"> @ViewBag.HeaderDescription  </small>
+                </h5>
+            </div>
+            <br />
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr class="table-header">
+                        <th class="text-bold" style="width:70px">
+                            Date
+                        </th>
+                        <th class="text-bold">
+                            Duty Time
+                        </th>
+                        <th class="text-bold">
+                            Time In
+                        </th>
+                        <th class="text-bold">
+                            Time Out
+                        </th>
+                        <th class="text-bold">
+                            Shift Duration
+                        </th>
+                        <th class="text-bold">
+                            Work Minutes
+                        </th>
+                        <th class="text-bold">
+                            Late In
+                        </th>
+                        <th class="text-bold">
+                            Late Out
+                        </th>
+                        <th class="text-bold">
+                            Early In
+                        </th>
+                        <th class="text-bold">
+                            Early Out
+                        </th>
+                        <th class="text-bold">
+                            Remarks
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td style="width:16%">
+                            @item.AttDate.Value.ToString("dddd dd-MMM-yyyy")
+                        </td>
+                        <td>
+                            @if (item.DutyTime != null)
+                            {@item.DutyTime;
+                        }
+                        </td>
+                        <td>
+                            @if (item.TimeIn != null)
+                            {@item.TimeIn.Value.ToString("hh:mm tt");
+                        }
+                        </td>
+
+                        <td>
+                            @if (item.TimeOut != null)
+                            {@item.TimeOut.Value.ToString("hh:mm tt");
+                        }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShifMin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkMin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LateIn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LateOut)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EarlyIn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EarlyOut)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Remarks)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <legend>
+                <span class="text-black">EI:</span><span>&nbsp;&nbsp;Early In</span>&nbsp;&nbsp;
+                <span class="text-black">EO:</span><span>&nbsp;&nbsp;Early Out</span>&nbsp;&nbsp;
+                <span class="text-black">LI:</span><span>&nbsp;&nbsp;Late In</span>&nbsp;&nbsp;
+                <span class="text-black">LO:</span><span>&nbsp;&nbsp;Late Out</span>&nbsp;&nbsp;
+                <span class="text-black">HCL:</span><span>&nbsp;&nbsp;Half Casual Leave</span>&nbsp;&nbsp;
+                <span class="text-black">N-OT:</span><span>&nbsp;&nbsp;Normal Overtime</span>&nbsp;&nbsp;
+            </legend>
+        </div>
+    </div><!-- /.widget-main -->
+</div><!-- /.widget-body -->

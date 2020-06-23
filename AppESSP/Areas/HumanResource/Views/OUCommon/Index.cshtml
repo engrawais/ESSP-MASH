@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "OUCommon - List (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<ESSPCORE.EF.OUCommon>
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Department</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active">Departments</li>
+                    </ul>
+
+                    <ul class="breadcrumb-elements text-bold bg-blue-800" style="margin-right:-20px">
+                        <li>
+                            <a id="btnGetCreate" class="btn btn-lg  "><i class="icon-add position-left"></i>Add Department</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Department Name
+                            </th>
+
+                            <th class="text-bold">
+                                Edit/Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OUCommonName)
+                                </td>
+                                <td>
+                                    <button type="button" id="btnGetEdit" onclick="OUCommonGetEdit(@item.POUCommonID)" class="btn border-blue-800 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                    <button type="button" id="btnGetDelete" onclick="OUCommonGetDelete(@item.POUCommonID)" class="btn border-warning text-warning-800 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content ">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Areas/HumanResource/Scripts/OUCommon.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OUCommonGetCreate();
+    });
+</script>
+
+

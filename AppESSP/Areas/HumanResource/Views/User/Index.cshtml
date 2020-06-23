@@ -1,0 +1,104 @@
+﻿@model List<ESSPCORE.EF.AppUser>
+
+@{
+    ViewBag.Title = "User - List (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+
+</head>
+<div class="page-header ">
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">User </span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> User</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-800" style="margin-right:-20px">
+                       <li> @Html.ActionLink(" Add User", "Create", null, new { @class = "icon-add position-left" })</li>
+                    </ul>
+
+                    <ul class="breadcrumb-elements">
+                        @*<li>@Html.ActionLink("Submit", "PostIndex", "FeedbackMeeting", new { @style = "margin-right:-20px", @class = "btn btn-lg text-bold bg-green-800" })</li>*@
+                    </ul>
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                User ID
+                            </th>
+                            <th class="text-bold">
+                                User Name
+                            </th>
+                            <th class="text-bold">
+                                Employee
+                            </th>
+                            <th class="text-bold">
+                                User Role
+                            </th>
+                            <th class="text-bold">
+                                User Access
+                            </th>
+                            <th class="text-bold">
+                                Edit/Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PUserID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserRoleID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserAccessTypeID)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "User", new { id = item.PUserID  })" class="btn border-blue-800 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<script type="text/javascript" src="~/Areas/HumanResource/Scripts/User.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        UserGetCreate();
+    });
+</script>

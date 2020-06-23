@@ -1,0 +1,125 @@
+﻿@model List<ESSPCORE.EF.VAT_ServiceLog>
+@{
+    ViewBag.Title = "Service Log - List (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Service Log</span></h4>
+    </div>
+</div>
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Service Log</li>
+                    </ul>
+                </div>
+                @using (Html.BeginForm("Index", "ServiceLog", FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+                {
+                    <div class="form-group ">
+                        <div class="col-md-12">
+                            <div class="col-md-1">
+                                @Html.DropDownList("ErrorCode", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownList("ReaderID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            </div>
+                            <div class="col-md-1">
+                                <label class="control-label pull-right">Start: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="date" class="form-control " name="DateStart" id="DateStart" value="@ViewBag.DateStart" />
+                            </div>
+                            <div class="col-md-1">
+                                <label class="control-label pull-right">End: </label>
+                            </div>
+                            <div class="col-md-2">
+
+                                <input type="date" class="form-control " name="DateEnd" id="DateEnd" value="@ViewBag.DateEnd" />
+                            </div>
+
+                            <div class="col-md-1">
+                                <input type="submit" class="btn bg-blue-800" value="GO" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+
+                            <th class="text-bold">
+                                Description
+                            </th>
+                            <th class="text-bold">
+                                DateTime
+                            </th>
+                            <th class="text-bold">
+                                Reader Name
+                            </th>
+                            <th class="text-bold">
+                                Location Name
+                            </th>
+                            @*<th class="text-bold">
+                                Attendance Processed
+                                 </th>*@
+
+                        </tr>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @item.DateTime.ToString("dd-MMM-yyyy hh:mm tt")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReaderName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LocationName)
+                                </td>
+                                @*<td>
+                                        @if (item.Processed == true)
+                                        {
+                                            <span>Processed </span>
+                                        }
+                                        else if (item.Processed == false)
+                                        {
+                                            <span>In Process</span>
+                                        }
+                                        else if (item.Processed == null)
+                                        {
+                                            <span>In Process</span>
+                                        }
+                                    </td>*@
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+
+
+

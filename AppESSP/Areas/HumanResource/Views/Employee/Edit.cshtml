@@ -1,0 +1,330 @@
+﻿@model ESSPCORE.HumanResource.VMEmployee
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PEmployeeID)
+    @Html.HiddenFor(model => model.EmployeeName)
+    @Html.HiddenFor(model => model.LocationID)
+    @Html.HiddenFor(model => model.FPID)
+    <head>
+        <style>
+            img {
+                border-radius: 15%;
+            }
+        </style>
+        <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
+        <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/select2.min.js"></script>
+        <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
+        <script type="text/javascript" src="~/Theme/assets/js/pages/form_select2.js"></script>
+    </head>
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-user-tie"></i> &nbsp;Edit Employee &nbsp;&nbsp;&nbsp;<span class="h6 text-black">@Model.EmployeeName (@Model.OEmpID)</span>
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.PEmployeeID)
+
+            <section>
+                <div class="col-md-9">
+
+                    <div class="form-group">
+                        <div class="control-label col-md-2 text-semibold">Line Manager</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("LineManagerID", null, new { @class = "select-size-sm col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.LineManagerID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-2 text-semibold">Employee Name</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-2 text-semibold ">Shift</div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("ShiftID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.ShiftID, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="control-label col-md-2 text-semibold text-right">Designation</div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("DesigationID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.DesigationID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-2 text-semibold ">Crew Name</div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("CrewID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.CrewID, "", new { @class = "text-danger" })
+                            <input type="text" hidden value="@Model.CrewID" id="ExistingCrewID" />
+                        </div>
+                        <div class="control-label col-md-2 text-semibold text-right">Job Title</div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("JobTitleID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.JobTitleID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2 text-semibold  ">Department</div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("DepartmentID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="control-label col-md-2 text-semibold text-right">Section</div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("SectionID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.SectionID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <div class="control-label col-md-2 text-semibold ">Joining Date</div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.DOJ, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                @Html.ValidationMessageFor(model => model.DOJ)
+                            </div>
+                            <div class="control-label col-md-2 text-semibold  text-right">Date of Birth</div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                @Html.ValidationMessageFor(model => model.DateOfBirth)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2 text-semibold ">Resign Date</div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.ResignDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                @Html.ValidationMessageFor(model => model.ResignDate)
+                            </div>
+                            <div class="control-label col-md-2 text-semibold  text-right">Valid Date</div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.ValidDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                @Html.ValidationMessageFor(model => model.ValidDate)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2 text-semibold ">Emp Type</div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("EmploymentTypeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.EmploymentTypeID, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="control-label col-md-2 text-semibold text-right">Phone #</div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.TelephoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TelephoneNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2 text-semibold ">Email</div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.OfficialEmail, new { htmlAttributes = new { @class = "form-control" } })
+
+                                @Html.ValidationMessageFor(model => model.OfficialEmail, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="control-label col-md-2 text-semibold text-right">Gender</div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("Gender", new List<SelectListItem>
+                                        {
+                                            new SelectListItem { Text = "Male", Value = "Male"},
+                                            new SelectListItem { Text = "Female", Value = "Female"},                                        new SelectListItem { Text = "Not Mentioned", Value = "2"}
+                                        },new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.Gender)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2 text-semibold ">Status</div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("Status", new List<SelectListItem>
+                                       {
+                                           new SelectListItem { Text = "Active", Value = "Active"},
+                                           new SelectListItem { Text = "Resigned", Value = "Resigned"},                                        new SelectListItem { Text = "Not Mentioned", Value = "2"}
+                                       },new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.Status)
+                            </div>
+                            <div class="control-label col-md-2 text-semibold text-right">Card #</div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.CardNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CardNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <div class="control-label col-md-2 text-semibold ">Grade</div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("GradeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.GradeID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="control-label col-md-2 text-semibold text-right">Address</div>
+                            <div class="col-md-4">
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="DivOldCrewName">
+                                <div class="control-label col-md-2 text-semibold">Old Crew</div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.OldCrewName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="DivCrewChange">
+                            <div class="panel panel-flat border-left-info border-right-info" style="margin-bottom:-15px;">
+                                <div class="panel-body">
+                                    <div class="control-label col-md-2 text-semibold ">Start</div>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.CrewStartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                    </div>
+
+                                    <div class="control-label col-md-2 text-semibold ">End</div>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.CrewEndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="checkbox-inline text-semibold " for="FaceTemp">
+                                    @Html.CheckBox("FaceTemp")
+                                    @Html.ValidationMessageFor(model => model.FaceTemp, "", new { @class = "text-danger" })
+                                    Face Template
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="checkbox-inline text-semibold " for="FPTemp">
+                                    @Html.CheckBox("FPTemp")
+                                    @Html.ValidationMessageFor(model => model.FPTemp, "", new { @class = "text-danger" })
+                                    Fingerprint Template
+                                </label>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="checkbox-inline text-semibold " for="ProcessAttendance">
+                                    @Html.CheckBox("ProcessAttendance")
+                                    @Html.ValidationMessageFor(model => model.ProcessAttendance, "", new { @class = "text-danger" })
+                                    Process Attendance
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="checkbox-inline text-semibold " for="HasOneStep">
+                                    @Html.CheckBox("HasOneStep")
+                                    @Html.ValidationMessageFor(model => model.HasOneStep, "", new { @class = "text-danger" })
+                                    One Step ESSP
+                                </label>
+                            </div>
+                        </div>
+                        <h6><strong>Policy</strong></h6><hr />
+                        <div class="form-group">
+                            <div class="control-label col-md-1 text-semibold">AL </div>
+                            <div class="col-md-3">
+                                @Html.DropDownList("ALPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.ALPolicyID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="control-label col-md-1 text-semibold">CL</div>
+                            <div class="col-md-3">
+                                @Html.DropDownList("CLPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.CLPolicyID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="control-label col-md-1 text-semibold">SL</div>
+                            <div class="col-md-3">
+                                @Html.DropDownList("SLPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.SLPolicyID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-1 text-semibold">EAL</div>
+                            <div class="col-md-3">
+                                @Html.DropDownList("EALPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.CPLPolicyID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="control-label col-md-1 text-semibold">CME</div>
+                            <div class="col-md-3">
+                                @Html.DropDownList("CMEPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.OTPolicyID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-1 text-semibold">CPL</div>
+                            <div class="col-md-3">
+                                @Html.DropDownList("CPLPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.CPLPolicyID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="control-label col-md-1 text-semibold">OT</div>
+                            <div class="col-md-3">
+                                @Html.DropDownList("OTPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.OTPolicyID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <img src="~/HumanResource/Employee/RetrieveImage/@Model.PEmployeeID" id="dbImage" width="220" height="260" style="margin-left:10px;margin-top:-15px" />
+                        <div style="padding:10px;margin-left:50px ">
+                            <div tabindex="500" class="btn btn-primary btn-xs btn-file" style="margin-left:20px">
+                                <i class="icon-file-plus"></i>  <span class="hidden-xs">Browse</span>
+                                <input type="file" class="file-input" id="imgupload" onchange="fileCheck(this);" value="Open" size="10" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+        <button type="button" id="btnPostEdit" class="btn bg-blue-800" value="Submit">Submit</button>
+    </div>
+
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DivCrewChange').hide();
+        $('#DivOldCrewName').hide();
+        $("#CrewID").change(function () {
+            if ($('#ExistingCrewID').val() != $("#CrewID").val()) {
+                $("#DivCrewChange").show();
+                $("#DivOldCrewName").show();
+            } else {
+                $('#DivCrewChange').hide();
+                $('#DivOldCrewName').hide();
+            }
+
+        });
+        EmployeePostEdit();
+
+    });
+    function fileCheck(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#dbImage')
+                    .attr('src', e.target.result)
+                    .width(220)
+                    .height(260);
+                document.getElementById("dbImage").style.marginTop = "-15px";
+                document.getElementById("dbImage").style.marginLeft = "10px";
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>

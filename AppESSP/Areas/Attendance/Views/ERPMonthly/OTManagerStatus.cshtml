@@ -1,0 +1,111 @@
+﻿@model List<ESSPCORE.Attendance.VMOTStatusManager>
+@{
+    ViewBag.Title = "Montly OT Status - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("OTManagerStatus", "ERPMonthly", FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4>
+                <i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Monthly Overtime Status Manager</span>
+                &nbsp;&nbsp;&nbsp; <span class="form-group">
+
+                </span>
+                
+                <span class="pull-right text-black">
+                    Payroll Period : @Html.DropDownList("PayrollPeriodID", null, new { @class = "btn btn-default  dropdown-toggle dropdown" })
+                    <span> <input type="submit" class="btn bg-green-800" value="GO" /></span>
+                </span>
+            </h4>
+
+        </div>
+    </div>
+}
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+
+            <input type="text" hidden value="@ViewBag.PRPeriodID" id="PRPeriodID" name="PRPeriodID" />
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-green-600">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active">Monthly OT Status</li>
+                    </ul>
+                </div>
+
+                <div id="table_wrapper">
+                    <table class="table datatable-scroll-edit table-striped table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-bold">
+                                    Sr. No
+                                </th>
+                                <th class="text-bold">
+                                    Location Name
+                                </th>
+                                <th class="text-bold">
+                                    Total Employees
+                                </th>
+                                <th class="text-bold">
+                                    Pending Emps at Time Office
+                                </th>
+                                <th class="text-bold"> Pending Emps at HO</th>
+                                <th class="text-bold"> Approved</th>
+                                <th class="text-bold">Reject</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int RowNo = 0;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@{RowNo++;} @RowNo</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LocationName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalEmps)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(item.PendingAtTM.ToString(), "OTStatusManagerDetail", "ERPMonthly", new { LocID = item.LocationID, PRID = item.PayrollPeriodID, MonthDataStage = "P" }, new { @class = "", target = "_blank" })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(item.PendingAtHO.ToString(), "OTStatusManagerDetail", "ERPMonthly", new { LocID = item.LocationID, PRID = item.PayrollPeriodID, MonthDataStage = "H" }, new { @class = "", target = "_blank" })
+                                    </td>
+                                    <td>
+
+                                        @Html.ActionLink(item.Approved.ToString(), "OTStatusManagerDetail", "ERPMonthly", new { LocID = item.LocationID, PRID = item.PayrollPeriodID, MonthDataStage = "A" }, new { @class = "", target = "_blank" })
+                                    </td>
+                                    <td>
+
+                                        @Html.ActionLink(item.Reject.ToString(), "OTStatusManagerDetail", "ERPMonthly", new { LocID = item.LocationID, PRID = item.PayrollPeriodID, MonthDataStage = "R" }, new { @class = "", target = "_blank" })
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>

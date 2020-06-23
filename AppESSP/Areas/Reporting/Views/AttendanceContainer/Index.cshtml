@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "Attendance Reports: BTESSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using ReportViewerForMvc
+
+@Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer, new { scrolling = "no", Width = 1000 })

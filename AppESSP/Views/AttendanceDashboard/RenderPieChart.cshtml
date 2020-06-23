@@ -1,0 +1,73 @@
+﻿@model ESSPCORE.Attendance.DMPieChartParentModel
+@{
+    Layout = "~/Views/Shared/_PieChartLayout.cshtml";
+}
+@{ ESSPCORE.Attendance.VMAttendanceDashboard vmAttendanceDashboard = (ESSPCORE.Attendance.VMAttendanceDashboard)HttpContext.Current.Session["VMATDashboard"];}
+<div class="widget-body">
+    <div class="widget-main no-padding">
+        <div class="col-md-5 col-sm-12">
+            <div>
+                <h6>
+                    <span class="text-semibold"> @Model.HeaderLeft </span> - @Model.HeaderRight
+                    <small class="display-block"> @Model.HeaderDescription  </small>
+                </h6>
+            </div>
+            <br />
+            <table class="table datatable-scroll-dashboard table-striped table-hover table-condensed">
+                <thead class="text-bold">
+                    <tr class="table-header">
+                        <th class="hidden">
+                            @Model.TBLHeaderID
+                        </th>
+                        <th>
+                            @Model.TBLHeaderName
+                        </th>
+                        <th>
+                            @Model.TBLHeaderCount
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ChildList)
+                    {
+                        <tr>
+                            <td class="hidden">
+                                @item.ID
+                            </td>
+                            @if (vmAttendanceDashboard.UserGraphType == ESSPCORE.Attendance.UserGraphType.SimpleLM)
+                            {
+                                <td onclick="LoadAttendance(@item.ID)">
+                                    <a> @item.NameWithDetail</a>
+                                </td>}
+                            else
+                            {
+                                <td onclick="SaveLabelEventsInSession(@item.ID)">
+                                    <a> @item.NameWithDetail</a>
+                                </td>
+                            }
+                            <td>
+                                <b class="orange">@item.Count</b>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-7 col-sm-12">
+            <div class="chart-container has-scroll">
+                <div class="chart has-fixed-height has-minimum-width" id="basic_pie"></div>
+            </div>
+        </div>
+    </div><!-- /.widget-main -->
+</div><!-- /.widget-body -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var model = '@Html.Raw(Json.Encode(Model.ChildList))';
+        RenderPieChartTMS(model);    });
+
+
+
+</script>

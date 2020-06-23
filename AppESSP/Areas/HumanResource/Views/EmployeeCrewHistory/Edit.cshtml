@@ -1,0 +1,56 @@
+﻿@model ESSPCORE.EF.VHR_EmployeeCrewChange
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PEmployeeCrewChangeID)
+
+
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Edit Crew
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="label-control col-md-2 text-semibold">Crew Name</div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.CrewName)
+                </div>
+                <div class="label-control col-md-2 text-semibold">Created Date</div>
+                <div class="col-md-4">
+
+                    @Html.DisplayFor(model => model.CreatedDate)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label text-semibold col-md-2 "> Start Date</div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", @type = "date", })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label text-semibold col-md-2 text-right ">End Date</div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", @type = "date" })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <a href="@Url.Action( "Index", "EmployeeCrewHistory", new { id = Model.EmpID })" id="@Model.EmpID" class="btn btn-primary bg-primary-300">Back To List</a>
+        <button type="button" id="btnPostEdit" class="btn btn-success bg-success-800" value="Save">Save</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        EmployeeCrewHistoryPostEdit();
+    });
+</script>

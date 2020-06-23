@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Payroll Period Integeration (ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<ESSPCORE.EF.PayrollPeriod>
+
+<div class="page-header">
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Payroll Integeration</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Name
+                            </th>
+                            <th class="text-bold">
+                                Start Date
+                            </th>
+                            <th class="text-bold">
+                                End Date
+                            </th>
+
+                            <th class="text-bold">
+                                Stage
+                            </th>
+                            <th class="text-bold">Generate Payroll</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PRName)
+                            </td>
+                            <td>
+                                @item.PRStartDate.Value.ToString("dd-MMM-yyyy")
+                            </td>
+                            <td>
+                                @item.PREndDate.Value.ToString("dd-MMM-yyyy")
+                            </td>
+                            <td>
+                                @item.PeriodStageID
+                            </td>
+
+
+                            <td>
+                                @if (item.PeriodStageID == "O")
+                                {
+                                    @Html.ActionLink(" Integrate", "Integrate", new { id = item.PPayrollPeriodID }, new { @class = "btn border-blue-800 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded" })
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+

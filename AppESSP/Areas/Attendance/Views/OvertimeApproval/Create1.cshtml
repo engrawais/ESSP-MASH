@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Overtime Approval - Step 1 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMOvertimeApprovalSelection
+@using (Html.BeginForm("Create1", "OvertimeApproval", FormMethod.Post))
+{
+    <div class="page-header">
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Overtime Approval</span> - Add New</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-green-600">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/Index"> Dashboard</a></li>
+                            <li><a class="active"> Attendance</a></li>
+                            <li class="active"> Overtime Approval - Add New</li>
+                        </ul>
+                        <ul class="breadcrumb-elements  bg-green-800">
+                            <button type="submit" class="btn btn-lg text-bold bg-green-800 " style="margin-right:-20px"><i class="icon-forward3"></i> Next</button>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <article class="col-md-12">
+                            <div class="">
+                                <fieldset>
+                                    <div id="DivStepOne">@Html.Action("StepOne", "EmpSelection", new { @area = "Common" })</div>
+                                    <section class="col-md-4">
+                                        <div class="panel-body bg-blue border-radius-top" style="height:50px">
+                                            <h6 id="Divheader2" style="margin-top:-5px" class="text-semibold">
+                                                3. Enter Details
+                                            </h6>
+                                        </div>
+                                        <section class="col-md-12">
+                                            <br /><br />
+                                            <section class="row">
+                                                <div class="form-group col-md-8">
+                                                    <label class="text-semibold">Payroll Period </label>
+                                                    <div>@Html.DropDownList("PayrollPeriodID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })</div>
+                                                </div>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </fieldset>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+    <script type="text/javascript" src="~/Areas/Attendance/Scripts/OvertimeApproval.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            IndexKJS();
+        });
+    </script>
+}

@@ -1,0 +1,347 @@
+﻿
+@model ESSPCORE.EF.VHR_EmployeeProfile
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<div class="page-header ">
+
+        <div class="page-header-content ">
+            <h3><i class="icon-arrow-right6 position-left text-black text-center"></i> <span class="text-black">Profile</span></h3>
+        </div>
+    </div>*@
+<!-- Page container -->
+
+<div class="page-container ">
+    <div class="page-content">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 ">
+            <div class="timeline-row">
+
+                <div class="panel panel-flat ">
+                    <div class="panel-heading col-md-12">
+
+                        <div class="col-md-10">
+                            <h3 class="panel-title text-bold">Employee Profile of <span class="text-black"> @Html.DisplayFor(model => model.EmployeeName) </span> : <span class="text-black"> @Html.DisplayFor(model => model.OEmpID) </span></h3>
+
+                            <div class="label label-lg label-info arrowed-right">
+                                <b><strong>Note: </strong> For any change in this section, you are requested to kindly email to Head Office HR team.</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        @*<span class="h4">EMPLOYEE PROFILE OF  @Model.FullName : @Model.EmpID</span>*@
+
+                        <div class="profile-user-info-striped ">
+
+                            <h3><a id="OfficialInfo" class="text-black">Personal Information</a></h3>
+                            <table class="table table-hover table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th class="profile-info-name text-bold">
+                                            Father Name
+                                        </th>
+                                        <td class="profile-info-value">
+                                            @Html.DisplayFor(model => model.FatherName)
+                                        </td>
+                                        <th class="profile-info-name text-bold">
+                                            FPID
+                                        </th>
+                                        <td class="profile-info-value">
+                                            @Html.DisplayFor(model => model.FPID)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold">
+                                            PEmployee ID
+                                        </th>
+                                        <td>
+                                            @Html.DisplayFor(model => model.PEmployeeID)
+
+                                        </td>
+                                        <th class="profile-info-name text-bold">
+                                            Date Of Birth
+                                        </th>
+                                        <td>
+                                            @if (Model.DateOfBirth != null)
+                                            {
+                                                @Model.DateOfBirth.Value.ToString("dd-MMM-yyyy")
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold">
+                                            CNIC
+                                        </th>
+
+                                        <td>
+                                            @Html.DisplayFor(model => model.CNIC)
+                                        </td>
+                                        <th class="profile-info-name text-bold">
+                                            Telephone No
+                                        </th>
+                                        <td>
+                                            @Html.DisplayFor(model => model.TelephoneNo)
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold">
+                                            Address
+                                        </th>
+
+                                        <td>
+                                            @Html.DisplayFor(model => model.Address)
+                                        </td>
+                                        <th class="profile-info-name text-bold">
+                                            Process Attendance
+                                        </th>
+                                        <td>
+                                            @if (Model.ProcessAttendance == true)
+                                            {
+                                                <span> Checked</span>
+                                            }
+                                            else
+                                            {<span>Unchecked</span>}
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold">
+                                            Date Of Joining
+                                        </th>
+
+                                        <td>
+                                            @if (Model.DOJ != null)
+                                            {
+                                                @Model.DOJ.Value.ToString("dd-MMM-yyyy")
+                                            }
+                                            </td>
+
+                                        <th class="profile-info-name text-bold">
+                                            Status
+                                        </th>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Status)
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold">
+                                            PUserID
+                                        </th>
+
+                                        <td>
+                                            @Html.DisplayFor(model => model.PUserID)
+                                        </td>
+                                        <th class="profile-info-name text-bold">
+                                            User Name
+                                        </th>
+                                        <td>
+                                            @Html.DisplayFor(model => model.UserName)
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold">
+                                            Line Manager Name
+                                        </th>
+                                        <td>
+                                            @Html.DisplayFor(model => model.LMEmployeeName)
+
+                                        </td>
+                                        <th class="profile-info-name text-bold">
+                                            Line Manager User Name
+                                        </th>
+
+                                        <td>
+                                            @Html.DisplayFor(model => model.LMUserName)
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <h3><a id="OfficialInfo" class="text-black">Official Information</a></h3>
+                            <table class="table table-hover table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Has ESSP Account
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @if (Model.HasUser == true)
+                                                {
+                                                    <span>Yes </span>
+                                                }
+                                                else if (Model.HasUser == null)
+                                                { <span>No </span>}
+                                                else if (Model.HasUser == false)
+                                                { <span>No</span>}
+                                            </span>
+                                        </td>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Location Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.LocationName)
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            OU Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.OUName)
+                                            </span>
+                                        </td>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Grade Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.GradeName)
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Employement Type Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.EmploymentTypeName)
+                                            </span>
+                                        </td>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Job Title Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.JobTitleName)
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Crew Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.CrewName)
+                                            </span>
+                                        </td>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Shift Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.ShiftName)
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Postion Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.DesignationName)
+                                            </span>
+                                        </td>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Official Email ID
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.OfficialEmailID)
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Company Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.CompanyName)
+                                            </span>
+                                        </td>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            Common OU Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.OUCommonName)
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            AL Policy Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.ALPolicyName)
+                                            </span>
+                                        </td>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            CL Policy Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.CLPolicyName)
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            SL Policy Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.SLPolicyName)
+                                            </span>
+                                        </td>
+                                        <th class="profile-info-name text-bold text-size-small">
+                                            OT Policy Name
+                                        </th>
+
+                                        <td class="text-size-small">
+                                            <span>
+                                                @Html.DisplayFor(model => model.OTPolicyName)
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

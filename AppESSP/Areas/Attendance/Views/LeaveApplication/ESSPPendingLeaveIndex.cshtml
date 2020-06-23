@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ESSPCORE.EF.VAT_LeaveApplication>
+@{
+    ViewBag.Title = "ESSP Pending Leave Application - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-header">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Pending Leave Applications</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active">ESSP Pending Leave Application</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-800" style="margin-right:-20px">
+                        @Html.ActionLink("Send Email Intimation to Line Managers", "SendEmailToLM", null, new { @class = "btn btn-lg btn-custom text-bold" })
+                    </ul>
+                </div>
+                <table class="table datatable-basic table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Emp No
+                            </th>
+                            <th class="text-bold">
+                                Leave ID
+                            </th>
+                            <th class="text-bold">
+                                Name
+                            </th>
+                            <th class="text-bold">
+                                Submitted To
+                            </th>
+                            <th class="text-bold">
+                                Type
+                            </th>
+                            <th class="text-bold">
+                                Date From
+                            </th>
+                            <th class="text-bold">
+                                Date To
+                            </th>
+                            <th class="text-bold  text-size-small">
+                                Return Date
+                            </th>
+
+                            <th class="text-bold">Status</th>
+                        </tr>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-size-base">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OEmpID)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.PLeaveAppID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LMEmployeeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LeaveTypeName)
+                                </td>
+                                <td>
+                                    @item.FromDate.ToString("dd-MMM-yyyy")
+                                </td>
+                                <td>
+                                    @item.ToDate.ToString("dd-MMM-yyyy")
+                                </td>
+
+                                <td class="text-center">
+                                    @if (item.ReturnDate != null)
+                                    {@item.ReturnDate.Value.ToString("dd-MMM-yyyy")}
+                                </td>
+                                <td>
+                                    @if (item.LeaveStageID == "P")
+                                    {
+                                        <span class="label label-warning">Pending</span>
+                                    }
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/LeaveApplication.js"></script>
+}

@@ -1,0 +1,59 @@
+﻿@model ESSPCORE.EF.FinancialYear
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Financial Year
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold"> Name</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FYName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FYName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Start Date</div>
+                <div class="col-md-4">
+                  @Html.TextBoxFor(x => x.FYStartDate, new { @class = "form-control", @type = "date" })
+                @Html.ValidationMessageFor(model => model.FYStartDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-2 text-semibold">End Date</div>
+                <div class="col-md-4">
+                   @Html.TextBoxFor(x => x.FYEndDate, new { @class = "form-control", @type = "date" })
+                @Html.ValidationMessageFor(model => model.FYEndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                    <label class="col-md-10 checkbox-inline text-semibold" for="FYStatus">
+                        @Html.CheckBox("FYStatus")
+                        @Html.ValidationMessageFor(model => model.FYStatus, "", new { @class = "text-danger" })
+                        Status
+                    </label>
+                </div>
+                </div>
+        </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+        <button type="button" id="btnPostCreate" class="btn bg-blue-800" value="Submit">Submit</button>
+    </div>
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        FinancialYearPostCreate();
+    });
+</script>
+
+
+

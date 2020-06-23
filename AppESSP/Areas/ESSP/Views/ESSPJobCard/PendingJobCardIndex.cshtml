@@ -1,0 +1,180 @@
+﻿
+@model IEnumerable<ESSPCORE.EF.VEP_JobCardApplication>
+@{
+    ViewBag.Title = "Pending JobCard Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="col-md-6"><h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Pending Job Cards</span></h4></div>
+            <div class="col-md-6" style="padding-top:8px;">
+                <form class="form-inline" role="form">
+                    <div class="form-group pull-right SearchBtnMargin">
+                        @using (Html.BeginForm("PendingJobCardIndex", "ESSPJobCard", FormMethod.Get))
+                        {<p>
+                                Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                                <input class="btn btn-sm btn-custom bg-blue-800" type="submit" value="Search" />
+                            </p>}
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/LoadDashboard"> Dashboard</a></li>
+                            <li class="active"><a href="~/ESSP/ESSPJobCard/PendingJobCardIndex"> Pending Job Cards</a></li>
+                        </ul>
+
+                    </div>
+                    @using (Html.BeginForm("ApprovedAll", "ESSPJobCard", FormMethod.Get))
+                    {
+                        <table class="table table-bordered table-framed table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="text-bold" id="chkSelectAllJcApp" />&nbsp;&nbsp;<span class="text-bold">JobCard ID</span></th>
+
+                                    <th class="text-bold">
+                                        Employee ID
+                                    </th>
+                                    <th class="text-bold">
+                                        Employee Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Date Created
+                                    </th>
+                                    <th class="text-bold">
+                                        Date Started
+                                    </th>
+
+                                    <th class="text-bold">
+                                        Date Ended
+                                    </th>
+                                    <th class="text-bold">
+                                        @Html.DisplayNameFor(model => model.Minutes)
+                                    </th>
+                                    <th class="text-bold">
+                                        Job Card Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Remarks
+                                    </th>
+                                    <th class="text-bold">
+                                        Status
+                                    </th>
+                                    <th class="text-bold">
+                                        Action
+                                    </th>
+                                </tr>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap"><input type="checkbox" class="chkSelectJcApp" name="SelectedJcAppIds" value="@item.PJobCardAppID" />&nbsp;&nbsp; @item.PJobCardAppID</td>
+
+                                        <td>
+                                            @item.OEmpID
+                                        </td>
+                                        <td>
+                                            @item.EmployeeName
+                                        </td>
+                                        <td>
+                                            @item.DateCreated.ToString("dd-MMM-yyyy")
+                                        </td>
+                                        <td>
+                                            @item.DateStarted.ToString("dd-MMM-yyyy")
+                                        </td>
+                                        <td>
+                                            @item.DateEnded.ToString("dd-MMM-yyyy")
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Minutes)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.JobCardName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Remarks)
+                                        </td>
+                                        <td>
+                                            @if (item.JobCardStageID == "A")
+                                            {
+                                                <span class="label label-success">Approved</span>
+                                            }
+                                            @if (item.JobCardStageID == "P")
+                                            {
+                                                <span class="label label-info">Pending</span>
+                                            }
+                                            @if (item.JobCardStageID == "R")
+                                            {
+                                                <span class="label label-danger">Rejected</span>
+                                            }
+                                        </td>
+
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn border-blue-800 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded dropdown-toggle" data-toggle="dropdown"><i class="icon-cog5"></i><span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+
+                                                    <li>
+                                                        <a href="@Url.Action("Detail", "ESSPJobCard", new { id = item.PJobCardAppID  })">Details</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" onclick="CommentGetCreate(@item.PJobCardAppID)">Reject</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div style="margin:10px 0px 10px 10px">
+                            <button type="submit" class="btn btn-custom bg-blue-800">Approve Selected JobCards <i class="icon-arrow-right14 position-right"></i></button>
+                        </div>
+                    }
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+    <div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div id="modelBody">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript" src="~/Areas/ESSP/Scripts/EmpJobCard.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        SelectDeselectCheckBox();
+    });
+</script>
+

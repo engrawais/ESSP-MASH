@@ -1,0 +1,184 @@
+﻿
+@model PagedList.IPagedList<ESSPCORE.EF.VAT_DailyOvertime>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Daily Overtime - List (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"]; }
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="col-md-6"><h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Daily Overtime Editor</span></h4></div>
+        <div class="col-md-6" style="padding-top:8px;">
+            <form class="form-inline" role="form">
+                <div class="form-group pull-right SearchBtnMargin">
+                    @using (Html.BeginForm("Index", "DailyOvertime", FormMethod.Get))
+                    {<p>
+                            Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                            <input class="btn btn-sm bg-green-600" type="submit" value="Search" />
+                        </p>}
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-green-600">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Daily Overtime Editor</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-green-800" style="margin-right:-20px">
+                        <li><a href="#" id="btnGetCreate"><i class="icon-add position-left"></i>Add Overtime</a></li>
+                    </ul>
+                </div>
+                <table class="table table-bordered table-framed table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Emp No
+                            </th>
+                            <th class="text-bold text-size-mini">
+                                Employee Name
+                            </th>
+                            <th class="text-bold">
+                                Attendance Date
+                            </th>
+                            <th class="text-bold">
+                                Single OT
+                            </th>
+                            <th class="text-bold">
+                                Double OT
+                            </th>
+                            <th class="text-bold">
+                                CPL OT
+                            </th>
+
+                            @*@if (LoggedInUser.TMSDelete == true && item.CPLOT == null)
+                            {
+                                <th class="text-bold">
+                                    Delete
+                                </th>
+                            }*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OEmpID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                                </td>
+                                <td>
+                                    @item.OTDate.Value.ToString("dd-MMM-yyyy")
+                                </td>
+                                <td>
+                                    @if (item.SingleEncashableOT > 0)
+                                    {
+                                        TimeSpan span = TimeSpan.FromMinutes(item.SingleEncashableOT.Value);
+                                        int hours = span.Hours;
+                                        int mins = item.SingleEncashableOT.Value - hours * 60;
+                                        <span>@hours.ToString("00"):@mins.ToString("00")</span>
+                                    }
+                                    else
+                                    {
+                                        @(item.SingleEncashableOT)
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.DoubleEncashbaleOT > 0)
+                                    {
+
+                                        TimeSpan span = TimeSpan.FromMinutes(item.DoubleEncashbaleOT.Value);
+                                        int hours = span.Hours;
+                                        int mins = item.DoubleEncashbaleOT.Value - hours * 60;
+                                        <span>@hours.ToString("00"):@mins.ToString("00")</span>
+
+                                    }
+                                    else
+                                    {
+                                        @(item.DoubleEncashbaleOT)
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.CPLOT > 0)
+                                    {
+
+                                        TimeSpan span = TimeSpan.FromMinutes(item.CPLOT.Value);
+                                        int hours = span.Hours;
+                                        int mins = item.CPLOT.Value - hours * 60;
+                                        <span>@hours.ToString("00"):@mins.ToString("00")</span>
+                                    }
+                                    else
+                                    {
+                                        @(item.CPLOT)
+                                    }
+                                </td>
+
+                                @if (LoggedInUser.TMSDelete == true && item.CPLOT == null)
+                                {
+                                    <td>
+                                        <button type="button" id="btnGetDelete" onclick="DailyOvertimeGetDelete(@item.PDailyOTID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                                    </td>
+                                }
+                                else if (LoggedInUser.TMSDelete == true && item.CPLOT != null)
+                                {
+                                 
+                                }
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                <br />
+                <div class="row">
+                    <div class="col-md-10 pull-left">@Html.PagedListPager(Model, page => Url.Action("Index", new { Status = ViewBag.StatusSave, Location = ViewBag.LocIDSave, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))</div>
+                    <div class="col-md-2 pull-right ">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+                </div>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content ">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/DailyOvertime.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        DailyOvertimeGetCreate();
+    });
+</script>
+
+

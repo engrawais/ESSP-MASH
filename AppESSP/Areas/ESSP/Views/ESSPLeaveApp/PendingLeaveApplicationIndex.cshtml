@@ -1,0 +1,184 @@
+﻿@model PagedList.IPagedList<ESSPCORE.EF.VAT_LeaveApplication>
+@using PagedList.Mvc;
+@{
+    /**/
+
+    ViewBag.Title = "ESSP Leave Application - List(ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="col-md-6"><h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Pending Leave Application</span></h4></div>
+            <div class="col-md-6" style="padding-top:8px;">
+                <form class="form-inline" role="form">
+                    <div class="form-group pull-right SearchBtnMargin">
+                        @using (Html.BeginForm("PendingLeaveApplicationIndex", "ESSPLeaveApp", FormMethod.Get))
+                        {<p>
+                                Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                                <input class="btn btn-sm btn-custom bg-blue-800" type="submit" value="Search" />
+                            </p>}
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/LoadDashboard"> Dashboard</a></li>
+                            <li><a href="~/ESSP/ESSPLeaveApp/PendingLeaveApplicationIndex">Pending Leave Application</a></li>
+                        </ul>
+                    </div>
+                    @using (Html.BeginForm("RecommendAll", "ESSPLeaveApp", FormMethod.Get))
+                    {
+                        <table class="table table-bordered table-framed table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="text-bold" id="chkSelectAllLvApp" />&nbsp;&nbsp;<span class="text-bold">Leave ID</span></th>
+                                    <th class="text-bold">
+                                        Leave Date
+                                    </th>
+                                    <th class="text-bold">
+                                        Emp Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Leave Type
+                                    </th>
+                                    <th class="text-bold">
+                                        From Date
+                                    </th>
+                                    <th class="text-bold">
+                                        To Date
+                                    </th>
+                                    <th class="text-bold">
+                                        Return Date
+                                    </th>
+                                    <th class="text-bold">
+                                        No Of Days
+                                    </th>
+                                    <th class="text-bold">
+                                        Status
+                                    </th>
+                                    <th class="text-bold">
+                                        Action
+                                    </th>
+                                </tr>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td class="text-nowrap"><input type="checkbox" class="chkSelectLvApp" name="SelectedLvAppIds" value="@item.PLeaveAppID" />&nbsp;&nbsp; @item.PLeaveAppID</td>
+                                    <td>
+                                        @item.LeaveDate.ToString("dd-MMM-yyyy")
+                                    </td>
+                                    <td>
+                                        @item.EmployeeName
+                                    </td>
+                                    <td>
+                                        @if (item.IsAccum == true)
+                                        {
+                                            <span> Accumulated </span>
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.LeaveTypeName)
+                                        }
+
+                                    </td>
+                                    <td>
+                                        @item.FromDate.ToString("dd-MMM-yyyy")
+                                    </td>
+                                    <td>
+                                        @item.ToDate.ToString("dd-MMM-yyyy")
+                                    </td>
+                                    <td>
+                                        @if (item.ReturnDate != null)
+                                        {@item.ReturnDate.Value.ToString("dd-MMM-yyyy")}
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NoOfDays)
+                                    </td>
+                                    <td>
+                                        @if (item.LeaveStageID == "A")
+                                        {
+                                            <span class="label label-success">Approved</span>
+                                        }
+                                        @if (item.LeaveStageID == "P")
+                                        {
+                                            <span class="label label-info">Pending</span>
+                                        }
+                                        @if (item.LeaveStageID == "R")
+                                        {
+                                            <span class="label label-danger">Rejected</span>
+                                        }
+                                        @if (item.LeaveStageID == "D")
+                                        {
+                                            <span class="label label-danger">Recommended</span>
+                                        }
+                                        @if (item.LeaveStageID == "L")
+                                        {
+                                            <span class="label label-danger">Revert to LM</span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn border-info-600 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded dropdown-toggle" data-toggle="dropdown"><i class="icon-cog5"></i><span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+
+                                                <li>
+                                                    <a href="@Url.Action("Detail", "ESSPLeaveApp", new { id = item.PLeaveAppID })">Details</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" onclick="CommentGetCreate(@item.PLeaveAppID)">Reject</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div style="margin:10px 0px 10px 10px">
+                            <button type="submit" class="btn btn-custom bg-blue-800">Approve Selected Leaves <i class="icon-arrow-right14 position-right"></i></button>
+                        </div>
+                    }
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+    <div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div id="modelBody">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript" src="~/Areas/ESSP/Scripts/EmpLeaveApplication.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        EmpLvAppGetCreate();
+        SelectDeselectCheckBox();
+    });
+</script>

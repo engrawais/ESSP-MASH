@@ -1,0 +1,130 @@
+﻿@model List<ESSPCORE.Attendance.VMOvertimeApprovalChild>
+@{
+    ViewBag.Title = "Overtime Approval - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Index", "OvertimeApproval", FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4>
+                <i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Overtime Approval</span>
+                <span class="pull-right text-black">
+                    Payroll Period : @Html.DropDownList("PayrollPeriodID", null, new { @class = "btn btn-default  dropdown-toggle dropdown" })
+                    <span> <input type="submit" class="btn bg-green-800" value="GO" /></span>
+                </span>
+            </h4>
+
+        </div>
+    </div>
+}
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+
+                <div class="breadcrumb-line bg-green-600">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active">Overtime Approval</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-green-800" style="margin-right:-20px">
+                        <li><a class="text-bold" href="~/Attendance/OvertimeApproval/Create1"><i class="icon-add position-left"></i> Overtime Approvals</a></li>
+                    </ul>
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Emp No
+                            </th>
+                            <th class="text-bold">
+                                Emp Name
+                            </th>
+                            <th class="text-bold">
+                                Payroll Period
+                            </th>
+                            <th class="text-bold">OT Policy</th>
+                            <th class="text-bold">Status</th>
+                            <th class="text-bold">
+                                Single Enc OT Hours
+                            </th>
+                            <th class="text-bold">
+                                Double Enc OT Hours
+                            </th>
+                            @*<th class="text-bold">
+                                CPL OT Hours
+                            </th>
+                            <th class="text-bold">
+                                CPL Days
+                            </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmpNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PayrollPeriodName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OvertimePolicyName)
+                                </td>
+                                <td>
+                                    @if (item.StatusID == "P")
+                                    {<span class="label bg-danger">Pending</span>}
+                                    @if (item.StatusID == "H")
+                                    {<span class="label  bg-blue">Recommended</span>}
+                                    @if (item.StatusID == "A")
+                                    {<span class="label bg-success-400">Approved</span>}
+                                </td>
+                                <td align="center">
+                                    @Html.DisplayFor(modelItem => item.EncashableSingleOT)
+                                </td>
+                                <td align="center">
+                                    @Html.DisplayFor(modelItem => item.EncashableDoubleOT)
+                                </td>
+                                @*<td align="center">
+                                    @Html.DisplayFor(modelItem => item.CPLConvertedOT)
+                                </td>
+                                <td align="center">
+                                    @Html.DisplayFor(modelItem => item.CPLConvertedOTDays)
+                                </td>*@
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/OvertimeApproval.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Create1();
+    });
+</script>

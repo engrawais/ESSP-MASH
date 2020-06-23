@@ -1,0 +1,211 @@
+﻿@model ESSPCORE.ESSP.VMESSPJobCardDetail
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+    @Html.HiddenFor(model => model.PJobCardAppID)
+    <div class="page-container ">
+        <div class="timeline-row">
+            <div class="panel panel-flat ">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="~/Home/LoadDashboard"> Dashboard</a></li>
+                        <li class="active"><a href="~/ESSP/ESSPJobCard">My Job Card</a></li>
+                        <li class="active"><a href="#"> Details</a></li>
+                    </ul>
+                </div>
+
+                <div class="page-content">
+                    <div class="timeline-row post-even">
+                        <div class="page-container ">
+                            <div class="page-content">
+                                <div class="col-md-2"></div>
+
+                                <div class="col-md-8 ">
+                                    <div class="timeline-row">
+
+                                        <div class="panel panel-flat ">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title text-bold">
+                                                    Job Card Details for <span class="text-black"> @Html.DisplayFor(model => model.EmployeeName) </span>
+                                                    @*@if (LoggedInUser.UserEmpID == Model.EmployeeID)
+                                                        {
+                                                            <span class="pull-right"><a class="btn btn-primary btn-xs text-semibold" href="~/ESSP/ESSPJobCard">Back to list</a></span>
+                                                        }
+                                                        else
+                                                        {
+
+                                                            <span class="pull-right"><a class="btn btn-primary btn-xs text-semibold" href="~/ESSP/PendingJobCardIndex">Back to list</a></span>
+                                                        }*@
+                                                </h4>
+
+                                            </div>
+                                            <div class="panel-body">
+
+                                                @*<span class="h4">EMPLOYEE PROFILE OF  @Model.FullName : @Model.EmpID</span>*@
+
+
+
+                                                <div class=" col-md-12">
+                                                    <div class="profile-user-info-striped">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title text-black text-blue-800">Job Card Information<a class="heading-elements-toggle"></a></h4>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col-md-6">
+                                                                <table class="table table-hover">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                Employee Name
+                                                                            </th>
+                                                                            <td class="profile-info-value">
+                                                                                @Html.DisplayFor(model => model.EmployeeName)
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                Job Card Type
+                                                                            </th>
+                                                                            <td>
+                                                                                @Html.DisplayFor(model => model.JobCardName)
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                From Date
+                                                                            </th>
+                                                                            <td>
+                                                                                @Model.DateStarted.ToString("dd-MMM-yyyy")
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                Time Start
+                                                                            </th>
+                                                                            <td>
+                                                                                @if (Model.TimeStart != null)
+                                                                                {
+                                                                                    <span>@Model.TimeStart.Value.Hours.ToString("00"):</span><span>@Model.TimeStart.Value.Minutes.ToString("00")</span>
+                                                                                }
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                Total Minutes
+                                                                            </th>
+
+                                                                            <td>
+                                                                                @Html.DisplayFor(model => model.Minutes)
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>
+
+                                                                            </th>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </section>
+                                                            <section class="col-md-6">
+                                                                <table class="table table-hover">
+                                                                    <tbody>
+
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                Designation Name
+                                                                            </th>
+                                                                            <td>
+                                                                                @Html.DisplayFor(model => model.DesignationName)
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                Job Card Date
+                                                                            </th>
+
+                                                                            <td>
+                                                                                @Model.DateCreated.ToString("dd-MMM-yyyy")
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                To Date
+                                                                            </th>
+                                                                            <td>
+                                                                                @Model.DateEnded.ToString("dd-MMM-yyyy")
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="text-semibold">
+                                                                                Time End
+                                                                            </th>
+
+                                                                            <td>
+                                                                                @if (Model.TimeEnd != null)
+                                                                                {<span>@Model.TimeEnd.Value.TotalHours.ToString("00"):</span><span>@Model.TimeEnd.Value.Minutes.ToString("00")</span>}
+                                                                            </td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <th>
+
+                                                                            </th>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </section>
+                                                        </div>
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title text-black text-blue-800"><i class="icon-comment-discussion"></i> Remarks<a class="heading-elements-toggle"></a></h4>
+                                                        </div>
+                                                        @foreach (var item in Model.DBVATjobcardflow)
+                                                        {
+
+                                                            <div class="alert alert-info alert-styled-left alert-arrow-left alert-component">
+
+
+
+                                                                <h6 class="alert-heading text-semibold">
+                                                                    Submitted By&nbsp;&nbsp;&nbsp; <span class="text-muted text-bold"> @item.ByEmployeeName</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  Submitted To&nbsp;&nbsp;&nbsp; <span class="text-muted text-bold"> @item.ToEmployeeName</span>
+                                                                </h6>
+
+                                                                <span class=" pull-right">
+                                                                    <label class="control-label text-semibold ">&nbsp;&nbsp;&nbsp;&nbsp;Stage:</label>
+
+                                                                    <label class="text-black text-brown-800"> @item.JobCardStageName </label>
+
+                                                                </span>
+                                                                <ul class="media-list chat-list content-group">
+                                                                    <li class="media">
+
+                                                                        <div class="media-body">
+                                                                            <div class="media-content">
+                                                                                @item.Remarks
+                                                                            </div>
+                                                                            <span class="media-annotation display-block "><strong> Date Submitted</strong> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  @item.CreatedDate <a href="#"><i class="icon-history position-right text-muted"></i></a></span>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

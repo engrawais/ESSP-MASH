@@ -1,0 +1,56 @@
+﻿@model ESSPCORE.Attendance.VMRosterApplication
+@{
+                /**/
+
+                ViewBag.Title = "Roster - Delete (Bestway:ESSP)";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Delete", "Roster", FormMethod.Post))
+{
+    @Html.HiddenFor(aa => aa.RotaApplD)
+   
+  
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Rosters</span> - Delete</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/Index"> Dashboard</a></li>
+                            <li class="active"> Rosters</li>
+                        </ul>
+                    </div>
+                    <div class="panel-body text-center">
+                        <h2> Are you want to sure to delete this Roster?</h2>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements pull-right">
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-custom-grey bg-grey" })
+                            <input type="submit" value="Delete" class="btn btn-small btn-default btn-danger" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+}
+

@@ -1,0 +1,68 @@
+﻿@model ESSPCORE.Attendance.VMAttendanceDashboard
+@{
+    ViewBag.Title = "Dashboard -(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ ESSPCORE.Common.VMLoggedUser user = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+    ESSPCORE.Attendance.VMAttendanceDashboard vmAttendanceDashboard = (ESSPCORE.Attendance.VMAttendanceDashboard)HttpContext.Current.Session["VMATDashboard"];}
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <div class="col-md-3 pull-right">
+            <div class="input-group">
+                <input type="text" class="form-control daterange-left" name="date-range-picker" value="@Model.StartDate.ToString("dd/MM/yyyy") - @Model.EndDate.ToString("dd/MM/yyyy")">
+                <span class="input-group-addon"><i class="icon-calendar22"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="page-container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="label border-left-success label-striped"><span style="font-size:14px; font-weight:bold;">Attendance Dashboard</span></span>
+
+            <div class="heading-elements panel-nav">
+                <ul class="nav nav-pills">
+                    <li id="btnClickLI" onclick="SaveBtnEventsInSession('LateIn','@vmAttendanceDashboard.UserGraphType','@vmAttendanceDashboard.EmpID')"><a href="#"><i class=""></i> Late In</a></li>
+                    <li id="btnClickLO" onclick="SaveBtnEventsInSession('LateOut','@vmAttendanceDashboard.UserGraphType','@vmAttendanceDashboard.EmpID')"><a href="#"><i class=""></i> Late Out</a></li>
+                    <li id="btnClickEI" onclick="SaveBtnEventsInSession('EarlyIn','@vmAttendanceDashboard.UserGraphType','@vmAttendanceDashboard.EmpID')"><a href="#"><i class=""></i> Early In</a></li>
+                    <li id="btnClickEO" onclick="SaveBtnEventsInSession('EarlyOut','@vmAttendanceDashboard.UserGraphType','@vmAttendanceDashboard.EmpID')"><a href="#"><i class=""></i> Early Out</a></li>
+                    <li id="btnClickAB" onclick="SaveBtnEventsInSession('Absent','@vmAttendanceDashboard.UserGraphType','@vmAttendanceDashboard.EmpID')"><a href="#"><i class=""></i> Absent</a></li>
+                    <li id="btnClickLV" onclick="SaveBtnEventsInSession('Leave','@vmAttendanceDashboard.UserGraphType','@vmAttendanceDashboard.EmpID')"><a href="#"><i class=""></i> Leave</a></li>
+                    <li id="btnClickOD" onclick="SaveBtnEventsInSession('OfficialDuty','@vmAttendanceDashboard.UserGraphType','@vmAttendanceDashboard.EmpID')"><a href="#"><i class=""></i> Official Duty</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+
+                <div id="PVCTMSParent"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript" src="~/Scripts/AttendanceDashboard.js"></script>
+@*<script src="@Url.Content("~/Scripts/Dashboard/DashboardController.js")"></script>*@
+
+
+@*<script src="@Url.Content("~/Theme/assets/js/googlecharts/loader.js")"></script>
+<script src="@Url.Content("~/Theme/assets/js/googlecharts/jsapi.js")"></script>
+<script src="@Url.Content("~/Theme/assets/js/googlecharts/utils.js")"></script>
+<script src="@Url.Content("~/Theme/assets/js/googlecharts/Chart.js")"></script>
+
+<script src="@Url.Content("~/Theme/assets/js/googlecharts/Chart.bundle.js")"></script>
+<script src="@Url.Content("~/Theme/assets/js/googlecharts/Chart.min.js")"></script>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadDateRangePicker();
+        var model = @Html.Raw(Json.Encode(vmAttendanceDashboard))
+        OpenPieChart(model);
+    });
+
+</script>

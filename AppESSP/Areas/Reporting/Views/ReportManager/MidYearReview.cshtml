@@ -1,0 +1,30 @@
+﻿@model List<ESSPCORE.Reporting.VMFilterAttribute>
+@{
+    Layout = "~/Areas/Reporting/Views/Shared/_DTLayout.cshtml";
+}
+<table class="table datatable-scroll-info-search  table-striped table-hover table-condensed" id="TableMidYearReview">
+    <thead>
+        <tr>
+            <th><input type="checkbox" id="chkSelectAll" /></th>
+            <th>
+             Mid-Year Review Stage Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-nowrap"><input type="checkbox" @(item.IsSlected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.FilterIDString" /></td>
+                <td class="valSelect">
+                    @item.FilterName
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        MidYearReviewManager();
+    });
+</script>

@@ -1,0 +1,123 @@
+﻿@model List<ESSPCORE.EF.DailyAttendance>
+@{
+    ViewBag.Title = "Daily Editor (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"]; }
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Daily Attendance Editor</span></h4>
+        </div>
+    </div>
+    <!-- Page container -->
+
+    <div class="page-container">
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Daily Editor</li>
+                    </ul>
+                </div>
+                <!-- Page content -->
+                <div class="page-content">
+                    <!-- Main content -->
+                    <div class="col-md-12">
+
+                        <form class="form-inline" action="~/Attendance/DailyEditor/EditMultipleEntries" enctype="multipart/form-data" method="post">
+                            <fieldset>
+                                <h5 class="text-bold">Edit Attendance Single Employee (Multiple Dates)</h5><hr />
+                                <div class="col-md-12"><label style="color:red;">@ViewBag.Message</label></div>
+                                <div class="form-group">
+                                    <label class="text-semibold">From Date</label>
+                                    <input id="DateFrom" required name="DateFrom" value="@ViewData["datef"]" type="date" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-semibold">To Date</label>
+                                    <input id="DateTo" required name="DateTo" value="@ViewData["datef"]" type="date" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-semibold">Emp No</label>
+                                    <input autofocus id="EmpNo" required name="EmpNo" type="text" class="form-control" placeholder="EMP-00001" />
+                                </div>
+                                <input type="submit" value="Next" class="btn btn-sm bg-blue-800 btn-custom text-bold" />
+                                <div class="col-md-12"><label style="color:red;">@ViewBag.Message</label></div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <form class="form-inline" action="~/Attendance/DailyEditor/EditDateWiseEntries" enctype="multipart/form-data" method="post">
+
+                            <br /><br /><fieldset>
+                                <h5 class="text-bold">Edit Attendance Multiple Employees (Single Date)</h5><hr />
+                                <div style="margin-left:15px;">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="text-semibold">Date</label>
+                                            <input id="DateFrom" required name="DateFrom" value="@ViewData["datef"]" type="date" class="form-control" />
+                                        </div>
+                                        @if (LoggedInUser.UserAccessTypeID != 4)
+                                        {
+                                            <label class="radio-inline text-semibold"><input type="radio" checked value="rbAll" name="RosterSelectionRB">All Employees</label>
+                                        }
+                                        @if (LoggedInUser.UserAccessTypeID != 4)
+                                        {
+                                            <label class="radio-inline text-semibold"><input type="radio" value="rbShift" name="RosterSelectionRB">Shift</label>}
+                                        @if (LoggedInUser.UserAccessTypeID != 4)
+                                        {
+                                            <label class="radio-inline text-semibold"><input type="radio" value="rbLocation" name="RosterSelectionRB">Location</label>}
+                                            <label class="radio-inline text-semibold"><input type="radio" value="rbGroup" name="RosterSelectionRB">Crew</label>
+                                            <label class="radio-inline text-semibold"><input type="radio" value="rbDepartment" name="RosterSelectionRB">Departments</label>
+                                            <label class="radio-inline text-semibold"><input type="radio" value="rbSection" name="RosterSelectionRB">Sections</label>
+                                        </div>
+                                    <div class="row" style="margin-top:15px; height:80px;">
+                                        <div class="col-md-6">
+                                            <div id="ShiftDiv" class="desc">
+                                                <div class="form-group">
+                                                    <label class="row text-semibold">Shift</label>
+                                                    @Html.DropDownList("ShiftList", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                                </div>
+                                            </div>
+                                            <div id="LocDiv" class="desc">
+                                                <div class="form-group">
+                                                    <label class="text-semibold">Location</label>
+                                                    @Html.DropDownList("LocationList", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                                </div>
+                                            </div>
+                                            <div id="CrewDiv" class="desc">
+                                                <div class="form-group">
+                                                    <label class="text-semibold">Group</label>
+                                                    @Html.DropDownList("GroupList", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                                </div>
+                                            </div>
+                                            <div id="DeptDiv" class="desc">
+                                                <div class="form-group">
+                                                    <label class="text-semibold">Common OU</label>
+                                                    @Html.DropDownList("DepartmentList", null, new { @class = "btn btn-default dropdown-toggle dropdown" })
+                                                </div>
+                                            </div>
+                                            <div id="SecDiv" class="desc">
+                                                <div class="form-group">
+                                                    <label class="text-semibold">Organizational Unit</label>
+                                                    @Html.DropDownList("SectionList", null, new { @class = "btn btn-default  dropdown-toggle dropdown" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="submit" value="Next" class="btn btn-sm bg-blue-800 btn-custom text-bold" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="~/Areas/Attendance/Scripts/AttDaliyRBSelection.js"></script>

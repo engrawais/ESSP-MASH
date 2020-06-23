@@ -1,0 +1,61 @@
+﻿@model ESSPCORE.Attendance.VMEditMonthlyCreate
+@{
+    ViewBag.Title = "Monthly Editor - Step 1 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Create2", "MonthlyEditor", FormMethod.Post))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Monthly Attendance Editor </span>- Choose Employees</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li class="active"> Monthly Editor</li>
+                            <li class="active"> Choose Employees</li>
+                            @Html.HiddenFor(model => model.PayrolPeriodID)
+                        </ul>
+                        <ul class="breadcrumb-elements">
+                            <li>
+                                <button type="submit" class="btn btn-lg text-bold bg-blue-800 btn-custom " style="margin-right:-20px"><i class="icon-forward3"></i> Next</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div id="DivStepTwo">@Html.Action("StepTwo", "EmpSelection", new { @area = "Common", emps = Model.Employee })</div>
+                    </div>
+                    @*<div class="panel-footer">
+                            <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                            <div class="heading-elements">
+                                <button type="submit" class="btn btn-success heading-btn pull-right">Submit</button>
+                            </div>
+                        </div>*@
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}
+
+

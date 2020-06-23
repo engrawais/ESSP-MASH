@@ -1,0 +1,137 @@
+﻿@model ESSPCORE.EF.JobCardApp
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Single Day JobCard
+        </h4>
+    </div>
+    <input value="@ViewBag.EmpNo" type="hidden" name="EmpNo" id="EmpNo" class="form-control">
+    <div class="modal-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <section class="col-md-8">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Emp No<span style="color:red;">*</span></label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">
+                                <input value="@ViewBag.EmpNo" type="text" name="EmpNo2" id="EmpNo2" class="form-control" disabled />
+                                @*<span class="input-group-btn">
+                                        <button type="button" name="btnGetEmployee" value="Search" class="btn btn-secondary" id="btnGetEmployee" style="padding-bottom:.6em">Search</button>
+                                    </span>*@
+                            </div>
+                        </div>
+
+                        <div class="label-control col-md-2 text-semibold text-right">JobCard Type<span style="color:red;">*</span></div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("JobCardTypeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12 required" })
+                            @Html.ValidationMessageFor(model => model.JobCardTypeID, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label text-semibold col-md-2 "> Start Time</div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(x => x.TimeStart, new { @class = "form-control", @type = "time" })
+                        @Html.ValidationMessageFor(model => model.TimeStart, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="control-label text-semibold col-md-2 text-right ">End Time</div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(x => x.TimeEnd, new { @class = "form-control", @type = "time" })
+                        @Html.ValidationMessageFor(model => model.TimeEnd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label text-semibold col-md-2">Date<span style="color:red;">*</span></div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(x => x.DateStarted, new { @class = "form-control", @type = "date" })
+                        @Html.ValidationMessageFor(model => model.DateStarted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label text-semibold col-md-2 ">Reason <span style="color:red;">*</span></div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section class="col-md-4">
+            <div class="content-group">
+                <div class="panel-body bg-grey border-radius-top text-center" style="height:50px">
+                    <h6 class="text-bold" style="margin-top:-5px">
+                        EMPLOYEE INFORMATION
+                    </h6>
+                </div>
+                <div class="panel panel-flat">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+
+                            <tbody>
+                                <tr>
+                                    <td class="small text-bold">
+                                        Name:
+                                    </td>
+                                    <td>
+                                        <h6 id="EName" class="small"></h6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="small text-bold">
+                                        Position:
+                                    </td>
+
+                                    <td>
+                                        <h6 id="EDesignation" class="small"></h6>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="small text-bold">
+                                        OU:
+                                    </td>
+
+                                    <td>
+                                        <h6 id="EOU" class="small"></h6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="small text-bold">
+                                        DOJ:
+                                    </td>
+                                    <td>
+                                        <h6 id="EDOJ" class="small"></h6>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        &nbsp;
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-custom-grey bg-grey" })
+        <button type="button" id="btnPostSingleDayCreate" class="btn btn-custom bg-blue-800" value="Submit">Submit</button>
+    </div>
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        SingleDayPostCreate();
+      LoadEmpInfo('@ViewBag.EmpNo');
+    });
+</script>
+
+
+
+

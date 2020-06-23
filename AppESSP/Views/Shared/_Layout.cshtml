@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - (MASH-ESSP)</title>
+
+    <link href="~/Theme/assets/css/helperForm.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Theme/assets/css/extras/animate.min.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <link href="~/Theme/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/nicescroll.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/drilldown.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/notifications/pnotify.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/notifications/noty.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/notifications/jgrowl.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/progressbar.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/editors/wysihtml5/wysihtml5.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/prism.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/sidebar_dual.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/selectboxit.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/inputs/touchspin.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/uploaders/fileinput/plugins/purify.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/editable/editable.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/extensions/contextmenu.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/visualization/sparkline.min.js"></script>
+    @*<script type="text/javascript" src="~/Theme/assets/js/pages/table_elements.js"></script>*@
+    <script type="text/javascript" src="~/Theme/assets/js/pages/uploader_bootstrap.js"></script>
+    @*<script type="text/javascript" src="~/Theme/assets/js/pages/colors_success.js"></script>*@
+
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/daterangepicker.js"></script>
+
+    @*<script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>*@
+    <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
+    <script type="text/javascript" src="~/Areas/Attendance/Scripts/CommonHelper.js"></script>
+    <script type="text/javascript" src="~/Areas/Common/Scripts/CommonHelper.js"></script>
+    <script type="text/javascript" src="~/Areas/Common/Scripts/EmpSelection.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/form_layouts.js"></script>
+    <script type="text/javascript" src="~/Areas/Attendance/Scripts/CommonHelper.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/editors/wysihtml5/toolbar.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/editors/wysihtml5/parsers.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ua-UA.js"></script>
+    @*<script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>*@
+    <script type="text/javascript" src="~/Theme/assets/js/pages/editor_wysihtml5.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/form_select2.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/components_notifications_other.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/components_loaders.js"></script>
+    <!-- /theme JS files -->
+    <!-- /theme JS files -->
+    <style>
+        .navbar-default .navbar-nav > li > a {
+            color: #ffffff;
+        }
+
+        .navbar-default1 .navbar-nav > li > a {
+            color: #38418a;
+        }
+
+        .navbar-brand > img {
+            margin-top: -5px;
+            height: 27px;
+        }
+
+        .navbar-text {
+            float: left;
+            margin-left: -15px;
+            margin-right: 0px;
+        }
+    </style>
+</head>
+<body class="navbar-top-md-md">
+
+    <!-- Fixed navbars wrapper -->
+    <div class="navbar-fixed-top">
+        @{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+            <!-- Main navbar -->
+            <div class="navbar navbar-default1 bg-white">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand" href="~/AttendanceDashboard/MainContainer">
+                        <img src="~/Theme/assets/images/bcl_logo_final.png" />
+                    </a>
+                </div>
+
+                <div class="navbar-collapse collapse" id="navbar-mobile">
+                    <p class="navbar-text "><span class="text-blue-800 text-semibold"><strong>Employee Self Service Portal</strong></span></p>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <i class="icon-bell3"></i>
+                                <span class="visible-xs-inline-block position-right">Notifications</span>
+                                <span class="badge bg-warning-400" id="divNotificationCount"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-content">
+                                <div class="dropdown-content-heading">
+                                    System Notifications
+                                    <ul class="icons-list">
+                                        <li><a href="#"><i class="icon-sync"></i></a></li>
+                                    </ul>
+                                </div>
+
+                                <ul class="media-list dropdown-content-body width-350">
+                                    <li id="DivNotifications"></li>
+                                </ul>
+
+                                <div class="dropdown-content-footer">
+                                    <a href="#" data-popup="tooltip" title="" data-original-title="All activity"><i class="icon-menu display-block"></i></a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="dropdown dropdown-user">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <img height="30" class="img-circle" src="~/HumanResource/Employee/RetrieveImage/@LoggedInUser.UserEmpID" alt="">
+                                <span>@LoggedInUser.UserEmployeeName</span>
+                                <i class="caret"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="~/HumanResource/Employee/Detail?id=@LoggedInUser.UserEmpID"><i class="icon-user-plus"></i> My profile</a></li>
+                                <li><a href="~/Home/ChangePassword"><i class="icon-cog5"></i> Change Password</a></li>
+                                <li><a href="~/Home/LogOut"><i class="icon-switch2"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /main navbar -->
+            <!-- Second navbar -->
+            <div class="navbar navbar-default  bg-blue-800 " id="navbar-second">
+                <ul class="nav navbar-nav visible-xs-block">
+                    <li><a class="text-center collapsed text-white bg-blue-800" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
+                </ul>
+
+                <div class="navbar-collapse collapse" id="navbar-second-toggle">
+                    <ul class="nav navbar-nav">
+                        <li><a href="~/Home/LoadDashboard"><i class="icon-display4 position-left"></i> Dashboard</a></li>
+                        @if (LoggedInUser.MCompany == true)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-home7 position-left"></i> Company<span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu width-200">
+                                    @if (LoggedInUser.Employee == true)
+                                    {
+                                        <li><a href="~/HumanResource/Employee" id="spinner-dark-6"> Employees</a></li>}
+                                    @*@if (LoggedInUser.OtherEmployee == true)
+                                        {
+                                            <li><a href="~/HumanResource/EmployeeOther" id="spinner-dark-6"> Other Employees</a></li>}*@
+                                    @if (LoggedInUser.Crew == true)
+                                    {
+                                        <li><a href="~/HumanResource/Crew"> Crews</a></li>}
+
+
+                                    @if (LoggedInUser.CompanyStructure == true)
+                                    {
+                                        <li class="dropdown-submenu">
+                                            <a href="#"> Company Structure</a>
+                                            <ul class="dropdown-menu width-200">
+
+                                                <li><a href="~/HumanResource/JobTitle"> Job Titles</a></li>
+
+                                                <li><a href="~/HumanResource/Designation">Designation </a></li>
+
+                                                <li><a href="~/HumanResource/Grade"> Grades</a></li>
+
+                                                <li><a href="~/HumanResource/EmpType"> Employment Types</a></li>
+
+                                                <li><a href="~/HumanResource/OrganizationalUnit">Section</a></li>
+                                                @if (LoggedInUser.OUCommon == true)
+                                                {
+                                                    <li><a href="~/HumanResource/OUCommon">Department</a></li>
+                                                    @*<li><a href="~/HumanResource/">Cities</a></li>*@}
+
+                                                <li><a href="~/HumanResource/Location"> Locations</a></li>
+
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (LoggedInUser.MUser == true)
+                                    {
+                                        <li class="dropdown-submenu">
+
+                                            <a href="#"> Users Management</a>
+                                            <ul class="dropdown-menu width-200">
+                                                @if (LoggedInUser.AppUser == true)
+                                                {
+                                                    <li><a href="~/HumanResource/User">Users</a></li>
+                                                }@if (LoggedInUser.AppUserRole == true)
+                                                {
+                                                    <li><a href="~/HumanResource/UserRole">User Roles</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (LoggedInUser.MAttendance == true)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class=" icon-calendar22 position-left"></i> Attendance<span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu width-200">
+                                    @if (LoggedInUser.MSettings == true)
+                                    {
+                                        <li class="dropdown-submenu">
+                                            <a href="#"> Settings</a>
+                                            <ul class="dropdown-menu width-200">
+                                                <li class="dropdown-header">Attendance Settings</li>
+                                                @if (LoggedInUser.Reader == true)
+                                                {
+                                                    <li><a href="~/Attendance/Reader"> Bio-Metric Devices</a></li>
+                                                }@if (LoggedInUser.Holiday == true)
+                                                {
+                                                    <li><a href="~/Attendance/Holiday"> Holidays</a></li>
+                                                }@if (LoggedInUser.DownloadTime == true)
+                                                {
+                                                    <li><a href="~/Attendance/DownloadTime"> Download Times</a></li>
+                                                }@if (LoggedInUser.ServiceLog == true)
+                                                {
+                                                    <li><a href="~/Attendance/ServiceLog"> Service Logs</a></li>
+                                                }
+                                                @if (LoggedInUser.FinancialYear == true)
+                                                {
+                                                    <li><a href="~/Payroll/FinancialYear">Financial Year</a></li>
+                                                }
+                                                @if (LoggedInUser.PayrollPeriod == true)
+                                                {
+                                                    <li><a href="~/Payroll/PayrollPeriod">Payroll Period</a></li>
+                                                    <li><a href="~/Payroll/Integeration">Monthly Data Integeration</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (LoggedInUser.MLeave == true)
+                                    {
+                                        <li class="dropdown-submenu">
+                                            <a href="#"> Leaves</a>
+                                            <ul class="dropdown-menu width-200">
+                                                <li class="dropdown-header">Leave Management</li>
+                                                @if (LoggedInUser.LeaveApplication == true)
+                                                {
+                                                    <li><a href="~/Attendance/LeaveApplication">Leave Application</a></li>
+                                                }@if (LoggedInUser.LeaveQuota == true)
+                                                {
+                                                    <li><a href="~/Attendance/LeaveQuota">Leave Quota</a></li>
+                                                }
+                                                @*@if (LoggedInUser.LeaveCF == true)
+                                                    {
+                                                        <li><a href="~/Attendance/LeaveCF">Leave Carry Forward</a></li>
+                                                    }*@
+                                                @if (LoggedInUser.LeavePolicy == true)
+                                                {
+                                                    <li><a href="~/Attendance/LeavePolicies">Leave Policy</a></li>
+                                                }
+                                                <li><a href="~/Attendance/LeaveApplication/ESSPPendingLeaveIndex">ESSP Pending Leaves</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (LoggedInUser.MAttendanceEditor == true)
+                                    {
+                                        <li class="dropdown-submenu">
+                                            <a href="#"> Attendance Editors</a>
+                                            <ul class="dropdown-menu width-200">
+                                                <li class="dropdown-header">Attendance</li>
+                                                @if (LoggedInUser.DailyAttEditor == true)
+                                                {
+                                                    <li><a href="~/Attendance/DailyEditor">Daily Attendance Editor</a></li>
+                                                    <li><a href="~/Attendance/DailyOvertime">Daily Overtime Editor</a></li>
+                                                    @*<li><a href="~/Attendance/AbsentNotification">Absent Notification</a></li>*@
+                                                }
+
+                                                @if (LoggedInUser.MonthlyAttEditor == true)
+                                                {
+                                                    <li><a href="~/Attendance/MonthlyEditor/Create1">Monthly Attendance Editor</a></li>
+
+                                                    <li><a href="~/Attendance/ProcessRequest">Process Attendance</a></li>
+                                                }
+                                                @if (LoggedInUser.JobCard == true)
+                                                {
+                                                    <li><a href="~/Attendance/JobCard">Job Cards</a></li>
+                                                }
+                                                <li><a href="~/Attendance/JobCard/ESSPPendingJobCardsIndex">ESSP Pending Job Cards</a></li>
+
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (LoggedInUser.MShift == true)
+                                    {
+                                        <li class="dropdown-submenu">
+                                            <a href="#"> Shifts & Rosters</a>
+                                            <ul class="dropdown-menu width-200">
+                                                <li class="dropdown-header">Shift Management</li>
+                                                @if (LoggedInUser.Roster == true)
+                                                {
+                                                    <li><a href="~/Attendance/Roster">Rosters</a></li>
+                                                }@if (LoggedInUser.Shift == true)
+                                                {
+                                                    <li><a href="~/Attendance/Shift"> Shifts</a></li>
+                                                }@if (LoggedInUser.ShiftChange == true)
+                                                {
+                                                    <li><a href="~/Attendance/ShiftChange"> Change Shift</a></li>
+                                                }@if (LoggedInUser.ShiftChangeEmp == true)
+                                                {
+                                                    <li><a href="~/Attendance/EmployeeShiftChange"> Change Employee Shift</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (LoggedInUser.MOvertime == true)
+                                    {
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Overtime</a>
+                                            <ul class="dropdown-menu width-200">
+                                                <li class="dropdown-header">Overtime Management</li>
+                                                @*@if (LoggedInUser.OvertimeAP == true)
+                                                {
+                                                    <li><a href="~/Attendance/OvertimeApproval">Overtime Approval</a></li>
+                                                }
+                                                @if (LoggedInUser.OvertimeENCPL == true)
+                                                {
+                                                    <li><a href="~/Attendance/OvertimeEncashable">Encashable Overtime</a></li>
+                                                }*@
+                                                @if (LoggedInUser.OvertimePolicy == true)
+                                                {
+                                                    <li><a href="~/Attendance/OvertimePolicy">Overtime Policy</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+
+                                    @*@if (LoggedInUser.UserRoleID == "H")
+                                        {
+                                            <li><a href="~/Attendance/ERPMonthly">Export ERP Montly</a></li>
+                                            <li><a href="~/Attendance/ERPMonthly/OTManagerStatus">OT Status Manager</a></li>
+                                        }*@
+                                </ul>
+                            </li>
+                        }
+                        @if (LoggedInUser.HasESSP == true)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class=" icon-users2 position-left"></i>Self-Service<span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu width-200">
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Leave Application</a>
+                                        <ul class="dropdown-menu width-200">
+                                            <li class="dropdown-header highlight">Leave Application Management</li>
+                                            <li><a href="~/ESSP/ESSPLeaveApp">My Leave Applications</a></li>
+                                            <li><a href="~/ESSP/ESSPLeaveApp/PendingLeaveApplicationIndex">Pending Leave Applications</a></li>
+                                            <li><a href="~/ESSP/ESSPLeaveApp/LeaveApplicationHistoryIndex">Leave Applications History</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a href="#"> Job Card</a>
+                                        <ul class="dropdown-menu width-200">
+                                            <li class="dropdown-header highlight">Job Card Management</li>
+                                            <li><a href="~/ESSP/ESSPJobCard">My Job Cards</a></li>
+                                            <li><a href="~/ESSP/ESSPJobCard/PendingJobCardIndex">Pending Job Cards</a></li>
+                                            <li><a href="~/ESSP/ESSPJobCard/JobCardHistoryIndex">Job Cards History</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="~/ESSP/ESSPAttendence">Employee Attendance</a></li>
+
+
+
+                                </ul>
+                            </li>
+                        }
+                        @if (LoggedInUser.Reports == true)
+                        {
+                            <li><a href="~/Reporting/ReportManager"><i class="icon-stats-decline position-left"></i> Reports</a></li>
+                        }
+                    </ul>
+
+                    <!-- /second navbar -->
+                </div>
+            </div>
+        }
+    </div>
+    @RenderBody()
+    <!-- Footer -->
+    @*<div class="footer text-left">
+            &copy; 2018. <a href="#">Employee Self Service Portal</a> by <a href="http://www.bestway.com.pk" target="_blank">Bestway Cement Limited</a>
+        </div>*@
+    <!-- /footer -->
+    <script src="~/Scripts/NotificationManager.js" type="text/javascript"></script>
+    <script src="~/Scripts/AttendanceDashboard.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            OpenNotification();
+            var SessionValue = '@Html.Raw(Json.Encode(Session["ToasterMessages"]))';
+            LoadToasterMessage(SessionValue);
+            $.ajax({
+                type: "GET",
+                url: "/Home/ClearToasterSession",
+                datatype: "json",
+                success: function (data) {
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

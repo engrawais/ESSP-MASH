@@ -1,0 +1,231 @@
+﻿@model ESSPCORE.EF.LeaveApplication
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.EmpID)
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/uploader_bootstrap.js"></script>
+    <style>
+        .file-preview {
+            border-radius: 2px;
+            border: 1px solid #ddd;
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+            text-align: center;
+        }
+    </style>
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="form-inline">
+            <h4 class="col-md-4">
+                <i class="icon-menu7"></i> &nbsp;Leave Application
+            </h4>
+            <div class="col-md-4 pull-right" style="margin-top:1.5em;">
+                <label class="control-label text-bold col-md-3">Year</label>
+                <div class="col-md-9 " style="margin-top:-.5em;">
+                    @Html.DropDownList("FinancialYearID", null, new { @class = "btn btn-default form-control", onchange = "LoadEmpInfo()" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <input value="@ViewBag.EmpNo" type="hidden" name="EmpNo" id="EmpNo" class="form-control">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-12">
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <section class="col-md-8">
+                    <div class="form-group">
+                        <div class="form-inline">
+                            <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Emp No<span style="color:red;">*</span></label>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="input-group">
+                                    <input value="@ViewBag.EmpNo" type="text" name="EmpNo2" id="EmpNo2" class="form-control" disabled />
+                                    @*<span class="input-group-btn">
+                                            <button type="button" name="btnGetEmployee" value="Search" class="btn btn-secondary" id="btnGetEmployee" style="padding-bottom:.6em">Search</button>
+                                        </span>*@
+                                </div>
+                                @Html.ValidationMessageFor(model => model.EmpID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="label-control col-md-2 text-semibold">Leave Type<span style="color:red;">*</span></div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("LeaveTypeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12 " })
+                                @Html.ValidationMessageFor(model => model.LeaveTypeID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="PVLB">
+                        </div>
+                    </div>
+                    @*<div id="DivLeaveCheck">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label class="checkbox-inline text-semibold" for="IsAccum">
+                                    @Html.CheckBox("IsAccum", new { @class = "text-danger", tabindex = 1 })
+                                    @Html.ValidationMessageFor(model => model.IsAccum, "", new { @class = "text-danger" })
+                                    Deduct Accumulated Leave Balance?
+                                </label>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="form-group">
+                        <div class="control-label text-semibold col-md-2  ">From Date<span style="color:red;">*</span></div>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.FromDate, "{0:MM/dd/yyyy}", new { @class = "form-control required", @type = "date", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="control-label text-semibold col-md-2 text-right ">To Date<span style="color:red;">*</span></div>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.ToDate, "{0:MM/dd/yyyy}", new { @class = "form-control required", @type = "date" })
+                            @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group" id="CertificateDiv" onload="HideControls()">
+                        <label class="col-lg-2 control-label text-semibold">Attachment</label>
+                        <div class="col-lg-10">
+                            <input type="file" class="file-input" data-show-preview="false" data-show-upload="false" id="CVUpload" onchange="ValidateSize(this)">
+                            <span class="help-block">Accepted format:<strong>.jpg , .png , .pdf </strong>&nbsp;&nbsp; Max file size 1Mb</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <label class="checkbox-inline text-semibold" for="IsHalf">
+                                    @Html.CheckBox("IsHalf")
+                                    @Html.ValidationMessageFor(model => model.IsHalf, "", new { @class = "text-danger" })
+                                    Half Leave
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="control-label text-semibold col-md-4">Phone No<span style="color:red;">*</span></div>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.LeaveAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LeaveAddress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold">Replacement</label>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="input-group">
+                                    <input id="ReplacementEmpNo" autofocus name="ReplacementEmpNo" type="text" class="form-control" placeholder="EMP-00001" />
+                                    <span class="input-group-btn">
+                                        <button type="button" name="btnGetReplacementEmployee" value="Search" class="btn btn-secondary" id="btnGetReplacementEmployee" style="padding-bottom:.6em">Search</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="label-control col-md-2 text-bold" id="NameLabel">Name:</div>
+                            <p id="ERepName" class="small list-group-item-text EmpInfoSecondaryMargin text-blue text-bold"></p>
+                            <div class="label-control col-md-2 text-bold" id="PosLabel">Position:</div>
+                            <p id="ERepDesignation" class="small list-group-item-text EmpInfoSecondaryMargin text-blue text-bold"></p>
+                        </div>*@
+
+                    <div class="form-group">
+                        <div class="control-label text-semibold col-md-2 ">Reason</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LeaveReason, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LeaveReason, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </section>
+
+                <section class="col-md-4">
+                    <div class="content-group">
+                        <div class="panel-body bg-grey border-radius-top text-center" style="height:50px">
+                            <h6 class="text-bold" style="margin-top:-5px">
+                                EMPLOYEE INFORMATION
+                            </h6>
+                        </div>
+                        <div class="panel panel-flat">
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <tbody>
+                                        <tr>
+                                            <td class="small text-bold">
+                                                Name:
+                                            </td>
+                                            <td>
+                                                <h6 id="EName" class="small"></h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="small text-bold">
+                                                Position:
+                                            </td>
+                                            <td>
+                                                <h6 id="EDesignation" class="small"></h6>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="small text-bold">
+                                                OU:
+                                            </td>
+
+                                            <td>
+                                                <h6 id="EOU" class="small"></h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="small text-bold">
+                                                DOJ:
+                                            </td>
+                                            <td>
+                                                <h6 id="EDOJ" class="small"></h6>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-custom-grey bg-grey" })
+        <button type="button" id="btnPostCreate" class="btn btn-custom bg-blue-800" value="Submit">Submit</button>
+    </div>
+
+
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadEmpInfo('@ViewBag.EmpNo');
+        EmpLvAppPostCreate();
+        HideControls();
+        HideShowCertificate()
+    });
+</script>
+<script type="text/javascript">
+    function ValidateSize(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+            alert('File size exceeds 1 MB');
+            // $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        var ext = $('#CVUpload').val().split('.').pop().toLowerCase();
+        if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'pdf']) == -1) {
+            alert('File format must be png , jpg ,jpeg or pdf!');
+        }
+    }
+    var fnProgress = function (file, bytes) {
+        var percentage = (bytesLoaded / file.size) * 100;
+
+        // Update DOM
+        $('.progress').css({ 'width': percentage + '%' });
+        $('.progressText').html(Math.round(percentage + "%"));
+    }
+
+</script>

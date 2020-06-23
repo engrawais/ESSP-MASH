@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "JobCard - Step 2 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMJobCardCreate
+@using (Html.BeginForm("Create3", "JobCard", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Criteria)
+    @Html.HiddenFor(model => model.JobDateFrom)
+    @Html.HiddenFor(model => model.JobDateTo)
+    @Html.HiddenFor(model => model.JobCardTypeID)
+    @Html.HiddenFor(model => model.TotalMinutes)
+    @Html.HiddenFor(model => model.Remarks)
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Job Cards </span>- Choose Employees</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li class="active"> Job Cards</li>
+                            <li class="active"> Choose Employees</li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div id="DivStepTwo">@Html.Action("StepTwo", "EmpSelection", new { @area = "Common", emps = Model.Employee })</div>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements">
+                            <span class="heading-text text-semibold">Job Card : @Model.JobCardTypeName applied on @Model.CriteriaName from <span class="text-black">@Model.JobDateFrom.ToString("dd-MMM-yyyy") </span> to <span class="text-black">@Model.JobDateTo.ToString("dd-MMM-yyyy")</span> </span>
+                            <button type="submit" class="btn btn-custom bg-blue-800 heading-btn pull-right">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/JobCard.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Create2();
+    });
+</script>

@@ -1,0 +1,206 @@
+﻿@model ESSPCORE.Attendance.VMRosterApplication
+@{
+    ViewBag.Title = "Roster - Step 1 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Create1", "Roster", FormMethod.Post))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Rosters</span> - Add New</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/Index"> Dashboard</a></li>
+                            <li class="active"> Rosters</li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        @*<h6 class="no-margin">@Html.ActionLink("List of Roster Applications", "RosterAppIndex", null, new { @class = "" })</h6><hr />*@
+                        @Html.AntiForgeryToken()
+                        @foreach (var item in ViewBag.ErrorList)
+                        {
+                            <div style="color:red;">@item</div>
+                        }
+                        <article class="row">
+                            <section class="col-md-6">
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class="control-label col-md-3 text-semibold">Roster Name</div>
+                                    <div class="col-md-6">
+                                        <input type="text" id="RosterName" name="RosterName" required class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class="control-label col-md-3 text-semibold ">Shift</div>
+                                    <div class="col-md-6">
+                                        @Html.DropDownList("ShiftID", null, new { @class = "col-md-12 btn btn-default dropdown-toggle dropdown" })
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class="control-label col-md-3 text-semibold">Group</div>
+                                    <div class="col-md-6">
+                                        @Html.DropDownList("CrewID", null, new { @class = "col-md-12 btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class="control-label col-md-3 text-semibold">Roster Type</div>
+                                    <div class="col-md-6">
+                                        @Html.DropDownList("RosterTypeID", null, new { @class = "col-md-12 btn btn-default dropdown-toggle dropdown" })
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class="control-label col-md-3 text-semibold">Start Date</div>
+                                    <div class="col-md-6">
+                                        <input required type="date" id="DateStarted" name="DateStarted" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class="control-label col-md-3 text-semibold">End Date</div>
+                                    <div class="col-md-6">
+                                        <input required type="date" id="DateEnded" name="DateEnded" class="form-control" />
+                                        @*<input type="hidden" id="dateEndHidden" name="dateEndHidden" class="form-control" />*@
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="col-md-6">
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class=" col-md-3 control-label"><span class="text-semibold">Monday:</span> Start Time</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="MonStartTime" name="MonStartTime" required class="form-control" />
+                                    </div>
+                                    <div class="control-label col-md-2 text-semibold">Minutes</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="MonMin" name="MonMin" required class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class=" col-md-3 control-label"><span class="text-semibold">Tuesday:</span>  Start Time</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="TueStartTime" name="TueStartTime" required class="form-control" />
+                                    </div>
+                                    <div class="control-label col-md-2 text-semibold">Minutes</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="TueMin" name="TueMin" required class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class=" col-md-3 control-label"><span class="text-semibold">Wednesday:</span> Start Time</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="WedStartTime" name="WedStartTime" required class="form-control" />
+                                    </div>
+                                    <div class="control-label col-md-2 text-semibold">Minutes</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="WedMin" name="WedMin" required class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class=" col-md-3 control-label"><span class="text-semibold">Thursday:</span> Start Time</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="ThruStartTime" name="ThruStartTime" required class="form-control" />
+                                    </div>
+                                    <div class="control-label col-md-2 text-semibold">Minutes</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="ThruMin" name="ThruMin" required class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class=" col-md-3 control-label"><span class="text-semibold">Friday:</span> Start Time</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="FriStartTime" name="FriStartTime" required class="form-control" />
+                                    </div>
+                                    <div class="control-label col-md-2 text-semibold">Minutes</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="FriMin" name="FriMin" required class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class=" col-md-3 control-label"><span class="text-semibold">Saturday:</span> Start Time</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="SatStartTime" name="SatStartTime" required class="form-control" />
+                                    </div>
+                                    <div class="control-label col-md-2 text-semibold">Minutes</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="SatMin" name="SatMin" required class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left:10%; margin-bottom:3%">
+                                    <div class=" col-md-3 control-label"><span class="text-semibold">Sunday:</span> Start Time</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="SunStartTime" name="SunStartTime" required class="form-control" />
+                                    </div>
+                                    <div class="control-label col-md-2 text-semibold">Minutes</div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="SunMin" name="SunMin" required class="form-control" />
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
+
+                    </div>
+                    <div class="panel-footer">
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements pull-right">
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-custom-grey bg-grey" })
+                            <input type="submit" value="Create" class="btn btn-small btn-custom bg-blue-800" id="btn1"/>
+                           
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+    <script type="text/javascript" src="~/Areas/Attendance/Scripts/Rosters.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            RosterCreate();
+        });
+    </script>
+
+    <script type="text/javascript">
+        
+            $("#btn1").click(function () {
+                var a = document.getElementById("MonMin").value;
+                var b = document.getElementById("TueMin").value;
+                var c = document.getElementById("WedMin").value;
+                var d = document.getElementById("ThruMin").value;
+                var e = document.getElementById("FriMin").value;
+                var f = document.getElementById("SatMin").value;
+                var g = document.getElementById("SunMin").value;
+                var total = parseInt(a) + parseInt(b) + parseInt(c) + parseInt(d) + parseInt(e) + parseInt(f) + parseInt(g);
+                if (isNaN(total)) {
+
+                    alert("Please fill out all fields to calculate work hors");
+                }
+                else {
+                    total = total / 60;
+                    alert("Total enterd hours are " + total + ", Roster Continue ......");
+                }
+                
+            });
+ 
+    </script>
+}

@@ -1,0 +1,69 @@
+﻿
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+    @*if (LoggedInUser.PMS == true && LoggedInUser.Reports == true)
+    {
+        <div class="col-md-6">
+            <div class="content-group">
+                <div class="list-group-header"><span class="h6">Performance Management System Reports</span></div>
+                <a href="/Reporting/AttendanceContainer/Index?reportName=Objective_Setting_Report" target="_blank" class="list-group-item list-group-item-info">Objective Employee Report</a>
+                <a href="/Reporting/AttendanceContainer/Index?reportName=Feedback_Meeting_Report" target="_blank" class="list-group-item list-group-item-info">Feedback Meeting Employee Report</a>
+                <a href="/Reporting/AttendanceContainer/Index?reportName=MidYear_Review_Report" target="_blank" class="list-group-item list-group-item-info">MidYear Review Employee Report</a>
+                <a href="/Reporting/AttendanceContainer/Index?reportName=Annual_Appraisal_Report" target="_blank" class="list-group-item list-group-item-info">Annual Appraisal Employee Report</a>
+                <a href="/Reporting/AttendanceContainer/Index?reportName=Annual_Appraisal_rating_emp" target="_blank" class="list-group-item list-group-item-info">Annual Appraisal Employee Score</a>
+                <a href="/Reporting/AttendanceContainer/Index?reportName=Annual_Appraisal_rating_lm" target="_blank" class="list-group-item list-group-item-info">Annual Appraisal LM Score</a>
+                <a href="/Reporting/AttendanceContainer/Index?reportName=Annual_Appraisa_ratingl_lm1" target="_blank" class="list-group-item list-group-item-info">Annual Appraisal LM+1 Score</a>
+
+            </div>
+        </div>
+    }*@
+        <div class="col-md-6">
+            <div class="content-group">
+                <div class="list-group">
+                    <div class="list-group-header"><span class="h6 text-bold">Daily Attendance Reports</span></div>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=consolidated_attendance" target="_blank" class="list-group-item list-group-item-success">Consolidated Attendance Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=daily_attendance_summary" target="_blank" class="list-group-item list-group-item-success">Daily Attendance Summary (Location wise)</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=consolidated_attendance_download" target="_blank" class="list-group-item list-group-item-success">Download Consolidated Attendance Report in Excel</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=missing_attendance" target="_blank" class="list-group-item list-group-item-success">Missing Attendance Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=multipleinout_attendance" target="_blank" class="list-group-item list-group-item-success">Multiple In/Out Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=present_attendance" target="_blank" class="list-group-item list-group-item-success">Present Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=absent_attendance" target="_blank" class="list-group-item list-group-item-success">Absent Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=latein_attendance" target="_blank" class="list-group-item list-group-item-success">Late In Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=lateout_attendance" target="_blank" class="list-group-item list-group-item-success">Late Out Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=earlyin_attendance" target="_blank" class="list-group-item list-group-item-success">Early In Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=earlyout_attendance" target="_blank" class="list-group-item list-group-item-success">Early Out Report</a>
+                    @*<a href="/Reporting/AttendanceContainer/Index?reportName=overtime_attendance" target="_blank" class="list-group-item list-group-item-success">Overtime Report</a>*@
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=monthly_attendanceedit" target="_blank" class="list-group-item list-group-item-success">Monthly Attendance Edit Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=edit_attendance" target="_blank" class="list-group-item list-group-item-success">Edit Attendance Log Report</a>
+                    @*<a href="/Reporting/AttendanceContainer/Index?reportName=monthly_overtimeapproval" target="_blank" class="list-group-item list-group-item-success">Monthly Overtime Approval Report</a>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="content-group">
+                <div class="list-group">
+                    <div class="list-group-header"><span class="h6 text-bold">Monthly Reports</span></div>
+                    @*<a href="/Reporting/AttendanceContainer/Index?reportName=employee_record" target="_blank" class="list-group-item list-group-item-info">Employee Details</a>*@
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=detailed_att" target="_blank" class="list-group-item list-group-item-info">Employee wise detailed attendance</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=monthly_attendance" target="_blank" class="list-group-item list-group-item-info">Monthly Attendance Summary</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=monthly_attendancesheet" target="_blank" class="list-group-item list-group-item-info">Monthly Attendance Summary 25-24</a>
+                    @*<a href="/Reporting/AttendanceContainer/Index?reportName=overtime_summaryreport" target="_blank" class="list-group-item list-group-item-info">Overtime Summary Report</a>*@
+
+                    <div class="list-group-header"><span class="h6">Leaves Reports</span></div>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=leave_report" target="_blank" class="list-group-item list-group-item-warning">Employee wise consolidated Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=leavedatewise_report" target="_blank" class="list-group-item list-group-item-warning">Date wise Consolidated Leave Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=leavebalance_report" target="_blank" class="list-group-item list-group-item-warning">Yearly Leave Ledger</a>
+                    @*<a href="/Reporting/AttendanceContainer/Index?reportName=leaveBalanceEmp_report" target="_blank" class="list-group-item list-group-item-warning">Yearly Employee Leave Ledger</a>*@
+                    <a href="~/ReportContainer.aspx?reportname=leaveBalanceEmp_report" target="_blank" class="list-group-item list-group-item-warning">Pro-Rata Employee Leave Ledger</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=monthlyleavebalance_report" target="_blank" class="list-group-item list-group-item-warning">Monthly Leave Ledger</a>
+                    @*<a href="/Reporting/AttendanceContainer/Index?reportName=cplexpire_report" target="_blank" class="list-group-item list-group-item-warning">CPL Expire Report</a>*@
+
+                    <div class="list-group-header"><span class="h6">Device Data Reports</span></div>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=devicedata_report" target="_blank" class="list-group-item list-group-item-info">Device Data Report</a>
+                    <div class="list-group-header"><span class="h6">Other Reports</span></div>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=unregatt_report" target="_blank" class="list-group-item list-group-item-info">Un-registered Employee Report</a>
+                    <a href="/Reporting/AttendanceContainer/Index?reportName=employee_record" target="_blank" class="list-group-item list-group-item-info">Employee Information Report</a>
+
+                </div>
+            </div>
+        </div>
+    }

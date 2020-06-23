@@ -1,0 +1,495 @@
+@model ESSPCORE.Reporting.VMSelectedFilter
+@{
+    ViewBag.Title = "Reports - Manager (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+    <section class="sidebar-xs">
+        <!-- Page container -->
+        <div class="page-container">
+            <!-- Page content -->
+            <div class="page-content">
+                <!-- Secondary sidebar -->
+                <div class="sidebar sidebar-secondary sidebar-default">
+                    <div>
+                        <div class=""> <h4><i class="icon-arrow-right6 position-left blac"></i> <span class="text-black">Reporting</span></h4></div>
+                    </div>
+                    <div class="sidebar-content">
+                        <!-- Report Button  -->
+                        <div class="sidebar-category" style="background-color:#558B2F;">
+                            <div class="category-title">
+                                <span>
+                                    <a style="color:#fff;" onclick="OpenPartialView('/Reporting/ReportManager/ReportAttendance', 'Choose Attendance Reports')"><strong>Generate Reports</strong> </a>
+                                </span>
+
+                            </div>
+                        </div>
+                        <!-- /Company -->
+                        <!-- Company  -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Company','Choose Company')">Company</a>
+                                    <span class="badge badge-default position-right" id="LabelCompanyCount">
+                                        @Model.SelectedCompany.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivCompanyItems">
+                                @foreach (var item in Model.SelectedCompany)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivCompanyItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Company','DivCompanyItems','LabelCompanyCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /Company -->
+                        <!-- /common ou -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/CommonOU','Choose Common OU')">Common OU</a>
+                                    <span class="badge badge-default position-right" id="LabelCommonOUCount">
+                                        @Model.SelectedCommonOU.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivCommonOUItems">
+                                @foreach (var item in Model.SelectedCommonOU)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivCommonOUItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'CommonOU','DivCommonOUItems','LabelCommonOUCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /common ou -->
+                        <!-- Location  -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Location','Choose Locations')">Location</a>
+                                    <span class="badge badge-default position-right" id="LabelLocationCount">
+                                        @Model.SelectedLocation.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivLocationItems">
+                                @foreach (var item in Model.SelectedLocation)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivLocationItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Location','DivLocationItems','LabelLocationCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /Location -->
+                        <!-- /Employment Type-->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/EmployementType','Choose Employement Types')">Employement Type</a>
+                                    <span class="badge badge-default position-right" id="LabelEmployementTypeCount">
+                                        @Model.SelectedEmployementType.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivEmployementTypeItems">
+                                @foreach (var item in Model.SelectedEmployementType)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivEmployementTypeItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'EmployementType','DivEmployementTypeItems','LabelEmployementTypeCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /Employment Type-->
+                        <!-- Grade  -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Grade','Choose Grades')">Grade</a>
+                                    <span class="badge badge-default position-right" id="LabelGradeCount">
+                                        @Model.SelectedGrade.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivGradeItems">
+                                @foreach (var item in Model.SelectedGrade)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivGradeItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Grade','DivGradeItems','LabelGradeCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /Grade-->
+                        <!-- JobTitle  -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/JobTitle','Choose Job Titles')">JobTitle</a>
+                                    <span class="badge badge-default position-right" id="LabelJobTitleCount">
+                                        @Model.SelectedJobTitle.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivJobTitleItems">
+                                @foreach (var item in Model.SelectedJobTitle)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivJobTitleItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'JobTitle','DivJobTitleItems','LabelJobTitleCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /JobTitle -->
+                        <!-- Position -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Position','Choose Positions')">Position</a>
+                                    <span class="badge badge-default position-right" id="LabelPositionCount">
+                                        @Model.SelectedPosition.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivPositionItems">
+                                @foreach (var item in Model.SelectedPosition)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivPositionItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Position','DivCommonOUItems','LabelPositionCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /Position -->
+                        <!-- OrganizationalUnit  -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/OrganizationalUnit','Choose Organizational Units')">Organizational Unit</a>
+                                    <span class="badge badge-default position-right" id="LabelOrganizationalUnitCount">
+                                        @Model.SelectedOrganizationalUnit.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivOrganizationalUnitItems">
+                                @foreach (var item in Model.SelectedOrganizationalUnit)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivOrganizationalUnitItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'OrganizationalUnit','DivOrganizationalUnitItems','LabelOrganizationalUnitCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /OrganizationalUnit -->
+                        <!-- Crew -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Crew','Choose Crews')">Crew</a>
+                                    <span class="badge badge-default position-right" id="LabelCrewCount">
+                                        @Model.SelectedCrew.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivCrewItems">
+                                @foreach (var item in Model.SelectedCrew)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivCrewItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Crew','DivCrewItems','LabelCrewCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /Crew -->
+                        <!-- Shift  -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Shift','Choose Shifts')">Shift</a>
+                                    <span class="badge badge-default position-right" id="LabelShiftCount">
+                                        @Model.SelectedShift.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivShiftItems">
+                                @foreach (var item in Model.SelectedShift)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivShiftItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Shift','DivShiftItems','LabelShiftCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- /Shift-->
+                        <!-- Employee  -->
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Employee','Choose Employees')">Employee</a>
+                                    <span class="badge badge-default position-right" id="LabelEmployeeCount">
+                                        @Model.SelectedEmployee.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivEmployeeItems">
+                                @foreach (var item in Model.SelectedEmployee)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivEmployeeItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Employee','DivEmployeeItems','LabelEmployeeCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                     
+                        @*<div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Cycle','Choose Cycles')">Cycle</a>
+                                    <span class="badge badge-default position-right" id="LabelCycleCount">
+                                        @Model.SelectedCycle.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivCycleItems">
+                                @foreach (var item in Model.SelectedCycle)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivCycleItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Cycle','DivCycleItems','LabelCycleCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>*@
+                        <!-- /Stages -->
+                        @*<div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/ObjectiveSetting','Choose Stages')">Objective Setting </a>
+                                    <span class="badge badge-default position-right" id="LabelObjectiveSettingCount">
+                                        @Model.SelectedObjectiveStatus.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivObjectiveSettingItems">
+                                @foreach (var item in Model.SelectedObjectiveStatus)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivObjectiveSettingItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'ObjectiveSetting','DivObjectiveSettingItems','LabelObjectiveSettingCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/FeedbackMeeting','Choose Stages')">Feedback Meeting </a>
+                                    <span class="badge badge-default position-right" id="LabelFeedbackMeetingCount">
+                                        @Model.SelectedFeedbackStatus.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivFeedbackMeetingItems">
+                                @foreach (var item in Model.SelectedFeedbackStatus)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivFeedbackMeetingItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'FeedbackMeeting','DivFeedbackMeetingItems','LabelFeedbackMeetingCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/MidYearReview','Choose Stages')">MidYear Review </a>
+                                    <span class="badge badge-default position-right" id="LabelMidYearReviewCount">
+                                        @Model.SelectedMidYearStatus.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivMidYearReviewItems">
+                                @foreach (var item in Model.SelectedMidYearStatus)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivMidYearReviewItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'MidYearReview','DivMidYearReviewItems','LabelMidYearReviewCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/AnnualAppraisal','Choose Stages')">Annual Appraisal</a>
+                                    <span class="badge badge-default position-right" id="LabelAnnualAppraisalCount">
+                                        @Model.SelectedAppraisalStatus.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivAnnualAppraisalItems">
+                                @foreach (var item in Model.SelectedAppraisalStatus)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivAnnualAppraisalItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'AnnualAppraisal','DivAnnualAppraisalItems','LabelAnnualAppraisalCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        <div class="sidebar-category">
+                            <div class="category-title  category-collapsed">
+                                <span>
+                                    <a onclick="OpenPartialView('/Reporting/ReportManager/Rating','Choose Stages')">Rating</a>
+                                    <span class="badge badge-default position-right" id="LabelRatingCount">
+                                        @Model.SelectedRating.Count.ToString()
+                                    </span>
+                                </span>
+
+                                <ul class="icons-list">
+                                    <li><a href="#" data-action="collapse" class="rotate-180"></a></li>
+                                </ul>
+                            </div>
+                            <div class="category-content" style="display: none;" id="DivRatingItems">
+                                @foreach (var item in Model.SelectedRating)
+                                {
+                                    <div class="label border-left-info label-striped full-width" id="DivRatingItems-@item.FilterID">
+                                        <button type="button" onclick="SingleFilterDeSelect(@item.FilterID,'Rating','DivRatingItems','LabelRatingCount')" class="btn btn-link pull-left">@item.FilterName<i class="icon-cross3 position-right"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+                <!-- /secondary sidebar -->
+                <!-- Main content -->
+                <div class="content-wrapper">
+                    <div class="col-md-7">
+                        <div class=""> <h4><i class=" icon-arrow-right7 position-left"></i>  <span class="" id="LBReportHeading"></span></h4></div>
+                    </div>
+                    <div class="col-md-2" style="margin-top:6px;">
+                        <div class="input-group">
+                            <a href="~/Reporting/ReportManager/Index" class="btn btn-sm btn-danger"> Clear All Filters</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="margin-top:6px;">
+                        <div class="input-group">
+                            <input type="text" class="form-control daterange-left" name="date-range-picker" value="@Model.DateFrom.Value.ToString("MM/dd/yyyy") - @Model.DateTo.Value.ToString("MM/dd/yyyy")">
+                            <span class="input-group-addon"><i class="icon-calendar22"></i></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel border-left-lg border-left-primary">
+
+                                <div class="panel-body">
+                                    <div id="DivContainer"></div>
+                                    @*<iframe runat="server" id="Reports" src="~/Areas/Reporting/ReportLoader/Attendance.aspx" width="100%" height="460"></iframe>*@
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /main content -->
+
+            </div>
+            <!-- /page content -->
+        </div>
+        <!-- /page container -->
+
+    </section>
+}
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/ReportManager.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/CommonOU.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Crew.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Location.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Shift.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Employee.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Position.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Grade.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/JobTitle.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/OrganizationalUnit.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Company.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/EmploymentType.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/ObjectiveSetting.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Cycle.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/Rating.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/FeedbackMeeting.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/MidYearReview.js"></script>
+<script type="text/javascript" src="~/Areas/Reporting/Scripts/AnnualAppraisal.js"></script>
+<script type="text/javascript" src="~/Theme/assets/js/pages/picker_date.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OpenPartialView('/Reporting/ReportManager/ReportAttendance','Choose Reports');
+
+        var model = @Html.Raw(Json.Encode(Model))
+            LoadDatRangePicker(model.DateFrom, model.DateTo);
+    });
+
+</script>

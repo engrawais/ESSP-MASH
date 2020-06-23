@@ -1,0 +1,997 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="GENERATOR" content="VSdocman - documentation generator; http://www.helixoft.com" />
+	<title>DDService Constructor</title>
+
+	<link rel="stylesheet" type="text/css" href="msdn2017/msdn2017.css"></link>
+	<script src="msdn2017/msdn2017.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shCore_helixoft.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushVb.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushCSharp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushFSharp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushCpp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushJScript.js" type="text/javascript"></script>
+	<link href="SyntaxHighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+	<link href="SyntaxHighlighter/styles/shThemeMsdnLW.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>				
+
+	<script type="text/javascript">
+<!--
+if (self.name != "vbdocright") {
+	if (location.search != "?toc=no") {
+		var filename = location.pathname.replace(/\\/g, "/");
+		filename = filename.substring(filename.lastIndexOf('/')+1);
+		location.replace("index.html#" + filename);
+	} 
+}
+
+function replaceTitleAndUrl(win, title, url) {
+	if(history.replaceState) {
+		win.history.replaceState(null, title, url);
+	} else {
+		win.document.title = document.title;
+		win.location.replace(url);
+	}
+}
+//-->
+	</script>	
+</head>
+
+<body style="direction: ltr;">
+	<script type="text/javascript">
+		try {
+			if (location.search != "?toc=no") {
+				parent.document.title = document.title;
+				var filename = location.pathname.replace(/\\/g, "/");
+				filename = filename.substring(filename.lastIndexOf('/')+1);
+				if (window.parent.location.search == null || window.parent.location.search != "?" + filename) {
+					if (window.parent.location.hash == null || window.parent.location.hash != "#" + filename) {
+						replaceTitleAndUrl(window.parent, document.title, "index.html#" + filename);
+					}
+				}
+			}
+		} catch (ex) {}
+	</script>
+	<div id="topic">
+<!--HEADER START-->
+  <div id="header">
+  	<div id="runningHeaderText">ESSPSERVICE Reference</div>
+  	<h1 class="title">DDService Constructor</h1>
+  	<div id="headerLinks">
+
+	<a href="#seeAlsoSection">See Also</a>
+
+		</div>
+		<hr />
+	</div>
+<!--HEADER END-->
+    
+		<div id="mainSection">
+      <div id="mainBody">
+        <p />
+       
+
+
+        <p /><strong>Namespace:</strong>
+<a href="topic_00000000000000D8.html">ESSPSERVICE.Generic</a>
+
+
+
+
+        <br /><strong>Assembly:</strong> ESSPSERVICE (in ESSPSERVICE.dll)
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Syntax</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="syntaxSection" class="section">	
+	
+	
+	<div id="syntaxCodeBlocks">
+		<div class="codeSnippetContainer">		
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCornerActive">
+				</div>
+				<div class="codeSnippetTab csFirstTab csActiveTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeVB">
+					<pre xml:space="preserve" class="brush: vb">Public Sub New( _&nbsp;<br />   ByVal <i>unitOfWork</i> As <strong>IUnitOfWork</strong>, _&nbsp;<br />   ByVal <i>catagoryRepository</i> As <strong>IRepository</strong>(Of <strong>Catagory</strong>), _&nbsp;<br />   ByVal <i>positionRepository</i> As <strong>IRepository</strong>(Of <strong>Position</strong>), _&nbsp;<br />   ByVal <i>positionCatagoryRepository</i> As <strong>IRepository</strong>(Of <strong>PositionCatagory</strong>), _&nbsp;<br />   ByVal <i>positionRequisitionStatusRepository</i> As <strong>IRepository</strong>(Of <strong>PositionRequisitionStatu</strong>), _&nbsp;<br />   ByVal <i>locationRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_Location</strong>), _&nbsp;<br />   ByVal <i>commonLocationOURepository</i> As <strong>IRepository</strong>(Of <strong>LocationCommon</strong>), _&nbsp;<br />   ByVal <i>getPositionStatusRepository</i> As <strong>IRepository</strong>(Of <strong>PositionStatu</strong>), _&nbsp;<br />   ByVal <i>readerTypeRepository</i> As <strong>IRepository</strong>(Of <strong>ReaderType</strong>), _&nbsp;<br />   ByVal <i>employeeRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_EmployeeProfile</strong>), _&nbsp;<br />   ByVal <i>organizationalUnitRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_OrganizationalUnit</strong>), _&nbsp;<br />   ByVal <i>jobCardTypeRepository</i> As <strong>IRepository</strong>(Of <strong>JobCardType</strong>), _&nbsp;<br />   ByVal <i>shiftRepository</i> As <strong>IRepository</strong>(Of <strong>VAT_Shift</strong>), _&nbsp;<br />   ByVal <i>crewRepository</i> As <strong>IRepository</strong>(Of <strong>Crew</strong>), _&nbsp;<br />   ByVal <i>gradeRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_Grade</strong>), _&nbsp;<br />   ByVal <i>employmentTypeRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_EmploymentType</strong>), _&nbsp;<br />   ByVal <i>daysNameRepository</i> As <strong>IRepository</strong>(Of <strong>DaysName</strong>), _&nbsp;<br />   ByVal <i>readerDutyCodeRepository</i> As <strong>IRepository</strong>(Of <strong>ReaderDutyCode</strong>), _&nbsp;<br />   ByVal <i>leaveTypeRepository</i> As <strong>IRepository</strong>(Of <strong>LeaveType</strong>), _&nbsp;<br />   ByVal <i>oUCommonRepository</i> As <strong>IRepository</strong>(Of <strong>OUCommon</strong>), _&nbsp;<br />   ByVal <i>jobTitleRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_JobTitle</strong>), _&nbsp;<br />   ByVal <i>designationRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_Designation</strong>), _&nbsp;<br />   ByVal <i>payrollPeriodRepository</i> As <strong>IRepository</strong>(Of <strong>PayrollPeriod</strong>), _&nbsp;<br />   ByVal <i>financialYearRepository</i> As <strong>IRepository</strong>(Of <strong>FinancialYear</strong>), _&nbsp;<br />   ByVal <i>oTPolicyRepository</i> As <strong>IRepository</strong>(Of <strong>OTPolicy</strong>), _&nbsp;<br />   ByVal <i>userRepository</i> As <strong>IRepository</strong>(Of <strong>AppUser</strong>), _&nbsp;<br />   ByVal <i>leavePolicyRepository</i> As <strong>IRepository</strong>(Of <strong>LeavePolicy</strong>), _&nbsp;<br />   ByVal <i>appUserRoleRepository</i> As <strong>IRepository</strong>(Of <strong>AppUserRole</strong>), _&nbsp;<br />   ByVal <i>appUserAccessTypeRepository</i> As <strong>IRepository</strong>(Of <strong>AppUserAccessType</strong>), _&nbsp;<br />   ByVal <i>appUserLocationRepository</i> As <strong>IRepository</strong>(Of <strong>AppUserLocation</strong>), _&nbsp;<br />   ByVal <i>companyRepository</i> As <strong>IRepository</strong>(Of <strong>Company</strong>), _&nbsp;<br />   ByVal <i>commonJobTitleRepository</i> As <strong>IRepository</strong>(Of <strong>JTCommon</strong>), _&nbsp;<br />   ByVal <i>rosterTypeRepository</i> As <strong>IRepository</strong>(Of <strong>RosterType</strong>), _&nbsp;<br />   ByVal <i>auditLogRepository</i> As <strong>IRepository</strong>(Of <strong>AuditLog</strong>), _&nbsp;<br />   ByVal <i>readerRepository</i> As <strong>IRepository</strong>(Of <strong>Reader</strong>), _&nbsp;<br />   ByVal <i>leaveStageRepository</i> As <strong>IRepository</strong>(Of <strong>LeaveStage</strong>), _&nbsp;<br />   ByVal <i>notificationRepository</i> As <strong>IRepository</strong>(Of <strong>Notification</strong>), _&nbsp;<br />   ByVal <i>processRequestRepository</i> As <strong>IRepository</strong>(Of <strong>ProcessRequest</strong>), _&nbsp;<br />   ByVal <i>competencyTypeRepository</i> As <strong>IRepository</strong>(Of <strong>CompetencyType</strong>), _&nbsp;<br />   ByVal <i>vHREmployeeCrewChangeRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_EmployeeCrewChange</strong>), _&nbsp;<br />   ByVal <i>notificationEmailRepository</i> As <strong>IRepository</strong>(Of <strong>NotificationEmail</strong>), _&nbsp;<br />   ByVal <i>vHRUserEmployeeRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_UserEmployee</strong>), _&nbsp;<br />   ByVal <i>holidayRepository</i> As <strong>IRepository</strong>(Of <strong>Holiday</strong>), _&nbsp;<br />   ByVal <i>monthOTStageRepository</i> As <strong>IRepository</strong>(Of <strong>MonthOTStage</strong>), _&nbsp;<br />   ByVal <i>shiftChangedRepository</i> As <strong>IRepository</strong>(Of <strong>VAT_ShiftChanged</strong>), _&nbsp;<br />   ByVal <i>vHRUserCommonLocationRepository</i> As <strong>IRepository</strong>(Of <strong>VHR_UserCommonLocation</strong>), _&nbsp;<br />   ByVal <i>jobCardStageRepository</i> As <strong>IRepository</strong>(Of <strong>JobCardStage</strong>) _&nbsp;<br />)</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeCsharp">
+					<pre xml:space="preserve" class="brush: csharp">public DDService(&nbsp;<br />   <strong>IUnitOfWork</strong> <i>unitOfWork</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Catagory</strong>&gt; <i>catagoryRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Position</strong>&gt; <i>positionRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>PositionCatagory</strong>&gt; <i>positionCatagoryRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>PositionRequisitionStatu</strong>&gt; <i>positionRequisitionStatusRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_Location</strong>&gt; <i>locationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>LocationCommon</strong>&gt; <i>commonLocationOURepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>PositionStatu</strong>&gt; <i>getPositionStatusRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>ReaderType</strong>&gt; <i>readerTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_EmployeeProfile</strong>&gt; <i>employeeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_OrganizationalUnit</strong>&gt; <i>organizationalUnitRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>JobCardType</strong>&gt; <i>jobCardTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VAT_Shift</strong>&gt; <i>shiftRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Crew</strong>&gt; <i>crewRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_Grade</strong>&gt; <i>gradeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_EmploymentType</strong>&gt; <i>employmentTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>DaysName</strong>&gt; <i>daysNameRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>ReaderDutyCode</strong>&gt; <i>readerDutyCodeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>LeaveType</strong>&gt; <i>leaveTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>OUCommon</strong>&gt; <i>oUCommonRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_JobTitle</strong>&gt; <i>jobTitleRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_Designation</strong>&gt; <i>designationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>PayrollPeriod</strong>&gt; <i>payrollPeriodRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>FinancialYear</strong>&gt; <i>financialYearRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>OTPolicy</strong>&gt; <i>oTPolicyRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AppUser</strong>&gt; <i>userRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>LeavePolicy</strong>&gt; <i>leavePolicyRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AppUserRole</strong>&gt; <i>appUserRoleRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AppUserAccessType</strong>&gt; <i>appUserAccessTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AppUserLocation</strong>&gt; <i>appUserLocationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Company</strong>&gt; <i>companyRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>JTCommon</strong>&gt; <i>commonJobTitleRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>RosterType</strong>&gt; <i>rosterTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AuditLog</strong>&gt; <i>auditLogRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Reader</strong>&gt; <i>readerRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>LeaveStage</strong>&gt; <i>leaveStageRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Notification</strong>&gt; <i>notificationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>ProcessRequest</strong>&gt; <i>processRequestRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>CompetencyType</strong>&gt; <i>competencyTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_EmployeeCrewChange</strong>&gt; <i>vHREmployeeCrewChangeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>NotificationEmail</strong>&gt; <i>notificationEmailRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_UserEmployee</strong>&gt; <i>vHRUserEmployeeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Holiday</strong>&gt; <i>holidayRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>MonthOTStage</strong>&gt; <i>monthOTStageRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VAT_ShiftChanged</strong>&gt; <i>shiftChangedRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_UserCommonLocation</strong>&gt; <i>vHRUserCommonLocationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>JobCardStage</strong>&gt; <i>jobCardStageRepository</i>&nbsp;<br />)</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+
+
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeCpp">
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br />DDService(&nbsp;<br />   <strong>IUnitOfWork</strong>^ <i>unitOfWork</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Catagory</strong>^&gt;^ <i>catagoryRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Position</strong>^&gt;^ <i>positionRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>PositionCatagory</strong>^&gt;^ <i>positionCatagoryRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>PositionRequisitionStatu</strong>^&gt;^ <i>positionRequisitionStatusRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_Location</strong>^&gt;^ <i>locationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>LocationCommon</strong>^&gt;^ <i>commonLocationOURepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>PositionStatu</strong>^&gt;^ <i>getPositionStatusRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>ReaderType</strong>^&gt;^ <i>readerTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_EmployeeProfile</strong>^&gt;^ <i>employeeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_OrganizationalUnit</strong>^&gt;^ <i>organizationalUnitRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>JobCardType</strong>^&gt;^ <i>jobCardTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VAT_Shift</strong>^&gt;^ <i>shiftRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Crew</strong>^&gt;^ <i>crewRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_Grade</strong>^&gt;^ <i>gradeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_EmploymentType</strong>^&gt;^ <i>employmentTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>DaysName</strong>^&gt;^ <i>daysNameRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>ReaderDutyCode</strong>^&gt;^ <i>readerDutyCodeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>LeaveType</strong>^&gt;^ <i>leaveTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>OUCommon</strong>^&gt;^ <i>oUCommonRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_JobTitle</strong>^&gt;^ <i>jobTitleRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_Designation</strong>^&gt;^ <i>designationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>PayrollPeriod</strong>^&gt;^ <i>payrollPeriodRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>FinancialYear</strong>^&gt;^ <i>financialYearRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>OTPolicy</strong>^&gt;^ <i>oTPolicyRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AppUser</strong>^&gt;^ <i>userRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>LeavePolicy</strong>^&gt;^ <i>leavePolicyRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AppUserRole</strong>^&gt;^ <i>appUserRoleRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AppUserAccessType</strong>^&gt;^ <i>appUserAccessTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AppUserLocation</strong>^&gt;^ <i>appUserLocationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Company</strong>^&gt;^ <i>companyRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>JTCommon</strong>^&gt;^ <i>commonJobTitleRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>RosterType</strong>^&gt;^ <i>rosterTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>AuditLog</strong>^&gt;^ <i>auditLogRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Reader</strong>^&gt;^ <i>readerRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>LeaveStage</strong>^&gt;^ <i>leaveStageRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Notification</strong>^&gt;^ <i>notificationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>ProcessRequest</strong>^&gt;^ <i>processRequestRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>CompetencyType</strong>^&gt;^ <i>competencyTypeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_EmployeeCrewChange</strong>^&gt;^ <i>vHREmployeeCrewChangeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>NotificationEmail</strong>^&gt;^ <i>notificationEmailRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_UserEmployee</strong>^&gt;^ <i>vHRUserEmployeeRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>Holiday</strong>^&gt;^ <i>holidayRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>MonthOTStage</strong>^&gt;^ <i>monthOTStageRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VAT_ShiftChanged</strong>^&gt;^ <i>shiftChangedRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>VHR_UserCommonLocation</strong>^&gt;^ <i>vHRUserCommonLocationRepository</i>,&nbsp;<br />   <strong>IRepository</strong>&lt;<strong>JobCardStage</strong>^&gt;^ <i>jobCardStageRepository</i>&nbsp;<br />) </pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab csLastTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCornerActive">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeJScript">
+					<pre xml:space="preserve" class="brush: js">JScript does not support generic types and methods.</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+
+<h4 class="subHeading">
+	Parameters</h4><dl paramName="unitOfWork">
+	<dt>
+		<span class="parameter">
+			unitOfWork
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IUnitOfWork</strong> 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="catagoryRepository">
+	<dt>
+		<span class="parameter">
+			catagoryRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>Catagory</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="positionRepository">
+	<dt>
+		<span class="parameter">
+			positionRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>Position</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="positionCatagoryRepository">
+	<dt>
+		<span class="parameter">
+			positionCatagoryRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>PositionCatagory</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="positionRequisitionStatusRepository">
+	<dt>
+		<span class="parameter">
+			positionRequisitionStatusRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>PositionRequisitionStatu</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="locationRepository">
+	<dt>
+		<span class="parameter">
+			locationRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_Location</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="commonLocationOURepository">
+	<dt>
+		<span class="parameter">
+			commonLocationOURepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>LocationCommon</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="getPositionStatusRepository">
+	<dt>
+		<span class="parameter">
+			getPositionStatusRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>PositionStatu</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="readerTypeRepository">
+	<dt>
+		<span class="parameter">
+			readerTypeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>ReaderType</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="employeeRepository">
+	<dt>
+		<span class="parameter">
+			employeeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_EmployeeProfile</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="organizationalUnitRepository">
+	<dt>
+		<span class="parameter">
+			organizationalUnitRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_OrganizationalUnit</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="jobCardTypeRepository">
+	<dt>
+		<span class="parameter">
+			jobCardTypeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>JobCardType</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="shiftRepository">
+	<dt>
+		<span class="parameter">
+			shiftRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VAT_Shift</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="crewRepository">
+	<dt>
+		<span class="parameter">
+			crewRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>Crew</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="gradeRepository">
+	<dt>
+		<span class="parameter">
+			gradeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_Grade</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="employmentTypeRepository">
+	<dt>
+		<span class="parameter">
+			employmentTypeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_EmploymentType</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="daysNameRepository">
+	<dt>
+		<span class="parameter">
+			daysNameRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>DaysName</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="readerDutyCodeRepository">
+	<dt>
+		<span class="parameter">
+			readerDutyCodeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>ReaderDutyCode</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="leaveTypeRepository">
+	<dt>
+		<span class="parameter">
+			leaveTypeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>LeaveType</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="oUCommonRepository">
+	<dt>
+		<span class="parameter">
+			oUCommonRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>OUCommon</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="jobTitleRepository">
+	<dt>
+		<span class="parameter">
+			jobTitleRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_JobTitle</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="designationRepository">
+	<dt>
+		<span class="parameter">
+			designationRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_Designation</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="payrollPeriodRepository">
+	<dt>
+		<span class="parameter">
+			payrollPeriodRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>PayrollPeriod</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="financialYearRepository">
+	<dt>
+		<span class="parameter">
+			financialYearRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>FinancialYear</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="oTPolicyRepository">
+	<dt>
+		<span class="parameter">
+			oTPolicyRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>OTPolicy</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="userRepository">
+	<dt>
+		<span class="parameter">
+			userRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>AppUser</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="leavePolicyRepository">
+	<dt>
+		<span class="parameter">
+			leavePolicyRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>LeavePolicy</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="appUserRoleRepository">
+	<dt>
+		<span class="parameter">
+			appUserRoleRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>AppUserRole</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="appUserAccessTypeRepository">
+	<dt>
+		<span class="parameter">
+			appUserAccessTypeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>AppUserAccessType</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="appUserLocationRepository">
+	<dt>
+		<span class="parameter">
+			appUserLocationRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>AppUserLocation</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="companyRepository">
+	<dt>
+		<span class="parameter">
+			companyRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>Company</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="commonJobTitleRepository">
+	<dt>
+		<span class="parameter">
+			commonJobTitleRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>JTCommon</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="rosterTypeRepository">
+	<dt>
+		<span class="parameter">
+			rosterTypeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>RosterType</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="auditLogRepository">
+	<dt>
+		<span class="parameter">
+			auditLogRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>AuditLog</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="readerRepository">
+	<dt>
+		<span class="parameter">
+			readerRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>Reader</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="leaveStageRepository">
+	<dt>
+		<span class="parameter">
+			leaveStageRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>LeaveStage</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="notificationRepository">
+	<dt>
+		<span class="parameter">
+			notificationRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>Notification</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="processRequestRepository">
+	<dt>
+		<span class="parameter">
+			processRequestRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>ProcessRequest</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="competencyTypeRepository">
+	<dt>
+		<span class="parameter">
+			competencyTypeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>CompetencyType</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="vHREmployeeCrewChangeRepository">
+	<dt>
+		<span class="parameter">
+			vHREmployeeCrewChangeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_EmployeeCrewChange</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="notificationEmailRepository">
+	<dt>
+		<span class="parameter">
+			notificationEmailRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>NotificationEmail</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="vHRUserEmployeeRepository">
+	<dt>
+		<span class="parameter">
+			vHRUserEmployeeRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_UserEmployee</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="holidayRepository">
+	<dt>
+		<span class="parameter">
+			holidayRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>Holiday</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="monthOTStageRepository">
+	<dt>
+		<span class="parameter">
+			monthOTStageRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>MonthOTStage</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="shiftChangedRepository">
+	<dt>
+		<span class="parameter">
+			shiftChangedRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VAT_ShiftChanged</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="vHRUserCommonLocationRepository">
+	<dt>
+		<span class="parameter">
+			vHRUserCommonLocationRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>VHR_UserCommonLocation</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+<dl paramName="jobCardStageRepository">
+	<dt>
+		<span class="parameter">
+			jobCardStageRepository
+		</span>
+	</dt>
+	<dd>
+		Type: <strong>IRepository</strong>&lt;<strong>JobCardStage</strong>&gt; 
+		<p>
+			 
+		</p>
+	</dd>
+</dl>
+
+<p />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Applies to</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="frameworksSection" class="section">	
+  <h4 class="subHeading">.NET Framework</h4>Supported in: 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1<br />
+
+
+
+
+
+
+
+
+
+
+	
+	
+	</div>					
+</div>
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">See Also</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="seeAlsoSection" class="section">	
+		<div>
+			<a href="topic_00000000000000DF.html">DDService Class</a><br />
+
+
+
+<a href="topic_00000000000000D8.html">ESSPSERVICE.Generic Namespace</a><br />
+
+
+			
+
+		</div>
+	</div>					
+</div>
+			</div>
+			</div>
+      <div id="footer">
+      	<p><span style="color: #FF0000;">Generated with unregistered version of <a target="_top" href="http://www.helixoft.com/vsdocman/overview.html">VSdocman</a></span>&nbsp;<br />Your own footer text will only be shown in registered version.</p>
+      </div>
+    </div>
+  	<script type="text/javascript">
+<!--
+	try {
+		parent.frames["vbdocswitch"].expandLinkInToc(location.href);
+	} catch (ex) {}
+//-->
+		</script>	
+  </body>
+</html>
+

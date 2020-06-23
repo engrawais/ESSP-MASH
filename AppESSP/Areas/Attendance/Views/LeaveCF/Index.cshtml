@@ -1,0 +1,102 @@
+﻿@model List<ESSPCORE.Attendance.VMLeaveCFChild>
+@{
+    ViewBag.Title = "Leave CarryForward - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Leave Carry Forward</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-green-600">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Leave Carry Forward</li>
+                    </ul>
+                    <ul class="breadcrumb-elements">
+                        <li>
+                            <button id="btnGetCreate" class="btn btn-lg text-bold bg-green-800 " style="margin-right:-20px"><a href="~/Attendance/LeaveCF/Create1"></a> Add Leave Carry Forward</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <table class="table datatable-basic">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Emp No
+                            </th>
+                            <th>
+                            <th class="text-bold">
+                                Emp Name
+                            </th>
+                            <th class="text-bold">
+                                Leave Type Name
+                            </th>
+                            <th class="text-bold">
+                                Collapse Leave
+                            </th>
+                            <th class="text-bold"> Carry Forward</th>
+                            <th class="text-bold">Total Leave</th>
+                            <th class="text-bold">Financial Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmpNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LeaveTypeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CollapseLeave)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CarryForward)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalLeave)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FinancialYearName)
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/LeaveCF.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Create1();
+    });
+</script>

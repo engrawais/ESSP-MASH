@@ -1,0 +1,53 @@
+﻿@model ESSPCORE.EF.Designation
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Designation
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Designation Name</div>
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.DesignationName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DesignationName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label text-semibold col-md-2 "> Job Title  </div>
+                <div class="col-md-5">
+                    @Html.DropDownList("JobTitleID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.JobTitleID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label text-semibold col-md-2 "></div>
+                <div class="col-md-5">
+                    <label class="checkbox-inline text-semibold " for="Status">
+                        @Html.CheckBox("Status")
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        Status
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+        <button type="button" id="btnPostCreate" class="btn bg-blue-800" value="Submit">Submit</button>
+
+    </div>
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        DesignationPostCreate();
+    });
+</script>
+

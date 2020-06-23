@@ -1,0 +1,188 @@
+﻿@model PagedList.IPagedList<ESSPCORE.EF.VAT_LeaveApplication>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Leave Application - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"]; }
+<div class="page-header">
+
+    <div class="page-header-content">
+        <div class="col-md-6"><h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Leave Application</span></h4></div>
+        <div class="col-md-6" style="padding-top:8px;">
+            <form class="form-inline" role="form">
+                <div class="form-group pull-right SearchBtnMargin">
+                    @using (Html.BeginForm("Index", "LeaveApplication", FormMethod.Get))
+                    {<p>
+                            Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                            <input class="btn btn-sm bg-blue-800 btn-custom" type="submit" value="Search" />
+                        </p>}
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Leave Application</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-800 btn-custom" style="margin-right:-20px">
+                        <li><a id="btnGetCreate" class="btn btn-lg text-bold"><i class="icon-add position-left"></i> Add Leave Application</a></li>
+                    </ul>
+                </div>
+                <table class="table table-bordered table-framed table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Emp No
+                            </th>
+                            <th class="text-bold">
+                                Leave ID
+                            </th>
+                            <th class="text-bold">
+                                Name
+                            </th>
+                            <th class="text-bold">
+                                Type
+                            </th>
+                            <th class="text-bold">
+                                Date From
+                            </th>
+                            <th class="text-bold">
+                                Date To
+                            </th>
+                            <th class="text-bold text-size-small">Working Days</th>
+                            <th class="text-bold  text-size-small">Calender Days</th>
+                            <th class="text-bold  text-size-small">
+                                Return Date
+                            </th>
+                            <th class="text-bold  text-size-small">
+                               Leave Reason
+                            </th>
+                            <th class="text-bold">Status</th>
+                            @if (LoggedInUser.TMSDelete == true)
+                            {
+                                <th class="text-bold" width="-150%">Delete/Print</th>
+                            }
+                            else
+                            {
+                                <th class="text-bold" width="-150%">Print</th>
+                            }
+                        </tr>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr class="text-size-base">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OEmpID)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.PLeaveAppID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
+                            <td>
+                                @if (item.IsAccum == true)
+                                {
+                                    <span> Accumulated </span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.LeaveTypeName)
+                                }
+
+                            </td>
+                            <td>
+                                @item.FromDate.ToString("dd-MMM-yyyy")
+                            </td>
+                            <td>
+                                @item.ToDate.ToString("dd-MMM-yyyy")
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.NoOfDays)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.CalenderDays)
+                            </td>
+                            <td class="text-center">
+                                @if (item.ReturnDate != null)
+                                {@item.ReturnDate.Value.ToString("dd-MMM-yyyy")}
+                            </td>
+                            <td class="text-size-mini">
+                                @Html.DisplayFor(modelItem => item.LeaveReason)
+
+                            </td>
+                            <td>
+                                @if (item.LeaveStageID == "A")
+                                {
+                                    <span class="label label-success">Approved</span>
+                                }
+                            </td>
+                            <td>
+                                @*<input type="button" id="btnGetEdit" onclick="LvAppGetEdit(@item.PLeaveAppID)" value="Edit" class="btn btn-primary btn-icon" />*@
+                                @*<button type="button" class="btn border-warning text-warning-600 btn-flat btn-icon btn-rounded btn-xs"><i class="icon-trash"></i></button>*@
+                                @if (LoggedInUser.TMSDelete == true)
+                                {
+                                    <button type="button" id="btnGetDelete" onclick="LvAppGetDelete(@item.PLeaveAppID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                                }
+                                @Html.ActionLink(" ", "ViewLeaveApplication", "LeaveApplication", new { id = item.PLeaveAppID }, new { @class = "btn border-indigo btn-xs text-blue-800 btn-flat btn-rounded icon-printer2" })
+
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <div class="row">
+                    <div class="col-md-10 pull-left">@Html.PagedListPager(Model, page => Url.Action("Index", new { Status = ViewBag.StatusSave, Location = ViewBag.LocIDSave, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))</div>
+                    <div class="col-md-2 pull-right ">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+                </div>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<!-- Modal -->
+<div>
+    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/LeaveApplication.js"></script>
+<script type="text/javascript">
+    $('#myModal').on('hidden.bs.modal', function () {
+        return false;
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        LvAppGetCreate();
+    });
+</script>

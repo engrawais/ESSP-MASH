@@ -1,0 +1,158 @@
+﻿
+@model ESSPCORE.EF.ProcessRequest
+
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"]; }
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Attendance Processor
+        </h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <section class="col-md-8">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="control-label col-md-3 text-semibold">Process Type</div>
+                    <select class="btn btn-default dropdown-toggle dropdown  col-md-4" id="PeriodTag" name="PeriodTag">
+                        <option value="D">Daily</option>
+                        <option value="M">Monthly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-3 text-semibold">Criteria</div>
+                    <select class="btn btn-default dropdown-toggle dropdown col-md-4" id="Criteria" name="Criteria">
+                        @if (LoggedInUser.UserRoleID == "H")
+                        {
+                            <option value="E">Employee</option>
+                            <option value="L">Location</option>
+                            <option value="C">Company</option>
+                        }
+                        else if (LoggedInUser.UserRoleID == "A")
+                        {
+                            <option value="E">Employee</option>
+                            <option value="L">Location</option>
+                            <option value="C">Company</option>
+                        }
+                        else
+                        {
+                            <option value="E">Employee</option>
+                        }
+                    </select>
+                </div>
+
+                <div>
+                    <div id="LocationDD">
+                        <div class="form-group">
+                            <div class="control-label text-semibold col-md-3"> Location </div>
+                            @Html.DropDownList("LocationID", null, new { @class = "btn btn-default dropdown-toggle dropdown col-md-4" })
+                            @Html.ValidationMessageFor(model => model.LocationID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div id="emptb">
+                        <div class="form-group">
+                            <label class="col-lg-3 col-md-3 col-sm-3 control-label text-semibold ">Emp No<span style="color:red;">*</span></label>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="input-group">
+                                    <input id="EmpNo" autofocus name="EmpNo" type="text" class="form-control required" placeholder="EMP-00001" />
+                                    <span class="input-group-btn">
+                                        <button type="button" name="btnGetEmployee" value="Search" class="btn btn-secondary" id="btnGetEmployee" style="padding-bottom:.6em">Search</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label text-semibold col-md-3 "> Start Date</div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(x => x.DateFrom, "{0:MM/dd/yyyy}", new { @class = "form-control", @type = "date", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.DateFrom, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label text-semibold col-md-3 ">End Date</div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(x => x.DateTo, "{0:dd/MM/yyyy}", new { @class = "form-control", @type = "date", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.DateTo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </section>
+
+            <section class="col-md-4">
+                <div class="content-group">
+                    <div class="panel-body bg-grey border-radius-top text-center" style="height:50px">
+                        <h6 class="text-bold" style="margin-top:-5px">
+                            EMPLOYEE INFORMATION
+                        </h6>
+                    </div>
+                    <div class="panel panel-flat">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+
+                                <tbody>
+                                    <tr>
+                                        <td class="small text-bold">
+                                            Name:
+                                        </td>
+                                        <td>
+                                            <h6 id="EName" class="small"></h6>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="small text-bold">
+                                            Position:
+                                        </td>
+
+                                        <td>
+                                            <h6 id="EDesignation" class="small"></h6>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="small text-bold">
+                                            OU:
+                                        </td>
+
+                                        <td>
+                                            <h6 id="EOU" class="small"></h6>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="small text-bold">
+                                            DOJ:
+                                        </td>
+                                        <td>
+                                            <h6 id="EDOJ" class="small"></h6>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-custom-grey bg-grey" })
+        <button type="button" id="btnPostCreate" class="btn btn-custom bg-blue-800" value="Submit">Submit</button>
+
+    </div>
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        DDController();
+        ProcessRequestPostCreate();
+    });
+</script>
+

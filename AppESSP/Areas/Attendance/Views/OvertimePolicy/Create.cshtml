@@ -1,0 +1,179 @@
+﻿@model ESSPCORE.EF.OTPolicy
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Overtime Policy
+        </h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">Policy Name</div>
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.OTPolicyName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OTPolicyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="checkbox-inline text-semibold " for="Enable">
+                        @Html.CheckBox("Enable")
+                        @Html.ValidationMessageFor(model => model.Enable, "", new { @class = "text-danger" })
+                        Enable
+                    </label>
+                </div>
+                <div class="col-md-3">
+                    <label class="checkbox-inline text-semibold " for="ConvertedToCPL">
+                        @Html.CheckBox("ConvertedToCPL")
+                        @Html.ValidationMessageFor(model => model.ConvertedToCPL, "", new { @class = "text-danger" })
+                        Converted To CPL
+                    </label>
+                </div>
+                <div class="col-md-7" id="EncashableOTHour">
+                    <div class="form-group">
+                        <div class="control-label col-md-4">Encashable OT hours</div>
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.EncashableOTHour, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EncashableOTHour)
+                        </div>
+                        <div class="control-label col-md-4">CPL Expiry Days</div>
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.CPLExpireDays, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CPLExpireDays)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold" for="CalculateNOT">
+                        @Html.CheckBox("CalculateNOT")
+                        @Html.ValidationMessageFor(model => model.CalculateNOT, "", new { @class = "text-danger" })
+                        Calculate Normal OT
+                    </label>
+                </div>
+                <div class="col-md-8" id="PerdayOTHour">
+                    <div class="form-group">
+                        <div class="control-label col-md-4">Per Day OT Hour</div>
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.PerDayOTLimitHour, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PerDayOTLimitHour)
+                        </div>
+                        <div class="control-label col-md-4">Per Month OT Hour</div>
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.PerMonthOTLimitHour, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PerMonthOTLimitHour)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold " for="CalculateRestOT">
+                        @Html.CheckBox("CalculateRestOT")
+                        @Html.ValidationMessageFor(model => model.CalculateRestOT, "", new { @class = "text-danger" })
+                        Calculate Rest OT
+                    </label>
+                </div>
+            </div>
+            <div id="PerdayROTHour">
+                <div class="form-group">
+                    <div class="control-label col-md-2">Per Day Hours</div>
+                    <div class="col-md-1">
+                        @Html.TextBoxFor(model => model.PerDayROTLimitHour, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerDayROTLimitHour)
+                    </div>
+                    <div class="control-label col-md-2">Per Month Hours</div>
+                    <div class="col-md-1">
+                        @Html.TextBoxFor(model => model.PerMonthROTLimitHour, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerMonthROTLimitHour)
+                    </div>
+                    <div class="control-label col-md-1 text-semibold">Multiplier</div>
+                    <div class="col-md-1">
+                        <select id="ROTMultiplier" name="ROTMultiplier" class="form-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+
+                    <label class="checkbox-inline" for="ROTEncashable">
+                        @Html.CheckBox("ROTEncashable")
+                        @Html.ValidationMessageFor(model => model.ROTEncashable, "", new { @class = "text-danger" })
+                        All Encashable
+                    </label>
+                    <label class="checkbox-inline" for="AddROTInTotalOT">
+                        @Html.CheckBox("AddROTInTotalOT")
+                        @Html.ValidationMessageFor(model => model.AddROTInTotalOT, "", new { @class = "text-danger" })
+                        Add in Total OT
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold " for="CalculateGZOT">
+                        @Html.CheckBox("CalculateGZOT")
+                        @Html.ValidationMessageFor(model => model.CalculateGZOT, "", new { @class = "text-danger" })
+                        Calculate GZ OT
+                    </label>
+                </div>
+            </div>
+            <div id="PerdayGOTHour">
+                <div class="form-group">
+                    <div class="control-labell col-md-2">Per Day Hours</div>
+                    <div class="col-md-1">
+                        @Html.TextBoxFor(model => model.PerDayGOTLimitHour, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerDayGOTLimitHour)
+                    </div>
+                    <div class="control-label col-md-2">Per Month Hours</div>
+                    <div class="col-md-1">
+                        @Html.TextBoxFor(model => model.PerMonthGOTLimitHour, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerMonthGOTLimitHour)
+                    </div>
+                    <div class="control-label col-md-1 text-semibold">Multiplier</div>
+                    <div class="col-md-1">
+                        <select id="GOTMultiplier" name="GOTMultiplier" class="form-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                    <label class="checkbox-inline" for="GZEncashable">
+                        @Html.CheckBox("GZEncashable")
+                        @Html.ValidationMessageFor(model => model.GZEncashable, "", new { @class = "text-danger" })
+                        All Encashable
+                    </label>
+                    <label class="checkbox-inline" for="AddGZOTInTotalOT">
+                        @Html.CheckBox("AddGZOTInTotalOT")
+                        @Html.ValidationMessageFor(model => model.AddGZOTInTotalOT, "", new { @class = "text-danger" })
+                        Add in Total OT
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-4 text-semibold">Minimum Mints For One Hour</div>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(model => model.MinMinutesForOneHour, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MinMinutesForOneHour)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary bg-primary-300" })
+        <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Submit">Submit</button>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        OvertimePolicyPostCreate();
+        FormControlsScript();
+    });
+</script>

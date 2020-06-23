@@ -1,0 +1,59 @@
+﻿@model ESSPCORE.EF.FinancialYear
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FinancialYear</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FYName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FYName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FYStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FYStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FYEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FYEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FYStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FYStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PFinancialYearID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,154 @@
+﻿@model ESSPCORE.Attendance.VMEditAttendanceDateWise
+@{
+    ViewBag.Title = "Edit Datewise Entries -(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Daily Attendance Editor</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+@using (Html.BeginForm("SaveEditEntriesDateWise", "DailyEditor", FormMethod.Post))
+{
+
+    <div class="page-container">
+
+        <!-- Page content -->
+
+        <div class="page-content">
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li class="active">Edit Multiple Entries</li>
+                        </ul>
+                        <ul class="breadcrumb-elements">
+                            <li>
+                                <button type="submit" value="Submit" class="btn btn-lg text-bold btn-custom bg-blue-800" style="margin-right:-20px"><i class="icon-add position-left"></i>Submit Attendance</button>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="page-header ">
+
+                        <div class="page-header-content">
+                            <div class="row">
+                                <div class="col-md-1" style="padding-top:5px;"> @Html.ActionLink("Previous", "PreviousEntry", new { CriteriaRBName = Model.CriteriaRBName, dt = Model.Date, CriteriaData = Model.CriteriaData }, new { @class = "btn btn-xs border-blue text-blue-600 btn-flat " }) </div>
+                                <div class="col-md-5"><h6 class="text-bold">@Model.Criteria</h6></div>
+                                <div class="col-md-5"><h6><span class="text-bold">Date: </span> <span class="text-black">@Model.Date</span> </h6></div>
+                                <div class="col-md-1 pull-right" style="padding-top:5px;">
+                                    @Html.ActionLink("Next", "NextEntry", new { CriteriaRBName = Model.CriteriaRBName, dt = Model.Date, CriteriaData = Model.CriteriaData }, new { @class = "btn btn-xs border-blue text-blue-600 btn-flat" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input hidden type="text" name="Count" id="Count" value="@Model.Count" />
+                    <input hidden type="text" name="Date" id="Date" value="@Model.Date" />
+                    <input hidden type="text" name="Criteria" id="Criteria" value="@Model.Criteria" />
+                    <input hidden type="text" name="CriteriaData" id="CriteriaData" value="@Model.CriteriaData" />
+                    <input hidden type="text" name="CriteriaRBName" id="CriteriaRBName" value="@Model.CriteriaRBName" />
+                    <table class="table datatable-scroll-edit table-striped table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-bold">
+                                    Emp No
+                                </th>
+                                <th class="text-bold" width="200px">
+                                    Name
+                                </th>
+                                <th class="text-bold" style="display:none">
+
+                                </th>
+                                <th class="text-bold">
+                                    Code
+                                </th>
+                                <th class="text-bold">
+                                    Start Time
+                                </th>
+                                <th class="text-bold">
+                                    Shift Hours
+                                </th>
+                                <th class="text-bold">
+                                    Time In
+                                </th>
+                                <th class="text-bold">
+                                    Time Out
+                                </th>
+                                <th class="text-bold">
+                                    Work
+                                </th>
+                                <th class="text-bold">
+                                    Overtime
+                                </th>
+                                <th class="text-bold">
+                                    Approved OT
+                                </th>
+                                <th class="text-bold">
+                                    New Remarks
+                                </th>
+                                <th class="text-bold">
+                                    System Remarks
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.list)
+                            {
+                                <tr>
+                                    <td>
+                                        <label>@item.EmpNo</label>
+                                    </td>
+                                    <td>
+                                        <label>@item.EmpName</label>
+                                    </td>
+                                    <td style="display:none">
+                                        <input type="text" name="EmpDate-@item.No" style="width:50px" class="form-control2 text-center" value="@item.EmpDate">
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:50px" name="DutyCode-@item.No" class="form-control2 text-center" value="@item.DutyCode">
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:60px" name="DutyTime-@item.No" class="form-control2 text-center" value="@item.DutyTime">
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:60px" name="ShiftTime-@item.No" class="form-control2 text-center" value="@item.ShiftTime">
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:60px" name="TimeIn-@item.No" class="form-control2 text-center" value="@item.TimeIn">
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:60px" name="TimeOut-@item.No" class="form-control2 text-center" value="@item.TimeOut">
+                                    </td>
+                                    <td>
+                                        @item.WorkMinutes
+                                    </td>
+                                    <td>
+                                        @item.OTMin
+                                    </td>
+                                    <td>
+                                        @item.ApprovedOTMin
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:120px" name="Remarks-@item.No" class="form-control2" value="@item.UserRemarks">
+                                    </td>
+                                    <td>
+                                        @item.SystemRemarks
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>}

@@ -1,0 +1,54 @@
+﻿@model ESSPCORE.Attendance.VMPVTMDashboard
+
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h6 class="panel-title">Attendance Status<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+            <div class="heading-elements">
+                <div class="heading-text">
+                    <span class="status-mark border-success position-left"></span>
+                    @Model.Date
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <ul class="progress-list">
+                <li>
+                    <label> @Html.ActionLink("Absenteeism", "LoadTMDashboardAttendance", "DailyEditor", new { date = Model.Date, Criteria = "Absent", Area = "Attendance" }, new { target = "_blank" }) <span>@Model.AbsentsPercentLabel</span></label>
+                    <div class="progress progress-xxs">
+                        <div class="progress-bar progress-bar-info" style="width: @Model.AbsentsPercentWidth">
+                            <span class="sr-only">@Model.AbsentsPercentDesc</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <label>@Html.ActionLink("Missing Attendance", "LoadTMDashboardAttendance", "DailyEditor", new { date = Model.Date, Criteria = "Missing", Area = "Attendance" }, new { target = "_blank" })  <span>@Model.MissingPercentLabel</span></label>
+                    <div class="progress progress-xxs">
+                        <div class="progress-bar progress-bar-danger" style="width: @Model.MissingPercentWidth">
+                            <span class="sr-only">@Model.MissingPercentDesc</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <label>@Html.ActionLink("Shift Change (4hrs Late In)", "LoadTMDashboardAttendance", "DailyEditor", new { date = Model.Date, Criteria = "LateIn", Area = "Attendance" }, new { target = "_blank" })  <span>@Model.ShiftLateInPercentLabel</span></label>
+                    <div class="progress progress-xxs">
+                        <div class="progress-bar progress-bar-success" style="width: @Model.ShiftLateInPercentWidth">
+                            <span class="sr-only">@Model.ShiftLateInPercentDesc</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <label>@Html.ActionLink("Shift Change (4hrs Early Out)", "LoadTMDashboardAttendance", "DailyEditor", new { date = Model.Date, Criteria = "EarlyOut", Area = "Attendance" }, new { target = "_blank" })  <span>@Model.ShiftEarlyOutPercentLabel</span></label>
+                    <div class="progress progress-xxs">
+                        <div class="progress-bar progress-bar-primary" style="width: @Model.ShiftEarlyOutPercentWidth">
+                            <span class="sr-only">@Model.ShiftEarlyOutPercentDesc</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>

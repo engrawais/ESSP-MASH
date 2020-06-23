@@ -1,0 +1,50 @@
+﻿@model ESSPCORE.EF.LeaveCPLBalance
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.HiddenFor(model=>model.EmployeeID)
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;CPL Create
+        </h4>
+    </div>
+    <input value="@ViewBag.EmpID" type="hidden" name="EmpID2" id="EmpID2" class="form-control">
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">PayrollPeriod</div>
+                <div class="col-md-4">
+                    @Html.DropDownList("PayrollPeriodID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.PayrollPeriodID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">CPL Balance</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.CPLBalance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CPLBalance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">Expire Date</div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.ExpireDate, new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(model => model.ExpireDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary bg-primary-300" })
+        <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Submit">Submit</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        CPLPostCreate('@ViewBag.EmpID');
+    });
+</script>

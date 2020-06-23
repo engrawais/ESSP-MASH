@@ -1,0 +1,224 @@
+﻿@model ESSPCORE.ESSP.VMESSPAttendence
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+    using (Html.BeginForm("Index", "ESSPAttendence", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <!-- Page header -->
+        <div class="page-header ">
+            <div class="page-header-content">
+                <h4><i class="icon-user-tie position-left"></i> <span class="text-semibold"> Employee Attendance</span></h4>
+            </div>
+        </div>
+        <!-- /page header -->
+        <!-- Page container -->
+        <div class="page-container">
+            <!-- Page content -->
+            <div class="page-content">
+                <!-- Main content -->
+                <div class="content-wrapper">
+                    <!-- /basic tabs title -->
+                    <!-- Basic tabs -->
+
+                   
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <div class="panel panel-flat">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                <div class="form-group">
+                                                    <div class="control-label text-semibold col-md-1" style="margin-top:8px">Start Date</div>
+                                                    <div class="col-md-2">
+                                                        @Html.TextBoxFor(x => x.DateStart, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                                        @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="control-label text-semibold col-md-1" style="margin-top:8px">End Date</div>
+                                                    <div class="col-md-2">
+                                                        @Html.TextBoxFor(x => x.DateEnd, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                                        @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="control-label col-md-1 text-semibold" style="margin-top:8px">Employee</div>
+                                                    <div class="col-md-4">
+                                                        @Html.DropDownList("EmpID", null, new { @class = "form-control select-size-sm col-lg-12 col-sm-12 col-md-12" })
+                                                        @Html.ValidationMessageFor(model => model.EmpID, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class=col-md-1>
+                                                        <button type="submit" class="btn bg-blue-800 col-md-pull-1" value="Submit">Go</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel text-center">
+                                        <div class="panel-body panel-body-accent pb-15">
+                                            <div class="row">
+                                                <div class="col-xs-2">
+                                                    <div class="text-uppercase text-size-mini ">Working Days</div>
+                                                    <h5 class="text-semibold no-margin">@Model.WorkingDays</h5>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <div class="text-uppercase text-size-mini ">Present Days</div>
+                                                    <h5 class="text-semibold no-margin">@Model.PresentDays</h5>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <div class="text-uppercase text-size-mini ">Absent Days</div>
+                                                    <h5 class="text-semibold no-margin">@Model.AbsentDays</h5>
+                                                </div>
+                                                <div class="col-xs-1">
+                                                    <div class="text-uppercase text-size-mini ">Rest Days</div>
+                                                    <h5 class="text-semibold no-margin">@Model.RestDays</h5>
+                                                </div>
+                                                <div class="col-xs-1">
+                                                    <div class="text-uppercase text-size-mini ">Leave Days</div>
+                                                    <h5 class="text-semibold no-margin">@Model.LeaveDays</h5>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <div class="text-uppercase text-size-mini ">Late In Days</div>
+                                                    <h5 class="text-semibold no-margin">@Model.LateInDays</h5>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <div class="text-uppercase text-size-mini ">Early Out Days</div>
+                                                    <h5 class="text-semibold no-margin">@Model.EarlyOutDays</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr class="table-header bg-blue-600">
+                                                <th class="text-bold">
+                                                    Name
+                                                </th>
+                                                <th class="text-bold">
+                                                    Date
+                                                </th>
+                                                <th class="text-bold">
+                                                    Time IN
+                                                </th>
+                                                <th class="text-bold">
+                                                    Time Out
+                                                </th>
+                                                <th class="text-bold">
+                                                    Work (hh:mm)
+                                                </th>
+                                                <th class="text-bold">
+                                                    Early In
+                                                </th>
+                                                <th class="text-bold">
+                                                    Early Out
+                                                </th>
+                                                <th class="text-bold">
+                                                    Late In
+                                                </th>
+                                                <th class="text-bold">
+                                                    Late Out
+                                                </th>
+                                                <th class="text-bold">
+                                                    Remarks
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.VMDailyAttendence != null)
+                                            {
+                                                foreach (var item in Model.VMDailyAttendence)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @item.Employee.EmployeeName
+                                                        </td>
+                                                        <td>
+                                                            @item.AttDate.Value.ToString("ddd dd-MMM-yyyy")
+                                                        </td>
+                                                        <td>
+                                                            @if (@item.TimeIn != null)
+                                                            {
+                                                                @item.TimeIn.Value.ToString("hh:mm tt")
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @if (@item.TimeOut != null)
+                                                            {
+                                                                @item.TimeOut.Value.ToString("hh:mm tt")
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @{
+                                                                if (item.WorkMin > 0)
+                                                                {
+                                                                    TimeSpan ts = new TimeSpan(0, item.WorkMin.Value, 0);
+                                                                    <span>@ts.Hours.ToString("00"):@ts.Minutes.ToString("00")</span>
+                                                                }
+
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @{
+                                                                if (item.EarlyIn > 0)
+                                                                {
+                                                                    TimeSpan ts = new TimeSpan(0, item.EarlyIn.Value, 0);
+                                                                    <span>@ts.Hours.ToString("00"):@ts.Minutes.ToString("00")</span>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @{
+                                                                if (item.EarlyOut > 0)
+                                                                {
+                                                                    TimeSpan ts = new TimeSpan(0, item.EarlyOut.Value, 0);
+                                                                    <span>@ts.Hours.ToString("00"):@ts.Minutes.ToString("00")</span>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @{
+                                                                if (item.LateIn > 0)
+                                                                {
+                                                                    TimeSpan ts = new TimeSpan(0, item.LateIn.Value, 0);
+                                                                    <span>@ts.Hours.ToString("00"):@ts.Minutes.ToString("00")</span>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @{
+                                                                if (item.LateOut > 0)
+                                                                {
+                                                                    TimeSpan ts = new TimeSpan(0, item.LateOut.Value, 0);
+                                                                    <span>@ts.Hours.ToString("00"):@ts.Minutes.ToString("00")</span>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Remarks)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </fieldset>
+                                <legend>
+                                    <span class="text-black">EI:</span><span>&nbsp;&nbsp;Early In</span>&nbsp;&nbsp;
+                                    <span class="text-black">EO:</span><span>&nbsp;&nbsp;Early Out</span>&nbsp;&nbsp;
+                                    <span class="text-black">LI:</span><span>&nbsp;&nbsp;Late In</span>&nbsp;&nbsp;
+                                    <span class="text-black">LO:</span><span>&nbsp;&nbsp;Late Out</span>&nbsp;&nbsp;
+                                    <span class="text-black">HCL:</span><span>&nbsp;&nbsp;Half Casual Leave</span>&nbsp;&nbsp;
+                                    <span class="text-black">N-OT:</span><span>&nbsp;&nbsp;Normal Overtime</span>&nbsp;&nbsp;
+                                </legend>
+                            </div>
+
+                        </div>
+                </div>
+
+                <!-- /main content -->
+            </div>
+            <!-- /page content -->
+        </div>
+    }
+}

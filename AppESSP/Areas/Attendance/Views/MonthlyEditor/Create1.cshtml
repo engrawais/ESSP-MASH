@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Monthly Editor - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMEditMonthlyCreate
+@using (Html.BeginForm("Create1", "MonthlyEditor", FormMethod.Post))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Monthly Attendance Editor</span></h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/Index"> Dashboard</a></li>
+                            <li class="active"> Monthly Editor</li>
+                        </ul>
+                        <ul class="breadcrumb-elements">
+                            <li>
+                                <button type="submit" class="btn btn-lg text-bold bg-blue-800 btn-custom" style="margin-right:-20px"><i class="icon-forward3"></i> Next</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <article class="col-md-12">
+                            <div class="">
+                                <fieldset>
+                                    <div id="DivStepOne">@Html.Action("StepOne", "EmpSelection", new { @area = "Common" })</div>
+                                    <section class="col-md-4">
+                                        <div class="panel-body bg-blue-800 border-radius-top " style="height:50px">
+                                            <h6 class="text-bold" style="margin-top:-5px">
+                                               3. Details
+                                            </h6>
+                                        </div>
+                                        <section class="col-md-12">
+                                            @*<section class="row">
+                <div class="form-group col-md-8">
+                    <label class="text-semibold">From</label>
+                    <input id="JobDateFrom" name="JobDateFrom" value="@ViewData["JobDateFrom"]" type="date" class="form-control" />
+                </div>
+            </section>
+            <section class="row">
+                <div class="form-group col-md-8">
+                    <label class="text-semibold">To</label>
+                    <input id="JobDateTo" name="JobDateTo" type="date" value="@ViewData["JobDateTo"]" class="form-control" />
+                </div>
+            </section>*@
+                                                <div class="form-group">
+                                                    <br />
+                                                    <label class="text-semibold col-md-2">Period</label>
+                                                    <div>@Html.DropDownList("PayrolPeriodID", null, new { @class = "btn btn-default col-lg-4 col-sm-4 col-md-4" })</div>
+                                                </div>
+                                            
+                                        </section>
+                                        <br />
+                                    </section>
+                                </fieldset>
+                            </div>
+                        </article>
+                    </div>
+                    @*<div class="panel-footer">
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success heading-btn pull-right">Submit</button>
+                        </div>
+                    </div>*@
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}

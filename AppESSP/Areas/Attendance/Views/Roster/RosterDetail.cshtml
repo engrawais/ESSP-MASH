@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ESSPCORE.Attendance.RosterDetailAttributes>
+@{
+    ViewBag.Title = "Roster Detail- (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">Roster Details</span> <span class="text-black"> @ViewBag.Header</span></h4>
+    </div>
+</div>
+
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Roster Detail</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-800" style="margin-right:-20px">
+                        <li><a href="~/Attendance/Roster/Index" class="text-bold"><i class="icon-backward position-left"></i>Back</a></li>
+                    </ul>
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Day
+                            </th>
+                            <th class="text-bold">
+                                Duty Date
+                            </th>
+                            <th class="text-bold">
+                                Duty Code
+                            </th>
+                            <th class="text-bold">
+                                Duty Time
+                            </th>
+                            <th class="text-bold">
+                                Work Minutes
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Day)
+                                </td>
+                                <td>
+                                    @item.DutyDate.Date.ToString("dd-MM-yyyy")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DutyCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DutyTime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkMin)
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>

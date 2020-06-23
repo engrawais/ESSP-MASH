@@ -1,0 +1,29 @@
+﻿@model ESSPCORE.EF.JobCardApp
+<div class="modal-header bg-blue">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">
+        <i class="glyphicon glyphicon-trash"></i> &nbsp;Delete Job Card
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="form-horizontal">
+        <div>
+            <h3 class="text-center"><strong> Are you sure you want to delete the Job Card ? </strong></h3>
+
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "formDeleteID", id = "formDeleteID" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.PJobCardAppID)
+            }
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary bg-primary-300" })
+        <input type="button" id="btnPostDelete" class="btn btn-danger bg-danger-800" value="Delete" />
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            EmpJobCardPostDelete();
+        });
+    </script>

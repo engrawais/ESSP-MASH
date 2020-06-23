@@ -1,0 +1,179 @@
+﻿@model PagedList.IPagedList<ESSPCORE.EF.VAT_JobCardApplication>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "JobCard - List (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"]; }
+<div class="page-header">
+
+    <div class="page-header-content">
+        <div class="col-md-6"><h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Job Cards</span></h4></div>
+        <div class="col-md-6" style="padding-top:8px;">
+            <form class="form-inline" role="form">
+                <div class="form-group pull-right SearchBtnMargin">
+                    @using (Html.BeginForm("Index", "JobCard", FormMethod.Get))
+                    {<p>
+                            Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                            <input class="btn btn-sm bg-blue-800 btn-custom" type="submit" value="Search" />
+                        </p>}
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Job Cards</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-600" style="margin-right:-20px">
+                        <li><a href="#" id="btnGetSingleDayCreate"><i class="icon-add position-left"></i> Add Single Day Job Card</a></li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-700">
+                        <li><a href="#" id="btnGetMultipleDayCreate"><i class="icon-add position-left"></i>Add Multiple Day Job Card</a></li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-800">
+                        <li><a href="~/Attendance/JobCard/Create1"><i class="icon-add position-left"></i> Add  Bulk Job Card</a></li>
+                    </ul>
+
+                </div>
+                <table class="table table-bordered table-framed table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="text-bold">
+                                Emp No
+                            </th>
+                            <th class="text-bold">
+                                JobCard ID
+                            </th>
+                            <th class="text-bold ">
+                                Name
+                            </th>
+                            <th class="text-bold">
+                                Type
+                            </th>
+                            <th class="text-bold">
+                                Date From
+                            </th>
+                            <th class="text-bold">
+                                Date To
+                            </th>
+                            <th class="text-bold text-size-small">
+                                Start Time
+                            </th>
+                            <th class="text-bold text-size-small">
+                                End Time
+                            </th>
+                            <th class="text-bold text-size-small">
+                                Minutes
+                            </th>
+                            <th class="text-bold text-size-small">
+                                Remarks
+                            </th>
+                            <th class="text-bold text-center">
+                                Stage
+                            </th>
+                            @if (LoggedInUser.TMSDelete == true)
+                            {
+                                <th class="text-bold text-center" width="10%">Delete</th>
+                            }
+                        </tr>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-size-base">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OEmpID)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.PJobCardAppID)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.JobCardName)
+                                </td>
+                                <td>
+                                    @item.DateStarted.ToString("dd-MMM-yyyy")
+                                </td>
+                                <td>
+                                    @item.DateEnded.ToString("dd-MMM-yyyy")
+                                </td>
+                                <td>
+                                    @if (item.TimeStart != null)
+                                    {@item.TimeStart.Value}
+                                </td>
+                                <td>
+                                    @if (item.TimeEnd != null)
+                                    {@item.TimeEnd.Value}
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Minutes)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Remarks)
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-success">@Html.DisplayFor(modelItem => item.JobCardStageName)</span>
+                                </td>
+                                @if (LoggedInUser.TMSDelete == true)
+                                {
+                                    <td class="text-center">
+                                        <button type="button" id="btnGetDelete" onclick="JobCardGetDelete(@item.PJobCardAppID)" class="btn border-warning text-warning-800 btn-xs btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <div class="row">
+                    <div class="col-md-10 pull-left">@Html.PagedListPager(Model, page => Url.Action("Index", new { Status = ViewBag.StatusSave, Location = ViewBag.LocIDSave, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))</div>
+                    <div class="col-md-2 pull-right ">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+                </div>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content ">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page container -->
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/JobCard.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Create1();
+        SingleDayGetCreate();
+        MultipleDayGetCreate();
+    });
+</script>

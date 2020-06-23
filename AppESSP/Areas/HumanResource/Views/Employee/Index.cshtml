@@ -1,0 +1,153 @@
+﻿@model List<ESSPCORE.EF.VHR_EmployeeProfile>
+@{
+    ViewBag.Title = "Employee - List (AirBlue:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"]; }
+<head>
+    <style>
+        #imground {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Employees</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="/AttendanceDashboard/MainContainer"> Dashboard</a></li>
+                        <li class="active"> Employee</li>
+
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-600" style="margin-right:-20px">
+                        <li><a onclick="EmployeeGetCreate()"><i class="icon-add position-left"></i> Add Employee</a></li>
+                    </ul>
+                </div>
+
+                <table class="table" id="oks">
+                    <thead>
+                        <tr>
+                            <th class="text-semibold">
+                                Photo
+                            </th>
+                            <th class="text-semibold">
+                                Emp No
+                            </th>
+                            <th class="text-semibold">
+                                Name
+                            </th>
+                            @*<th>
+                                    Roster Name
+                                </th>*@
+                            <th class="text-semibold">
+                                Designation
+                            </th>
+                            <th class="text-semibold">
+                                Department
+                            </th>
+                            <th class="text-semibold">
+                                Crew
+                            </th>
+                            <th class="text-semibold">Shift</th>
+                            <th class="text-semibold"> Status </th>
+                            <th class="text-semibold">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/HumanResource/Employee/RetrieveImage/@item.PEmployeeID" id="imground" alt="" height=30 width=35 />
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.OEmpID)
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.ActionLink(item.EmployeeName, "Detail", "Employee", new { id = item.PEmployeeID }, new { @class = "" })
+                                </td>
+                                @*<td>
+                                        @Html.ActionLink(item.EmployeeName, "Index", "Roster", new { id = item.R }, new { @class = "" })
+                                    </td>*@
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.DesignationName)
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.OUCommonName)
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.CrewName)
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.ShiftName)
+                                </td>
+
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td class="text-size-small">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn border-blue-800 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded dropdown-toggle" data-toggle="dropdown"><i class="icon-cog5"></i><span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            @*@if (LoggedInUser.UserRoleID == "U" || LoggedInUser.UserRoleID == "B" || LoggedInUser.UserRoleID == "H")
+                                            {*@
+                                                <li><a href="#" id="btnGetEdit" onclick="EmployeeGetEdit(@item.PEmployeeID)">Edit</a></li>
+                                            @*}*@
+                                            <li>@Html.ActionLink("Roster", "OpenEmployeeRoster", "Roster", new { ShiftID = item.ShiftID, CrewID = item.CrewID, Area = "Attendance" }, new { })</li>
+                                            <li>
+                                                <a href="@Url.Action("Index", "EmployeeCrewHistory", new { id = item.PEmployeeID })" id="@item.PEmployeeID">Crew History</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+</div>
+<!-- /page container -->
+<!-- Modal -->
+<div>
+    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#oks').dataTable({
+            "iDisplayLength": 10,
+        });
+    })
+</script>
+<script type="text/javascript" src="~/Areas/HumanResource/Scripts/Employee.js"></script>

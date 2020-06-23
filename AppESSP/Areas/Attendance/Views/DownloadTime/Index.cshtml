@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Download Time - List (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<ESSPCORE.EF.DownloadTime>
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Download Time</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> Download Time</li>
+                    </ul>
+                    <ul class="breadcrumb-elements bg-blue-800" style="margin-right:-20px">
+                        <li> <a id="btnGetCreate" class="btn btn-lg text-bold"><i class="icon-add position-left"></i> Add Download Time</a></li>
+                    </ul>
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr class="">
+                            <th class="text-bold">
+                               Add Time
+                            </th>                                                      
+                            <th class="text-bold">
+                                Edit|Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>                               
+                                <td>
+                                    @item.DownTime
+                                </td>
+                                <td>
+                                    <button type="button" id="btnGetEdit" onclick="DownloadTimeGetEdit(@item.PDownloadTimeID)"  class="btn border-blue-800 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                    <button type="button" id="btnGetDelete" onclick="DownloadTimeGetDelete(@item.PDownloadTimeID)"class="btn border-warning text-warning-700 btn-flat btn-xs btn-rounded"><i class="note-icon-trash"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<!-- Modal -->
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/DownloadTime.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        DownloadTimeGetCreate();
+    });
+</script>

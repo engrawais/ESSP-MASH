@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Leave Quota - Step1 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMLeaveQuotaSelection
+@using (Html.BeginForm("Create2", "LeaveQuota", FormMethod.Post))
+{
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-black">Leave Quota</span> - Add New</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/Index"> Dashboard</a></li>
+                            <li><a class="active"> Attendance</a></li>
+                            <li class="active">Add Leave Quota</li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <article class="col-md-12">
+                            <div class="">
+                                <fieldset>
+                                    <div id="DivStepOne">@Html.Action("StepOne", "EmpSelection", new { @area = "Common" })</div>
+                                    <section class="col-md-4">
+                                        <div class="panel-body bg-blue-800 border-radius-top" style="height:50px">
+                                            <h6 id="Divheader2" style="margin-top:-5px" class="text-semibold">
+                                              3. Enter Details
+                                            </h6>
+                                        </div>
+                                        <section class="col-md-12">
+                                            <br /><br/>
+                                            <section class="row">
+                                                <div class="form-group col-md-8">
+                                                    <label class="text-semibold">Financial Year</label>
+                                                    <div>@Html.DropDownList("FinancialYearID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })</div>
+                                                </div>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </fieldset>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-custom bg-blue-800 heading-btn pull-right">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+    <script type="text/javascript" src="~/Areas/Attendance/Scripts/LeaveQuota.js"></script>
+
+}

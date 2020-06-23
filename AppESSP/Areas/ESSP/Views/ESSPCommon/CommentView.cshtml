@@ -1,0 +1,53 @@
+﻿@model ESSPCORE.ESSP.VMESSPCommon
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.FormName)
+    @Html.HiddenFor(model => model.PID)
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Comment
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Action</div>
+                <div class="col-md-10">
+                    @Html.DropDownList("StageID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12 " })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Comment Description</div>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Comment, new { @maxlength = 500, @class = "form-control", @id = "textarea" })
+                    @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                    <div id="textarea_feedback" class="text-blue-800 text-semibold"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-custom-grey bg-grey" data-dismiss="modal">Back to List</button>
+        <button type="button" id="btnCommentPostCreate" class="btn btn-custom bg-blue-800" value="Submit">Submit</button>
+    </div>
+}
+<script>
+    CommentPostCreate();
+    $(document).ready(function () {
+        var text_max = 500;
+        $('#textarea_feedback').html(text_max + ' characters remaining');
+
+        $('#textarea').keyup(function () {
+            var text_length = $('#textarea').val().length;
+            var text_remaining = text_max - text_length;
+
+            $('#textarea_feedback').html(text_remaining + ' characters remaining');
+        });
+    });
+</script>
+
+

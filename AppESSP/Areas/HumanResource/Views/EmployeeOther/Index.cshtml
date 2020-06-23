@@ -1,0 +1,119 @@
+﻿@model List<ESSPCORE.EF.VHR_EmployeeOtherProfile>
+@{
+    ViewBag.Title = "Employee - List (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"]; }
+<head>
+    <style>
+        #imground {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Employees</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-green-600">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="/AttendanceDashboard/MainContainer"> Dashboard</a></li>
+                        <li class="active"> Employee</li>
+                    </ul>
+                    <ul class="breadcrumb-elements text-bold bg-green-800" style="margin-right:-20px">
+                        <li>
+                            <a id="btnGetCreate" class="btn btn-lg"><i class="icon-add position-left"></i>Add Employee</a>
+                        </li>
+                    </ul>
+                </div>
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th class="text-semibold">
+                                Emp No
+                            </th>
+                            <th class="text-semibold">
+                                FPID
+                            </th>
+                            <th class="text-semibold">
+                                Name
+                            </th>
+                            <th class="text-semibold">
+                                Father Name
+                            </th>
+                            <th class="text-semibold"> Status </th>
+                            <th class="text-semibold"> Line Manager </th>
+                            <th class="text-semibold">Edit | Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.OEmpID)
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.FPID)
+                                </td>
+                                <td class="text-size-small">
+                                    @item.EmployeeName
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.FatherName)
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td class="text-size-small">
+                                    @Html.DisplayFor(modelItem => item.UserEmployeeName)
+                                </td>
+                                <td>
+                                    @if (LoggedInUser.UserRoleID == "U" || LoggedInUser.UserRoleID == "H")
+                                    {
+                                        <button type="button" id="btnGetEdit" onclick="EmployeeOtherGetEdit(@item.PEmployeeID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                        <button type="button" id="btnGetDelete" onclick="EmployeeOtherGetDelete(@item.PEmployeeID)" class="btn border-warning text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+</div>
+<!-- /page container -->
+<div>
+    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Areas/HumanResource/Scripts/EmployeeOther.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        EmployeeOtherGetCreate();
+    });
+</script>

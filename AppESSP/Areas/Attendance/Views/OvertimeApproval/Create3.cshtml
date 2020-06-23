@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Overtime Approval - Step 3 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMOvertimeApproval
+@using (Html.BeginForm("Create4", "OvertimeApproval", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.PayrollPeriodID)
+    ESSPCORE.Common.VMLoggedUser LoggedInUser = (ESSPCORE.Common.VMLoggedUser)HttpContext.Current.Session["LoggedInUser"];
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <div class="col-md-4">
+                <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">Overtime Approval</span>- for Payroll Period: @Model.PayrollPeriodName</h4>
+            </div>
+            @if (LoggedInUser.UserRoleID != "U")
+            {<div class=" col-md-2" style="margin-top:10px;">Decision: @Html.DropDownList("OTStatusID", null, new { @class = "btn btn-default" })</div>}
+            <div id="DivSubmittedTo" class=" col-md-5" style="margin-top:10px;">Submitted TO: @Html.DropDownList("SubmittedToUserID", null, new { @class = "btn dropdown-toggle btn-default btn-xs" })</div>
+            <div class="col-md-1" style="margin-top:10px;">
+                <button type="submit" class="btn btn-xs text-bold bg-green-800 "><i class="icon-safe"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-success-400">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li><a href="index.html"> Attendance</a></li>
+                            <li class="active">Overtime Approval</li>
+                        </ul>
+                        @*<ul class="breadcrumb-elements  bg-green-800">
+                            </ul>*@
+                    </div>
+                    <div class="panel-body">
+                        <table class="table datatable-scroll-edit table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="chkSelectAllEmp" /> Emp ID</th>
+                                    <th>
+                                        Employee Name
+                                    </th>
+                                    <th>
+                                        OT Policy
+                                    </th>
+                                    <th>
+                                        N-OT
+                                    </th>
+                                    <th>
+                                        R-OT
+                                    </th>
+                                    <th>GZ-OT</th>
+                                    <th>
+                                        Single Enc
+                                    </th>
+                                    <th>
+                                        Double Enc
+                                    </th>
+                                    @*<th>
+                                        CPL Hours
+                                    </th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OvertimeApprovalChild)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap"><input type="checkbox" class="chkSelectEmp" name="SelectedEmpIds" value="@item.EmpID" /> @item.EmpNo</td>
+                                        <td>
+                                            @item.EmployeeName
+                                        </td>
+                                        <th>
+                                            @item.OvertimePolicyName
+                                        </th>
+                                        <td>
+                                            @item.NormalOT
+                                        </td>
+                                        <td>
+                                            @item.RestOT
+                                        </td>
+                                        <td>
+                                            @item.GZOT
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control2 text-center" name="ENCS-@item.EmpID" style="width:50px" value="@item.EncashableSingleOT" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control2 text-center" name="ENCD-@item.EmpID" style="width:50px" value="@item.EncashableDoubleOT" />
+                                        </td>
+                                        @*<td>
+                                            <input type="text" class="form-control2 text-center" name="CPLH-@item.EmpID" style="width:50px" value="@item.CPLConvertedOT" />
+                                        </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/OvertimeApproval.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Create3();
+        $('#OTStatusID').change(function () {
+            var otStatus = $("#OTStatusID option:selected").html();
+            if (otStatus == "Approved") { $('#DivSubmittedTo').hide(); }
+            else { $('#DivSubmittedTo').show(); }
+        });
+    });
+</script>
+

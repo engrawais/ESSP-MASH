@@ -1,0 +1,129 @@
+﻿@model List<ESSPCORE.EF.LeaveCPLEmpBalance>
+@{
+    ViewBag.Title = "Leave Quota - List(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">CPL Details</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-green-600">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active"> CPL Details</li>
+                    </ul>
+                    @if (Model.Count == 0)
+                    {<ul class="breadcrumb-elements bg-green-800" style="margin-right:-20px">
+                            @*<li>
+                                <a onclick="CPLGetCreate(@ViewBag.EmpID)" class="btn btn-lg text-bold"><i class="icon-add position-left"></i> Add CPL</a>
+                            </li>*@
+                        </ul>}
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr class="">
+                            <th class="text-bold">
+                                Emp ID
+                            </th>
+                            <th class="text-bold">
+                                Start Date
+                            </th>
+                            <th class="text-bold">
+                                CPL Balance
+                            </th>
+                            <th class="text-bold">
+                                Used
+                            </th>
+                            <th class="text-bold">
+                                Remaining Balance
+                            </th>
+                            <th class="text-bold">
+                                ExpireDate
+                            </th>
+                            @*<th class="text-bold">
+                                Edit
+                            </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeID)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.PayrollPeriodID)
+
+                                </td>*@
+                                <td>
+                                    @if (item.EntryDateTime != null)
+                                    {
+                                        @item.EntryDateTime.Value.ToString("dd-MMM-yyyy")}
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalDays)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Used)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RemainingDays)
+
+                                </td>
+                                <td>
+                                    @if (item.ExpireDate != null)
+                                    {
+                                        @item.ExpireDate.Value.ToString("dd-MMM-yyyy")}
+                                </td>
+                                @*<td>
+                                    @if (item.IsExpire != true)
+                                    {
+                                        <button type="button" id="btnGetEdit" onclick="CPLGetEdit(@item.PLeaveCPLEmpBalanceID)" class="btn border-info-600 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                    }
+                                </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<!-- Modal -->
+
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/LeaveQuota.js"></script>

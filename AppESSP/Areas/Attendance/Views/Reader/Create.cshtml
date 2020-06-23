@@ -1,0 +1,83 @@
+﻿@model ESSPCORE.EF.Reader
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Reader
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">Reader Name </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.ReaderName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ReaderName, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-3 text-semibold">Reader Duty Code</div>
+                <div class="col-md-2">
+                    @Html.DropDownList("ReaderDutyCodeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.ReaderDutyCodeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">IP Address</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.IpAdd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IpAdd, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-3 text-semibold text-right">IP Port</div>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.IpPort, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IpPort, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold =">Reader Type</div>
+                <div class="col-md-4">
+                    @Html.DropDownList("RdrTypeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.RdrTypeID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold pull-right" for="Status" style="margin-right:-1.5px">
+                        @Html.CheckBox("Status")
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        Status
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold =">Location </div>
+                <div class="col-md-6">
+                    @Html.DropDownList("LocID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.LocID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label class="checkbox-inline text-semibold pull-right" for="ClearRecords">
+                        @Html.CheckBox("ClearRecords")
+                        @Html.ValidationMessageFor(model => model.ClearRecords, "", new { @class = "text-danger" })
+                        Clear Records
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+        <button type="button" id="btnPostCreate" class="btn bg-blue-800" value="Submit">Submit</button>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        ReaderPostCreate();
+    });
+</script>

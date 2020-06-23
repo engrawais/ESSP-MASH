@@ -1,0 +1,46 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "TimeOfficeDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMTimeOfficeDashboard
+<div class="page-header ">
+    <div class="page-header-content">
+        <div class="col-md-9">
+            <div class="input-group">
+                <h3>Monthly System Alerts</h3>
+            </div>
+        </div>
+        <div class="col-md-3 pull-right">
+            <div class="input-group" style="margin-top:10px;">
+                <input type="text" class="form-control daterange-left" name="date-range-picker" value="@Model.StartDate.ToString("MM/dd/yyyy") - @Model.EndDate.ToString("MM/dd/yyyy")">
+                <span class="input-group-addon"><i class="icon-calendar22"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="page-container">
+    <div class="panel panel-default">
+        @foreach (var item in Model.VMPVTMDashboard)
+        {
+            <div class="col-md-4">
+                @{Html.RenderPartial("PVTMDashboard", item);}
+            </div>
+
+        }
+
+    </div>
+</section>
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript" src="~/Scripts/AttendanceDashboard.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadDateRangePickerForTODashboard();
+    });
+
+</script>

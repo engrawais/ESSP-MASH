@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Overtime Approval - Step 2 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMOvertimeApprovalSelection
+@using (Html.BeginForm("Create3", "OvertimeApproval", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.PayrollPeriodID)
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Overtime Approval </span>- Choose Employees  for Payroll Period: @Model.PayrollPeriodName</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-green-600">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li class="active">Overtime Approval</li>
+                            <li class="active"> Select Employees</li>
+                        </ul>
+                        <ul class="breadcrumb-elements  bg-green-800">
+                            <button type="submit" class="btn btn-lg text-bold bg-green-800 " style="margin-right:-20px"><i class="icon-forward3"></i> Next</button>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div id="DivStepTwo">@Html.Action("StepTwo", "EmpSelection", new { @area = "Common", emps = Model.Employee })</div>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Common Job Title - List (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<ESSPCORE.EF.JTCommon>
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Common Job Title</span></h4>
+    </div>
+</div>
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="breadcrumb-line bg-grey">
+                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"> Dashboard</a></li>
+                        <li class="active">Common JobTitle</li>
+                    </ul>
+
+                    <ul class="breadcrumb-elements">
+                        <li>
+                            <button id="btnGetCreate" class="btn btn-lg text-bold bg-blue-800 " style="margin-right:-20px"><i class="icon-add position-left"></i> Add Common Job Title</button>
+                        </li> </ul>
+                </div>
+
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th>
+                                Common JobTitle Name
+                            </th>
+                            <th>
+                                Edit/Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.JTCommonName)
+                                </td>
+
+                                <td>
+                                    <button type="button" id="btnGetEdit" onclick="JTCommonGetEdit(@item.PJTCommonID)" class="btn border-blue-800 btn-flat text-indigo-600 btn-xs btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                    <button type="button" id="btnGetDelete" onclick="JTCommonGetDelete(@item.PJTCommonID)" class="btn border-warning text-warning-700 btn-flat btn-xs btn-rounded"><i class="note-icon-trash"></i></button>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content ">
+                <div id="modelBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Areas/HumanResource/Scripts/JTCommon.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        JTCommonGetCreate();
+    });
+</script>
+
+

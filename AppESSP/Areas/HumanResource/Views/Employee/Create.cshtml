@@ -1,0 +1,156 @@
+﻿@model ESSPCORE.HumanResource.VMEmployee
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Employee
+        </h4>
+    </div>
+    <div class="col-md-12">
+        <div class="modal-body">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Emp No<span style="color:red;">*</span></label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.OEmpID, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.OEmpID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Emp Name</label>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Father Name<span style="color:red;">*</span></label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">CNIC #</label>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.CNIC, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CNIC, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Date of Birth<span style="color:red;">*</span></label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Date of Joining</label>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.DOJ, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.DOJ, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    <div class="form-inline">
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Department<span style="color:red;">*</span></label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">                              
+                                @Html.DropDownList("DepartmentID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Designation</label>
+                        <div class="col-md-4">
+                            @Html.DropDownList("DesigationID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.DesigationID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>*@
+
+                @*<div class="form-group">
+                    <div class="form-inline">
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Location<span style="color:red;">*</span></label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">
+                                @Html.DropDownList("LocationID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.LocationID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Employee Type</label>
+                        <div class="col-md-4">
+                            @Html.DropDownList("EmploymentTypeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.EmploymentTypeID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>*@
+
+
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Crew<span style="color:red;">*</span></label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">
+                                @Html.DropDownList("CrewID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.CrewID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Shift</label>
+                        <div class="col-md-4">
+                            @Html.DropDownList("ShiftID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.ShiftID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-inline">
+                        @*<label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Section<span style="color:red;">*</span></label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">
+                                @Html.DropDownList("SectionID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.SectionID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                        <label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Gender</label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="input-group">
+                                @Html.DropDownList("Gender", new List<SelectListItem>
+                                     {
+                                         new SelectListItem { Text = "Male", Value = "Male", Selected=true},
+                                         new SelectListItem { Text = "Female", Value = "Female"},                                        new SelectListItem { Text = "Not Mentioned", Value = "2"}
+                                     },new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                @Html.ValidationMessageFor(model => model.Gender)
+                            </div>
+                        </div>
+                        @*<label class="col-lg-2 col-md-2 col-sm-2 control-label text-semibold ">Grade</label>
+        <div class="col-md-4">
+            @Html.DropDownList("GradeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+            @Html.ValidationMessageFor(model => model.GradeID, "", new { @class = "text-danger" })
+        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+        <button type="button" id="btnPostCreate" class="btn bg-blue-800" value="Submit">Submit</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        EmployeePostCreate();
+    });
+</script>
+

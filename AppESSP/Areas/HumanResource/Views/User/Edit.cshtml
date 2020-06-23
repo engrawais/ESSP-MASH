@@ -1,0 +1,502 @@
+﻿@{
+    ViewBag.Title = "User Edit-(ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ESSPCORE.HumanResource.VMAppUser
+
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PUserID)
+    @Html.HiddenFor(model => model.EmpID)
+
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Edit User</span></h4>
+        </div>
+    </div>
+    <!-- Page container -->
+
+    <!-- Page content -->
+
+    <div class="content-wrapper">
+        <!-- Basic datatable -->
+        <div class="panel panel-flat">
+            <div class="breadcrumb-line bg-grey">
+                <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                <ul class="breadcrumb">
+                    <li><a href="index.html"> Dashboard</a></li>
+                    <li class="active"> User</li>
+                </ul>
+            </div>
+            <div class="page-container">
+                <div class="page-content">
+                    <!-- Main content -->
+                    <div class="page-header">
+                        <div class="modal-header">
+                            <h4 class="text-bold"></h4>
+
+                        </div>
+                    </div>
+                    <section class="col-md-8">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="control-label col-md-2 text-semibold">User Name</div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="control-label col-md-2 text-semibold">Password</div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="control-label col-md-2 text-semibold">User Access Type</div>
+                                <div class="col-md-4">
+                                    @Html.DropDownList("UserAccessTypeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                    @Html.ValidationMessageFor(model => model.UserAccessTypeID, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <label class="checkbox-inline  text-semibold" for="HasESSP">
+                                        @Html.CheckBox("HasESSP", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.HasESSP, "", new { @class = "text-danger" })
+                                        ESSP User
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label text-semibold col-md-2  ">UserRole Type</div>
+                                <div class="col-md-4">
+                                    @Html.DropDownList("UserRoleID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                                    @Html.ValidationMessageFor(model => model.UserRoleID, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <label class="checkbox-inline text-semibold" for="UserStatus">
+                                        @Html.CheckBox("UserStatus", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.UserStatus, "", new { @class = "text-danger" })
+                                        User Status
+                                    </label>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label class="checkbox-inline text-bold " for="TMSAdd">
+                                        @Html.CheckBox("TMSAdd", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.TMSAdd, "", new { @class = "text-danger" })
+                                        CAN ADD
+                                    </label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="checkbox-inline text-bold " for="TMSEdit">
+                                        @Html.CheckBox("TMSEdit", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.TMSEdit, "", new { @class = "text-danger" })
+                                        CAN EDIT
+                                    </label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="checkbox-inline text-bold " for="TMSDelete">
+                                        @Html.CheckBox("TMSDelete", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.TMSDelete, "", new { @class = "text-danger" })
+                                        CAN DELETE
+                                    </label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="checkbox-inline text-bold " for="TMSView">
+                                        @Html.CheckBox("TMSView", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.TMSView, "", new { @class = "text-danger" })
+                                        CAN VIEW
+                                    </label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="checkbox-inline text-bold " for="Reports">
+                                        @Html.CheckBox("Reports", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.Reports, "", new { @class = "text-danger" })
+                                        REPORTS
+                                    </label>
+                                </div>
+                                <div class="col-md-12"><hr /></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label class="checkbox-inline text-bold " for="MCompany">
+                                        @Html.CheckBox("MCompany", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.MCompany, "", new { @class = "text-danger" })
+                                        COMPANY
+                                    </label>
+                                </div>
+                                <div id="MCompanyDiv">
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="Employee">
+                                            @Html.CheckBox("Employee", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.Employee, "", new { @class = "text-danger" })
+                                            Employee
+                                        </label>
+                                    </div>
+                                    @*<div class="col-md-2">
+                            <label class="checkbox-inline text-bold " for="OtherEmployee">
+                                @Html.CheckBox("OtherEmployee", new { @class = "styled" })
+                                @Html.ValidationMessageFor(model => model.OtherEmployee, "", new { @class = "text-danger" })
+                                Other Employee
+                            </label>
+                        </div>*@
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="Crew">
+                                            @Html.CheckBox("Crew", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.Crew, "", new { @class = "text-danger" })
+                                            Crews
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="OUCommon">
+                                            @Html.CheckBox("OUCommon", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.OUCommon, "", new { @class = "text-danger" })
+                                            Common OU
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="JTCommon">
+                                            @Html.CheckBox("JTCommon", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.JTCommon, "", new { @class = "text-danger" })
+                                            Common Job Title
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="CompanyStructure">
+                                            @Html.CheckBox("CompanyStructure", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.CompanyStructure, "", new { @class = "text-danger" })
+                                            Company Structure
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-10">
+
+                                        <label class="checkbox-inline text-bold col-md-2 " for="MUser">
+                                            &nbsp;
+                                            @Html.CheckBox("MUser", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.MUser, "", new { @class = "text-danger" })
+                                            Security
+                                        </label>
+                                        <div id="UserDiv">
+                                            <div class="col-md-2">
+                                                &nbsp; &nbsp; &nbsp;
+                                                <label class="checkbox-inline text-bold " for="AppUser">
+                                                    @Html.CheckBox("AppUser", new { @class = "styled" })
+                                                    @Html.ValidationMessageFor(model => model.AppUser, "", new { @class = "text-danger" })
+                                                    User
+                                                </label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                                                <label class="checkbox-inline text-bold " for="AppUserRole">
+                                                    @Html.CheckBox("AppUserRole", new { @class = "styled" })
+                                                    @Html.ValidationMessageFor(model => model.AppUserRole, "", new { @class = "text-danger" })
+                                                    User Role
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12"><hr /></div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label class="checkbox-inline text-bold " for="MAttendance">
+                                        @Html.CheckBox("MAttendance", new { @class = "styled" })
+                                        @Html.ValidationMessageFor(model => model.MAttendance, "", new { @class = "text-danger" })
+                                        ATTENDANCE
+                                    </label>
+                                </div>
+                                <div id="MAttDiv">
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="MSettings">
+                                            @Html.CheckBox("MSettings", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.MSettings, "", new { @class = "text-danger" })
+                                            Settings
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="MLeave">
+                                            @Html.CheckBox("MLeave", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.MLeave, "", new { @class = "text-danger" })
+                                            Leaves
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="MAttendanceEditor">
+                                            @Html.CheckBox("MAttendanceEditor", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.MAttendanceEditor, "", new { @class = "text-danger" })
+                                            Attendance Editor
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="MShift">
+                                            @Html.CheckBox("MShift", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.MShift, "", new { @class = "text-danger" })
+                                            Shift & Rosters
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="checkbox-inline text-bold " for="MOvertime">
+                                            @Html.CheckBox("MOvertime", new { @class = "styled" })
+                                            @Html.ValidationMessageFor(model => model.MOvertime, "", new { @class = "text-danger" })
+                                            Overtime
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12"><hr /></div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div id="SettingsDiv">
+                                    <div class="col-md-2"><h5 class="text-bold">Settings</h5></div>
+                                    <div class="col-md-10">
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="Reader">
+                                            @Html.CheckBox("Reader", new { @class = "styled" }) Reader
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="Holiday">
+                                            @Html.CheckBox("Holiday", new { @class = "styled" }) Holiday
+                                        </label>
+                                        <label class="checkbox-inline text-semibold  col-md-3" for="DownloadTime">
+                                            @Html.CheckBox("DownloadTime", new { @class = "styled" })Download Time
+                                        </label>
+
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-10">
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="ServiceLog">
+                                            @Html.CheckBox("ServiceLog", new { @class = "styled" }) Service Log
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="FinancialYear">
+                                            @Html.CheckBox("FinancialYear", new { @class = "styled" }) Financial Year
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3" for="PayrollPeriod">
+                                            @Html.CheckBox("PayrollPeriod", new { @class = "styled" }) Payroll Period
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12"><hr /></div>
+                            </div>
+
+                            <div class="form-group">
+                                <div id="LeaveDiv">
+                                    <div class="col-md-2 "><h5 class="text-bold">Leave</h5></div>
+                                    <div class="col-md-10">
+                                        <label class="checkbox-inline text-semibold col-md-2" for="LeavePolicy">
+                                            @Html.CheckBox("LeavePolicy", new { @class = "styled" }) Leave Policy
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3" for="LeaveApplication">
+                                            @Html.CheckBox("LeaveApplication", new { @class = "styled" }) Leave Application
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3" for="LeaveQuota">
+                                            @Html.CheckBox("LeaveQuota", new { @class = "styled" }) Leave Quota
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-2" for="LeaveCF">
+                                            @Html.CheckBox("LeaveCF", new { @class = "styled" })  Leave CF
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12"><hr /></div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div id="AttendanceEditorDiv">
+                                    <div class="col-md-2"><h5 class="text-bold">Attendance Editor</h5></div>
+                                    <div class="col-md-10">
+                                        <label class="checkbox-inline text-semibold col-md-2 " for="JobCard">
+                                            @Html.CheckBox("JobCard", new { @class = "styled" }) Job Card
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="DailyAttEditor">
+                                            @Html.CheckBox("DailyAttEditor", new { @class = "styled" }) Daily Att Edit
+                                        </label>  <label class="checkbox-inline text-semibold col-md-3 " for="MonthlyAttEditor">
+                                            @Html.CheckBox("MonthlyAttEditor", new { @class = "styled" })Montly Att Edit
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12"><hr /></div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <div id="ShiftDiv">
+                                    <div class="col-md-2"><h5 class="text-bold">Shift & Rosters</h5></div>
+                                    <div class="col-md-10">
+                                        <label class="checkbox-inline text-semibold col-md-2 " for="Shift">
+                                            @Html.CheckBox("Shift", new { @class = "styled" }) Shift
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="ShiftChange">
+                                            @Html.CheckBox("ShiftChange", new { @class = "styled" }) Shift Change
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="ShiftChangeEmp">
+                                            @Html.CheckBox("ShiftChangeEmp", new { @class = "styled" }) Shift Change Employee
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-2 " for="Roster">
+                                            @Html.CheckBox("Roster", new { @class = "styled" }) Roster
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12"><hr /></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div id="OvertimeDiv">
+                                    <div class="col-md-2 "><h5 class="text-bold">Overtime</h5></div>
+                                    <div class="col-md-10">
+                                        <label class="checkbox-inline text-semibold col-md-2 " for="OvertimePolicy">
+                                            @Html.CheckBox("OvertimePolicy", new { @class = "styled" }) Overtime Policy
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="OvertimeAP">
+                                            @Html.CheckBox("OvertimeAP", new { @class = "styled" })Overtime Approval
+                                        </label>
+                                        <label class="checkbox-inline text-semibold col-md-3 " for="OvertimeENCPL">
+                                            @Html.CheckBox("OvertimeENCPL", new { @class = "styled" })Overtime Encashable
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12"><hr /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="col-md-4">
+                        <div>
+                            <div id="DepartmentTableDiv">
+
+                                <div class="panel-body bg-blue border-radius-top text-center" style="height:50px">
+                                    <h5 style="margin-top:-5px">
+                                        <strong>Select User Departments</strong>
+                                    </h5>
+                                </div>
+                                <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCommonOU">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" id="chkSelectAll" /></th>
+                                            <th>
+                                                Department Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.UserDepartment)
+                                        {
+                                            <tr>
+                                                <td class="text-nowrap"><input type="checkbox" @(item.IsSelectedDepartment == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.POUCommonID" /></td>
+                                                <td class="valSelect">
+                                                    @item.OUCommonName
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section class="col-md-4">
+                        <div>
+                            <div id="LocationTableDiv">
+
+                                <div class="panel-body bg-blue border-radius-top text-center" style="height:50px">
+                                    <h5 style="margin-top:-5px">
+                                        <strong>Select User Locations</strong>
+                                    </h5>
+                                </div>
+                                <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCommonOU">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" id="chkSelectAll" /></th>
+                                            <th>
+                                                Location Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.UserLocations)
+                                        {
+                                            <tr>
+                                                <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.PLocationID" /></td>
+                                                <td class="valSelect">
+                                                    @item.LocationName
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+                <div class="modal-footer">
+          
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+                    <button type="submit" id="btnSave" class="btn bg-blue-800" value="Save">Submit</button>
+
+                </div>
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+    </div>
+
+
+
+}
+<!-- /page container -->
+
+<script type="text/javascript" src="~/Areas/HumanResource/Scripts/User.js"></script>
+<script type="text/javascript">
+    if ($("#UserAccessTypeID").val() == "2") {
+        $("#LocationTableDiv").show();
+        $("#DepartmentTableDiv").hide();
+    } if ($("#UserAccessTypeID").val() == "4") {
+        $("#DepartmentTableDiv").show();
+        $("#LocationTableDiv").hide();
+    } if ($("#UserAccessTypeID").val() == "1") {
+        $("#DepartmentTableDiv").hide();
+        $("#LocationTableDiv").hide();
+    }
+    if ($("#UserAccessTypeID").val() == "3") {
+        $("#DepartmentTableDiv").hide();
+        $("#LocationTableDiv").hide();
+    }
+    $("#UserAccessTypeID").change(function () {
+        if ($("#UserAccessTypeID").val() == "2") {
+            $("#LocationTableDiv").show();
+            $("#DepartmentTableDiv").hide();
+        } if ($("#UserAccessTypeID").val() == "4") {
+            $("#DepartmentTableDiv").show();
+            $("#LocationTableDiv").hide();
+        } if ($("#UserAccessTypeID").val() == "1") {
+            $("#DepartmentTableDiv").hide();
+            $("#LocationTableDiv").hide();
+        }
+        if ($("#UserAccessTypeID").val() == "3") {
+            $("#DepartmentTableDiv").hide();
+            $("#LocationTableDiv").hide();
+        }
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        UserCBAndTableControls();
+    });
+</script>
+
+
+
+

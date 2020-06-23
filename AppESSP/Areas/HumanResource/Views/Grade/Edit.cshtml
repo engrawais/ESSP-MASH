@@ -1,0 +1,58 @@
+﻿
+@model ESSPCORE.EF.Grade
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PGradeID)
+    @Html.HiddenFor(model => model.GradeName)
+    @Html.HiddenFor(model => model.OGradeID)
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-4 control-label text-semibold">Grade Name</div>
+            <div class="col-md-6 control-label text-black">
+                @Model.GradeName
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label text-semibold col-md-2 ">OT Policy</div>
+            <div class="col-md-4">
+                @Html.DropDownList("OTPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                @Html.ValidationMessageFor(model => model.OTPolicyID, "", new { @class = "text-danger" })
+            </div>
+            <div class="control-label text-semibold col-md-2 ">AL Policy</div>
+            <div class="col-md-4">
+                @Html.DropDownList("ALPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                @Html.ValidationMessageFor(model => model.ALPolicyID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label text-semibold col-md-2 ">CL Policy</div>
+            <div class="col-md-4">
+                @Html.DropDownList("CLPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                @Html.ValidationMessageFor(model => model.CLPolicyID, "", new { @class = "text-danger" })
+            </div>
+            <div class="control-label text-semibold col-md-2 ">SL Policy</div>
+            <div class="col-md-4">
+                @Html.DropDownList("SLPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                @Html.ValidationMessageFor(model => model.SLPolicyID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label text-semibold col-md-2 ">CPL Policy</div>
+            <div class="col-md-4">
+                @Html.DropDownList("CPLPolicyID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                @Html.ValidationMessageFor(model => model.CPLPolicyID, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2"></div>
+            <label class="col-md-4 checkbox-inline  text-semibold ">
+
+                @Html.EditorFor(model => model.Status)
+                Status
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </label>
+        </div>
+    </div>
+}
+
+

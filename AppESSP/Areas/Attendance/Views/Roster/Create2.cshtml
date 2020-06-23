@@ -1,0 +1,126 @@
+﻿@model ESSPCORE.Attendance.VMRosterModel
+@{
+    ViewBag.Title = "Roster - Step 2 (Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header ">
+
+    <div class="page-header-content">
+        <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Rosters</span> - For Shift: @Model.ShiftName, Crew: @Model.CriteriaValueName</h4>
+        <span class="text-black">
+            <button class="btn btn-small  btn-custom bg-green-800" name="CalculateWorkMints" id="CalculateWorkMints">Calculate Work Mints</button>
+        </span>
+    </div>
+</div>
+<!-- Page container -->
+@using (Html.BeginForm("Create2", "Roster", FormMethod.Post))
+{
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="~/Home/Index"> Dashboard</a></li>
+                            <li class="active"> Step-Two : Define Criteria</li>
+                        </ul>
+                    </div>
+                    @using (Html.BeginForm("CreateRoster", "Roster", FormMethod.Post))
+                    {
+                        <div class="panel-body">
+                            @*<h6 class="no-margin">@Html.ActionLink("List of Roster Applications", "RosterAppIndex", null, new { @class = "" })</h6><hr />*@
+                            @Html.AntiForgeryToken()
+                            <input hidden type="text" name="criteria" id="critera" value="@Model.Criteria" />
+                            <input hidden type="text" name="criteriaValue" id="criteriaValue" value="@Model.CriteriaValue" />
+                            <input hidden type="text" name="shiftId" id="shiftId" value="@Model.ShiftID" />
+                            <input hidden type="text" name="noOfDays" id="noOfDays" value="@Model.NoOfDays" />
+                            <input hidden type="text" name="startDate" id="startDate" value="@Model.StartDate" />
+                            <input hidden type="text" name="startDate" id="startDate" value="@Model.EndDate" />
+                            <input hidden type="text" name="RotaAppID" id="RotaAppID" value="@Model.RotaAppID" />
+                            <table class="table table-striped table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="text-bold">
+                                            Day
+                                        </th>
+                                        <th class="text-bold">
+                                            Date
+                                        </th>
+                                        <th class="text-bold" style="display:none;">
+
+                                        </th>
+                                        <th class="text-bold">
+                                            Start Time
+                                        </th>
+                                        <th class="text-bold">
+                                            Shift Work Minutes
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model._RosterAttributes)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.Day
+                                            </td>
+                                            <td>
+                                                @item.DateString
+                                            </td>
+                                            <td style="display:none;">
+                                                <input type="text" class="btn-table form-control" name="Date-@item.ID" style="width:80px" value="@item.DateString" />
+                                            </td>
+                                            <td>
+                                                <input type="text" class="btn-table form-control" name="DT-@item.ID" style="width:80px" value="@item.DutyTimeString" />
+                                            </td>
+                                            <td>
+                                                <input type="text" class="btn-table form-control" name="WM-@item.ID" style="width:80px" value="@item.WorkMin" id="rows" />
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <p id="demo"></p>
+                        <div class="panel-footer">
+                            <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                            <div class="heading-elements pull-right">
+
+                                <input type="submit" value="Create" class="btn btn-small btn-custom bg-blue-800" />
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+
+
+}
+
+
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/Rosters.js"></script>
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/RosterWorkMints.js"></script>
+<script>
+
+    $(document).ready(function () {
+        CalculateWorkMints()
+    });
+</script>
+
+

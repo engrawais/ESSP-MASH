@@ -1,0 +1,210 @@
+﻿@model ESSPCORE.EF.LeavePolicy
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Leave Policy
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="label-control col-md-2 text-semibold">Policy Name </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.LeavePolicyName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LeavePolicyName, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-2 text-semibold">Leave Type </div>
+                <div class="col-md-4">
+                    @Html.DropDownList("LeaveTypeID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                    @Html.ValidationMessageFor(model => model.LeaveTypeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold" for="Enable">
+                        @Html.CheckBox("Enable")
+                        @Html.ValidationMessageFor(model => model.Enable, "", new { @class = "text-danger" })
+                        Enable
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold" for="Encashable">
+                        @Html.CheckBox("Encashable")
+                        @Html.ValidationMessageFor(model => model.Encashable, "", new { @class = "text-danger" })
+                        Encashable
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold" for="CountGZDays">
+                        @Html.CheckBox("CountGZDays")
+                        @Html.ValidationMessageFor(model => model.CountGZDays, "", new { @class = "text-danger" })
+                        Count GZ Days
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold" for="CountRestDays">
+                        @Html.CheckBox("CountRestDays")
+                        @Html.ValidationMessageFor(model => model.CountRestDays, "", new { @class = "text-danger" })
+                        Count Rest Days
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold" for="DeductRestDays">
+                        @Html.CheckBox("DeductRestDays")
+                        @Html.ValidationMessageFor(model => model.DeductRestDays, "", new { @class = "text-danger" })
+                        Deduct Rest Days
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="checkbox-inline text-semibold" for="DeductGZDays">
+                        @Html.CheckBox("DeductGZDays")
+                        @Html.ValidationMessageFor(model => model.DeductGZDays, "", new { @class = "text-danger" })
+                        Deduct GZ Days
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label class="checkbox-inline text-black" for="UpdateBalance">
+                        @Html.CheckBox("UpdateBalance")
+                        @Html.ValidationMessageFor(model => model.UpdateBalance, "", new { @class = "text-danger" })
+                        UPDATE BALANCE
+                    </label>
+                </div>
+            </div>
+            <div id="UpdateBalanceDiv">
+                <div class="form-group">
+                    <div class="control-label col-md-3 text-semibold">Total Days </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.TotalDays, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalDays, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label class="checkbox-inline text-semibold" for="ProRata">
+                            @Html.CheckBox("ProRata")
+                            @Html.ValidationMessageFor(model => model.ProRata, "", new { @class = "text-danger" })
+                            Pro Rata
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="checkbox-inline text-semibold" for="CF">
+                            @Html.CheckBox("CF")
+                            @Html.ValidationMessageFor(model => model.CF, "", new { @class = "text-danger" })
+                            Carry Forward
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="CarryForwardDiv">
+                <div class="form-group">
+                    <div class="control-label col-md-4 text-semibold">Minimum Days Deduction </div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CFMinDaysDed, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CFMinDaysDed, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="control-label col-md-4 text-semibold">Maximum Days Deduction </div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CFMaxDaysDed, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CFMaxDaysDed, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4 text-semibold">Carry Forward Penality Days</div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CFPenalityDays, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CFPenalityDays, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="label-control col-md-4 text-semibold">Carry Forward Maximum Days</div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CFMaxDays, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CFMaxDays, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4 text-semibold">Minimum Days </div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.MinimumDays, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MinimumDays, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="label-control col-md-4 text-semibold">Attachment for Days</div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.AttachmentForDays, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AttachmentForDays, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-4">
+                    <div class="radio-inline text-semibold">
+                        @Html.RadioButton("payable", "WithOutPay", false, new { id = "WithOutPay" })
+                        @Html.ValidationMessageFor(model => model.WithOutPay, "", new { @class = "text-danger" })
+                        Without Pay
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio-inline text-semibold">
+                        @Html.RadioButton("payable", "WithHalfPay", false, new { id = "WithHalfPay" })
+                        @Html.ValidationMessageFor(model => model.WithHalfPay, "", new { @class = "text-danger" })
+                        With Half Pay
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio-inline text-semibold">
+                        @Html.RadioButton("payable", "WithFullPay", false, new { id = "WithFullPay" })
+                        @Html.ValidationMessageFor(model => model.WithFullPay, "", new { @class = "text-danger" })
+                        With Full Pay
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-md-4">
+                    <div class="radio-inline text-semibold">
+                        @Html.RadioButton("activation", "ActiveAfterJoinDate", true, new { id = "ActiveAfterJoinDate" }) After JoinDate
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio-inline text-semibold">
+                        @Html.RadioButton("activation", "ActiveAfterProbation", new { id = "ActiveAfterProbation" }) After Probation
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio-inline text-semibold">
+                        @Html.RadioButton("activation", "ActiveAfterCustomDays", new { id = "ActiveAfterCustomDays" }) After Custom Days
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div id="CustomDaysDataDiv">
+                    <div class="control-label col-md-3 text-semibold">Custom Days </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.CustomDays, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CustomDays, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-cutom-grey bg-grey" })
+        <button type="button" id="btnPostCreate" class="btn btn-custom bg-blue-800" value="Submit">Submit</button>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        LeavePolicyPostCreate();
+    });
+</script>
+

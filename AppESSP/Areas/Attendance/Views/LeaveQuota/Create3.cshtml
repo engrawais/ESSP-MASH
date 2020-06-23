@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Leave Quota - Step3(Bestway:ESSP)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ESSPCORE.Attendance.VMLeaveQuota
+@using (Html.BeginForm("Create4", "LeaveQuota", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.FinancialYearID)
+    <div class="page-header ">
+
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left text-black"></i> <span class="text-black">Leaves Quota </span>- Add Leave Quota</h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="breadcrumb-line bg-grey">
+                        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"> Dashboard</a></li>
+                            <li class="active"> Leave Quota</li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table datatable-scroll-y table-striped table-hover table-condensed">
+                            <thead>
+                                <tr role="row">
+                                    <th colspan="4" rowspan="1"  class="text-bold text-center">Employee Information</th>
+                                    <th colspan="3" rowspan="1" class="text-bold text-center">New Year Balance</th>
+                                    <th colspan="3" rowspan="1" class="text-bold text-center">AL Carry Forward</th>
+                                </tr>
+                                <tr>
+                                    <th><input type="checkbox" id="chkSelectAllEmp" /></th>
+                                    <th class="text-bold">
+                                        Emp ID
+                                    </th>
+                                    <th class="text-bold">
+                                        Employee Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Job Title
+                                    </th>
+                                    <th class="text-bold">
+                                        DOJ
+                                    </th>
+                                    <th class="text-center text-bold">
+                                        AL
+                                    </th>
+                                    <th class="text-center text-bold">
+                                        CL
+                                    </th>
+                                    <th class="text-center text-bold">
+                                        SL
+                                    </th>
+                                    <th class="text-center text-bold">
+                                        EAL
+                                    </th>
+                                    <th class="text-center text-bold">
+                                        CME
+                                    </th>
+                                    <th class="text-bold">
+                                        Balance
+                                    </th>
+                                    <th class="text-bold">
+                                        Collapse
+                                    </th>
+                                    <th class="text-center text-bold">
+                                        CF
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.LeaveQuotaChild)
+                                {
+                                <tr>
+                                    <td class="text-nowrap"><input type="checkbox" class="chkSelectEmp" name="SelectedEmpIds" value="@item.EmpID" /></td>
+                                    <td>
+                                        @item.EmpNo
+                                    </td>
+                                    <td>
+                                        @item.EmployeeName
+                                    </td>
+                                    <td>
+                                        @item.JobTitleName
+                                    </td>
+                                    <td>
+                                        @item.DOJ
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:50px" class="form-control" name="AL-@item.EmpID" width="30" value="@item.AL" />
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:50px" class="form-control" name="CL-@item.EmpID" width="30" value="@item.CL" />
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:50px" class="form-control" name="SL-@item.EmpID" width="30" value="@item.SL" />
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:50px" class="form-control" name="EAL-@item.EmpID" width="30" value="@item.EAL" />
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:50px" class="form-control" name="CME-@item.EmpID" width="30" value="@item.CME" />
+                                    </td>
+                                    <td>
+                                        @item.ALBalance
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:50px" class="form-control" name="ALCop-@item.EmpID" width="30" value="@item.CollapseLeave" />
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width:50px" class="form-control" name="ALCF-@item.EmpID" width="30" value="@item.CarryForward" />
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-custom-grey bg-blue-800 heading-btn pull-right">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <!-- Modal -->
+}
+<script type="text/javascript" src="~/Areas/Attendance/Scripts/LeaveQuota.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        CheckBoxSelectionCreate3();
+    });
+</script>

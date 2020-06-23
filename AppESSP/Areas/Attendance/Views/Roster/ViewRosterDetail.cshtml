@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ESSPCORE.EF.VAT_RosterDetail>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Page container -->
+<body onload="window.print()">
+    <div class="page-container ">
+        <div class="page-content">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8 ">
+                <div class="timeline-row">
+
+                    <div class="panel panel-flat ">
+
+                        <div class="panel-heading col-md-12">
+
+                            <div class="col-md-10">
+
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class=" col-sm-10">
+                                <div class="profile-user-info-striped">
+                                    <table id="customers">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-bold">
+                                                    Crew Name
+                                                </th>
+                                                <th class="text-bold">
+                                                    Date 
+                                                </th>
+                                               
+                                                <th class="text-bold">
+                                                    Duty Code
+                                                </th>
+                                                <th class="text-bold">
+                                                    Duty Time
+                                                </th>
+                                                <th class="text-bold">
+                                                    WorkMin
+                                                </th>
+
+                                            </tr>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr class="text-size-base">
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CrewName)
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @item.RosterDate.Value.ToString("dd-MMM-yyyy")
+                                                    </td>
+                                                   
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DutyCode)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DutyTime)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.WorkMin)
+                                                    </td>
+
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>

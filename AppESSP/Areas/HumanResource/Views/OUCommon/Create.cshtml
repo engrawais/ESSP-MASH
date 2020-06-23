@@ -1,0 +1,39 @@
+﻿@model ESSPCORE.EF.OUCommon
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header bg-blue-800">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Common OU
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Common OU Name</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.OUCommonName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OUCommonName, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+   
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn bg-grey" })
+        <button type="button" id="btnPostCreate" class="btn bg-blue-800" value="Submit">Submit</button>
+    </div>
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        OUCommonPostCreate();
+    });
+</script>
+
+
